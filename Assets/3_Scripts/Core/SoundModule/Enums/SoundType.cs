@@ -1,5 +1,5 @@
 
-namespace Funlary.AudioModule.Enums
+namespace Funlary.SoundModule.Enums
 {
     public enum SoundType
     {

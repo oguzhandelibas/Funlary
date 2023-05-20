@@ -1,7 +1,7 @@
 using UnityEngine.Events;
-using Funlary.AudioModule.Enums;
+using Funlary.SoundModule.Enums;
 
-namespace Funlary.AudioModule.Signals
+namespace Funlary.SoundModule.Signals
 {
     public class AudioSignals : AbstractSingleton<AudioSignals>
     {

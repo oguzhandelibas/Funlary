@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Funlary.AudioModule.Data.ScriptableObjects
+namespace Funlary.SoundModule.Data.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "CD_Sound", menuName = "StackGame/CD_Sound", order = 0)]
+    [CreateAssetMenu(fileName = "CD_Sound", menuName = "ScriptableObjects/SoundModule/Data/CD_Sound", order = 0)]
     public class CD_Sound : ScriptableObject
     {
         public List<SoundData> SoundData;

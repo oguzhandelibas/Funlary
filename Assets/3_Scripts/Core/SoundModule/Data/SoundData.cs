@@ -1,8 +1,8 @@
-using Funlary.AudioModule.Enums;
+using Funlary.SoundModule.Enums;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Funlary.AudioModule.Data
+namespace Funlary.SoundModule.Data
 {
     [System.Serializable]
     public class SoundData

@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Funlary.AudioModule.Data.ScriptableObjects;
-using Funlary.AudioModule.Signals;
-using Funlary.AudioModule.Enums;
+using Funlary.SoundModule.Data.ScriptableObjects;
+using Funlary.SoundModule.Signals;
+using Funlary.SoundModule.Enums;
 
-namespace Funlary.AudioModule
+namespace Funlary.SoundModule
 {
     public class AudioManager : MonoBehaviour
     {
