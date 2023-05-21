@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameSelectionPanels:
     _serializedList:
-    - Key: 5
+    - Key: 4
       Value: {fileID: 734777013535212303, guid: 33f4c30286ba81d4db09a240e97825dd,
         type: 3}

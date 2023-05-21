@@ -16,7 +16,7 @@ namespace Funlary.UIModule.Menu.Unit
                 UnitBlock unitBlock = 
                     Instantiate(unitBlockPrefab, unitBlockParent).GetComponent<UnitBlock>();
                 int UnitOrder = (int)item.UnitType;
-                string UnitName = "Unit " + UnitOrder + " - " + item.UnitType;
+                string UnitName = "Unit " + (UnitOrder+1) + " - " + item.UnitType;
                 bool active = UnitOrder == 4;
                 unitBlock.SetUnit(UnitName, item.UnitExplanation, UnitOrder, active);
             }

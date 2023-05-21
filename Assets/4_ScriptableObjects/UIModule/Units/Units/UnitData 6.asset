@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb3605c28b96e624cb60c8eab0018abe, type: 3}
   m_Name: UnitData 6
   m_EditorClassIdentifier: 
-  Unit:
-    UnitType: 5
-    GameTypes: []
+  UnitType: 5
   UnitExplanation: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut
     placerat urna.
+  UnitGamePrefabs: []
