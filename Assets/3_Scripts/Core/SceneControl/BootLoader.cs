@@ -31,6 +31,14 @@ namespace Funlary
             gameObj.name = "--->GAME";
             DeactivateMenu(gameObj);
         }
+        
+        public void CreateGame(GameObject game)
+        {
+            //GameObject gameObj = Object.Instantiate(Resources.Load<GameObject>($"Sections/Game"));
+            var gameObj = Instantiate(game);
+            gameObj.name = "--->" + gameObj.name;
+            DeactivateMenu(gameObj);
+        }
 
         public void _CreateMyRoom()
         {

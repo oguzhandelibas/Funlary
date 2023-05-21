@@ -14,10 +14,5 @@ namespace Funlary.UIModule.Menu.Screens
             GameObject obj = GameSelectionPanelData.GameSelectionPanels[MenuUIManager.Instance.UnitIndex];
             Instantiate(obj,transform);
         }
-
-        public void _SelectGame()
-        {
-            
-        }
     }
 }

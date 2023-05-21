@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Funlary.UIModule.Menu.Unit
 {
-    public enum UnitTypes
+    public enum UnitType
     {
         Words,
         Friends,

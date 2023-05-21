@@ -21,8 +21,8 @@ namespace Funlary.UIModule.Menu
         readonly Stack<View> m_History = new ();
         
         private int gameIndex;
-        public int GameIndex {get => gameIndex; set => gameIndex = value;}
         private int unitIndex;
+        public int GameIndex {get => gameIndex; set => gameIndex = value;}
         public int UnitIndex {get => unitIndex; set => unitIndex = value;}
         void Start()
         {
