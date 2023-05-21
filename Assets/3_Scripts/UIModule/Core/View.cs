@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Funlary.UIModule.Menu;
 namespace Funlary.UIModule.Core
 {
     public abstract class View : MonoBehaviour
@@ -10,6 +10,16 @@ namespace Funlary.UIModule.Core
         public virtual void Initialize()
         {
         }
+
+        #region UI BUTTON
+
+        public void _ClosePanel()
+        {
+            MenuUIManager.Instance.GoBack();
+        }
+
+        #endregion
+        
         
         /// <summary>
         /// Makes the View visible

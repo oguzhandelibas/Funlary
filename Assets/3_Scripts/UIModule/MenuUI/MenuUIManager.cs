@@ -1,18 +1,40 @@
-using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 using UnityEngine;
 using Funlary.UIModule.Core;
 using Funlary.UIModule.Core.Interfaces;
 using Funlary.UIModule.Core.Enums;
+using Funlary.UIModule.Menu.Screens;
 
 namespace Funlary.UIModule.Menu
 {
-    public class MenuUIManager : MonoBehaviour, IUI
+    public class MenuUIManager : AbstractSingleton<MenuUIManager>, IUI
     {
+        [SerializeField]
+        Canvas m_Canvas;
+        [SerializeField]
+        RectTransform m_Root;
+        [SerializeField]
+        RectTransform m_ViewLayer;
         List<View> m_Views;
         View m_CurrentView;
         readonly Stack<View> m_History = new ();
+        
+        void Start()
+        {
+            m_Views = m_Root.GetComponentsInChildren<View>(true).ToList();
+            Init();
+            
+            //m_ViewLayer.ResizeToSafeArea(m_Canvas);
+        }
+
+        void Init()
+        {
+            foreach (var view in m_Views)
+                view.Hide();
+            Show<MenuScreen>();
+            m_History.Clear();
+        }
 
         /// <summary>
         /// Finds the first registered UI View of the specified type
