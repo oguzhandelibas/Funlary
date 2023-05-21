@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Funlary.UIModule.Unit
+namespace Funlary.UIModule.Menu.Unit
 {
     public enum UnitTypes
     {

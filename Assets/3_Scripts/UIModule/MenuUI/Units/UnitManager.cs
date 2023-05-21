@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Funlary.UIModule.Unit
+namespace Funlary.UIModule.Menu.Unit
 {
     public class UnitManager : MonoBehaviour
     {

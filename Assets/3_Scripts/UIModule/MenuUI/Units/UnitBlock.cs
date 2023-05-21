@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Funlary.UIModule.Unit
+namespace Funlary.UIModule.Menu.Unit
 {
     public class UnitBlock : MonoBehaviour
     {
