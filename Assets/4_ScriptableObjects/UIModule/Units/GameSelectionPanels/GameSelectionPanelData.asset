@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7adc2aa15b006eb4d9e5554dd6855810, type: 3}
   m_Name: GameSelectionPanelData
   m_EditorClassIdentifier: 
-  gameSelectionPanels: []
+  GameSelectionPanels:
+    _serializedList:
+    - Key: 5
+      Value: {fileID: 734777013535212303, guid: 33f4c30286ba81d4db09a240e97825dd,
+        type: 3}

@@ -8,7 +8,8 @@ namespace Funlary.UIModule.Menu.Screens
     {
         private void Start()
         {
-            
+            MenuUIManager.Instance.GameIndex = 0;
+            MenuUIManager.Instance.UnitIndex = 0;
         }
 
         #region UI BUTTONS

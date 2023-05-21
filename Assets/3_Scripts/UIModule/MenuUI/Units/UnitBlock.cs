@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Funlary.UIModule.Menu.Screens;
 
 namespace Funlary.UIModule.Menu.Unit
 {
@@ -9,12 +10,19 @@ namespace Funlary.UIModule.Menu.Unit
         [SerializeField] private Button unitButton;
         [SerializeField] private TextMeshProUGUI UnitName;
         [SerializeField] private TextMeshProUGUI UnitExplanation;
-
-        public void SetUnit(string unitName, string unitExplanation, bool active = false)
+        private int UnitIndex;
+        public void SetUnit(string unitName, string unitExplanation, int unitIndex, bool active = false)
         {
+            this.UnitIndex = unitIndex;
             unitButton.interactable = active;
             UnitName.text = unitName;
             UnitExplanation.text = unitExplanation;
+        }
+        
+        public void _SelectUnit()
+        {
+            MenuUIManager.Instance.UnitIndex = UnitIndex;
+            MenuUIManager.Instance.Show<GameSelectionScreen>();
         }
     }
 }

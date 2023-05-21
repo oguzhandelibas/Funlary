@@ -20,6 +20,10 @@ namespace Funlary.UIModule.Menu
         View m_CurrentView;
         readonly Stack<View> m_History = new ();
         
+        private int gameIndex;
+        public int GameIndex {get => gameIndex; set => gameIndex = value;}
+        private int unitIndex;
+        public int UnitIndex {get => unitIndex; set => unitIndex = value;}
         void Start()
         {
             m_Views = m_Root.GetComponentsInChildren<View>(true).ToList();

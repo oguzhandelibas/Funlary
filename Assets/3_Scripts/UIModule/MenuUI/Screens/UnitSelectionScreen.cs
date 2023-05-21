@@ -5,6 +5,6 @@ namespace Funlary.UIModule.Menu.Screens
 {
     public class UnitSelectionScreen : View
     {
-
+        
     }
 }
