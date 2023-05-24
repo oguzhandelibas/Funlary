@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 778167917468892988}
   m_Layer: 0
-  m_Name: ColourPlane
+  m_Name: COLOUR PLANE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
