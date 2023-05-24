@@ -16,7 +16,7 @@ namespace Funlary.UIModule.Menu.Unit
             MenuUIManager.Instance.GameIndex = GameIndex;
             int unitIndex = MenuUIManager.Instance.UnitIndex;
             GameObject gamePrefab = UnitManager.Instance.UnitDatas[unitIndex].UnitGamePrefabs[GameIndex];
-            BootLoader.Instance.CreateGame(gamePrefab);
+            BootLoader.Instance.CreateGameLevel(gamePrefab);
         }
     }
 }
