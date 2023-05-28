@@ -22,7 +22,7 @@ namespace Funlary
 
         public void CreateRope(Vector3 endPosition)
         {
-            endPole.localPosition += endPosition;
+            endPole.localPosition = endPosition;
             MeshGeneration.Instance.CreateMesh(
                 MeshType.PLANE, MeshRotationType.LEFT,
                 5, endPoint.position.z-startPoint.position.z, 1, 

@@ -41,8 +41,8 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
             InitializeBridge();
 
-            leftPole.CreateRope(new Vector3(0, BridgeHeight, BridgeLength));
-            rightPole.CreateRope(new Vector3(0, BridgeHeight, BridgeLength));
+            leftPole.CreateRope(new Vector3(0, BridgeHeight + 1, BridgeLength));
+            rightPole.CreateRope(new Vector3(0, BridgeHeight + 1, BridgeLength));
         }
 
         private void InitializeBridge()
