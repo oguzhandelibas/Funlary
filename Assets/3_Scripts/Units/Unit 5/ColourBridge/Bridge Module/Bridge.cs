@@ -24,6 +24,9 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         private float BridgeHeight = 5.0f;
         private float StepHeight;
 
+        [SerializeField] private PoleController leftPole;
+        [SerializeField] private PoleController rightPole;
+
         private void Start()
         {
             BridgeLength = endPoint.position.z - startPoint.position.z;
@@ -33,6 +36,9 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             MeshGeneration.Instance.CreateMesh(MeshType.PLANE, startPoint, endPoint, BridgeWidth, BridgeLength, BridgeHeight, transform);
 
             InitializeBridge();
+
+            leftPole.CreateRope(new Vector3(0, BridgeHeight, BridgeLength));
+            rightPole.CreateRope(new Vector3(0, BridgeHeight, BridgeLength));
         }
 
         private void InitializeBridge()
