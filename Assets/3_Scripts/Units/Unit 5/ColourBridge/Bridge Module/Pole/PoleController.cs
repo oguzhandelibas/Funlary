@@ -1,4 +1,6 @@
 using System;
+using Funlary.MeshGenerationModule;
+using Funlary.MeshGenerationModule.Enum;
 using UnityEngine;
 
 namespace Funlary
@@ -21,7 +23,13 @@ namespace Funlary
         public void CreateRope(Vector3 endPosition)
         {
             endPole.localPosition += endPosition;
-            Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height ,startPoint.position, endPoint.position);
+            MeshGeneration.Instance.CreateMesh(
+                MeshType.PLANE, MeshRotationType.LEFT,
+                5, endPoint.position.z-startPoint.position.z, 1, 
+                startPoint, endPoint,this.transform
+                );
+            
+            Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height, startPoint.position, endPoint.position);
             
             lineRenderer.positionCount = resolution + 1;
             lineRenderer.SetPositions(curvePositions);

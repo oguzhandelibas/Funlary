@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Funlary.Unit5.ColourBridge.MeshGenerationModule.Enum
+namespace Funlary.MeshGenerationModule.Enum
 {
     public enum MeshType
     {

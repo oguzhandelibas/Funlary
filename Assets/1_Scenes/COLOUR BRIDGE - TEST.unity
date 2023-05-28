@@ -254,7 +254,7 @@ MonoBehaviour:
   startPoint: {fileID: 1992038385}
   endPoint: {fileID: 1573561784}
   endPole: {fileID: 916220904}
-  height: -3
+  height: -2
   resolution: 100
 --- !u!4 &12740962
 Transform:
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 589994390}
   - component: {fileID: 589994389}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Left_Pole_Start_Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 1050005043}
   - component: {fileID: 1050005042}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Left_Pole_End_Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1273,7 +1273,7 @@ MonoBehaviour:
   startPoint: {fileID: 589994388}
   endPoint: {fileID: 1050005041}
   endPole: {fileID: 2119430801}
-  height: -3
+  height: -2
   resolution: 100
 --- !u!1 &1562694174
 GameObject:
@@ -1386,7 +1386,7 @@ GameObject:
   - component: {fileID: 1573561786}
   - component: {fileID: 1573561785}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Right_Pole_End_Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1760,7 +1760,7 @@ GameObject:
   - component: {fileID: 1992038387}
   - component: {fileID: 1992038386}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Right_Pole_Start_Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

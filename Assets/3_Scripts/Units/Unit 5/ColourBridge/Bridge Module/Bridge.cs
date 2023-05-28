@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Funlary.Unit5.ColourBridge.MeshGenerationModule;
-using Funlary.Unit5.ColourBridge.MeshGenerationModule.Enum;
+using Funlary.MeshGenerationModule;
+using Funlary.MeshGenerationModule.Enum;
 
 namespace Funlary.Unit5.ColourBridge.BridgeModule
 {
@@ -33,7 +33,11 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             BridgeHeight = endPoint.position.y - startPoint.position.y;
             StepHeight = BridgeHeight / BridgeLength;
             
-            MeshGeneration.Instance.CreateMesh(MeshType.PLANE, startPoint, endPoint, BridgeWidth, BridgeLength, BridgeHeight, transform);
+            MeshGeneration.Instance.CreateMesh(
+                MeshType.PLANE, MeshRotationType.UP, 
+                BridgeWidth, BridgeLength, BridgeHeight, 
+                startPoint, endPoint,transform
+                );
 
             InitializeBridge();
 
