@@ -7,6 +7,8 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 {
     public class Bridge : MonoBehaviour
     {
+        [SerializeField] private StepManager stepManager;
+        
         [Header("Indicator Transforms")]
         [SerializeField] private Transform stairParent; 
         [SerializeField] private Transform startPoint; 
@@ -14,10 +16,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         [Header("Prefabs")]
         [SerializeField] private GameObject stepPrefab;
-        
-        [Header("Privete Lists")]
-        private List<Step> stair = new List<Step>();
-        
+
         [Header("Privete Variables")]
         private float BridgeWidth = 3.0f;
         private float BridgeLength = 20.0f;
@@ -49,12 +48,12 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         {
             Vector3 stepPosition = new Vector3(0,0,0.5f);
             Vector3 stepScale = new Vector3(3, StepHeight, 1);
-            
+
             for (int i = 0; i < BridgeLength; i++)
             {
-                Step step = Instantiate(stepPrefab, stairParent).GetComponent<Step>();
-                stair.Add(step);
-                step.InitializeStep(stepPosition, stepScale);
+                IStep IStep = Instantiate(stepPrefab, stairParent).GetComponent<IStep>();
+                Debug.Log(IStep);
+                stepManager.AddStep(IStep, stepPosition, stepScale);
                 
                 stepPosition += new Vector3(0, StepHeight, 1);
             }
