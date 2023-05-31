@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 230761065}
   - component: {fileID: 230761067}
   - component: {fileID: 230761066}
+  - component: {fileID: 230761068}
   m_Layer: 0
   m_Name: Opponent
   m_TagString: Untagged
@@ -362,6 +363,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40780d4398726b045bc4964bda46e8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &230761068
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230761064}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 61ba215f29f7bd344885b0aab49a68af, type: 3}
+  m_Controller: {fileID: 9100000, guid: 012130cb480f4154e8c7b3236eac69a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &291592471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6812736528190781103, guid: 6cc8de963d92e934f974e7692af081ff,
