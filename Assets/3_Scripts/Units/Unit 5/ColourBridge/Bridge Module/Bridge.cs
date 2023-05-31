@@ -52,7 +52,6 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             for (int i = 0; i < BridgeLength; i++)
             {
                 IStep IStep = Instantiate(stepPrefab, stairParent).GetComponent<IStep>();
-                Debug.Log(IStep);
                 stepManager.AddStep(IStep, stepPosition, stepScale);
                 
                 stepPosition += new Vector3(0, StepHeight, 1);
