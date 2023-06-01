@@ -11,10 +11,20 @@ namespace Funlary.Unit5.OpponentModule.Controller
         [SerializeField] private Opponent opponent;
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out IStack iStack))
+            if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable())
             {
+                print("Topla");
                 opponent.stackController.AddStack(iStack ,opponent.stackParent);
             }
         }
+        
+//Collision Detection for Opponent Crash: DropIt and AddForce
+        private void OnCollisionEnter(Collision other)
+        {
+            print("Bum!");
+            opponent.stackController.DropAllStack();
+        }
     }
+
+    
 }

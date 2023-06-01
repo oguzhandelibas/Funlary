@@ -8,5 +8,8 @@ namespace Funlary.Unit5.StackModule
     {
         void MoveTo(Transform parent, float height);
         void DropStack();
+        void SetStackColor(Color targetColor);
+        bool CanCollectable();
+        void SetAsColletable();
     }
 }

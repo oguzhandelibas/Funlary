@@ -29,5 +29,16 @@ namespace Funlary.Unit5.StackModule
         {
             return stacks.Dequeue();
         }
+
+        public void DropAllStack()
+        {
+            while (stacks.Count > 0)
+            {
+                stacks.Dequeue().DropStack();
+            }
+
+            height = 0;
+            opponent.StackCount = 0;
+        }
     }
 }
