@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 230761065}
   - component: {fileID: 230761067}
   - component: {fileID: 230761066}
+  - component: {fileID: 230761069}
   - component: {fileID: 230761068}
   m_Layer: 0
   m_Name: Opponent
@@ -351,6 +352,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb1573ee5b864544388863af30183d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationController: {fileID: 230761069}
+  rb: {fileID: 1979663693}
+  moveSpeed: 5
 --- !u!114 &230761067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40780d4398726b045bc4964bda46e8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  opponentType: 1
+  opponentMovement: {fileID: 230761066}
 --- !u!95 &230761068
 Animator:
   serializedVersion: 4
@@ -383,6 +389,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &230761069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230761064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a1ccd0d72672845aff763a0dc46d4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 230761068}
 --- !u!4 &291592471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6812736528190781103, guid: 6cc8de963d92e934f974e7692af081ff,
@@ -800,7 +819,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 621674436}
-  - component: {fileID: 621674439}
   - component: {fileID: 621674440}
   m_Layer: 0
   m_Name: Player
@@ -825,18 +843,6 @@ Transform:
   m_Father: {fileID: 1979663692}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &621674439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621674435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02b4bfc254e1c54fb77c8c058c1d81b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &621674440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,9 +855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17117316ccdabc408d4f16214b210f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1979663693}
-  moveSpeed: 5000
-  rotationSpeed: 5
 --- !u!1001 &623863975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1435,7 +1438,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1349223512}
-  - component: {fileID: 1349223513}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -1459,18 +1461,6 @@ Transform:
   m_Father: {fileID: 1979663692}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1349223513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349223511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86900d19846b81e42afa4aafd1454c06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1526602272 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 61ba215f29f7bd344885b0aab49a68af,
@@ -2581,12 +2571,12 @@ PrefabInstance:
     - target: {fileID: 8170153791961219459, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8170153792821263252, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
