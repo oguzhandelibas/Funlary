@@ -8,6 +8,7 @@ namespace Funlary.Unit5.OpponentModule
 {
     public class OpponentMovement : MonoBehaviour
     {
+        [SerializeField] private Opponent opponent;
         [SerializeField] private AnimationController animationController;
         [SerializeField] private Rigidbody rb;
         public float moveSpeed = 2.0f;
@@ -34,7 +35,13 @@ namespace Funlary.Unit5.OpponentModule
             }
             else
             {
-                animationController.PlayAnim(AnimTypes.IDLE);
+                AnimTypes animTypes;
+                if (opponent.HasStack)
+                    animTypes = AnimTypes.HOLDING_IDLE;
+                else
+                    animTypes = AnimTypes.IDLE;
+                
+                animationController.PlayAnim(animTypes);
                 rb.velocity = _IControl.Stop();
             }
         }

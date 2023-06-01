@@ -7,6 +7,7 @@ namespace Funlary.Unit5.OpponentModule.Animation
     public enum AnimTypes
     {
         IDLE, 
+        HOLDING_IDLE,
         RUN, 
         FALL
     }

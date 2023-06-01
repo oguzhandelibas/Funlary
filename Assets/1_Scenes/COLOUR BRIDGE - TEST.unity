@@ -352,9 +352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb1573ee5b864544388863af30183d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  opponent: {fileID: 230761067}
   animationController: {fileID: 230761069}
   rb: {fileID: 1979663693}
-  moveSpeed: 5
+  moveSpeed: 3
 --- !u!114 &230761067
 MonoBehaviour:
   m_ObjectHideFlags: 0

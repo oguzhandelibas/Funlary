@@ -14,6 +14,9 @@ namespace Funlary.Unit5.OpponentModule
         [SerializeField] private OpponentMovement opponentMovement;
         
         private IControl _IControl;
+        private int stackCount = 0;
+        public bool HasStack { get => stackCount > 0; }
+        public int StackCount { get => stackCount; set=> stackCount = value; }
 
         private void Start()
         {
