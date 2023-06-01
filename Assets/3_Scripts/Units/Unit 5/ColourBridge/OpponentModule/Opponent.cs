@@ -21,6 +21,7 @@ namespace Funlary.Unit5.OpponentModule
         private void Start()
         {
             CreateOpponent();
+            stackCount++;
         }
 
         private void CreateOpponent()
