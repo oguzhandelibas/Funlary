@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Funlary.Unit5.OpponentModule.Controller;
+using Funlary.Unit5.StackModule;
 
 namespace Funlary.Unit5.OpponentModule
 {
@@ -10,18 +11,23 @@ namespace Funlary.Unit5.OpponentModule
     {
         public enum OpponentType { AI, PLAYER }
         public OpponentType opponentType = OpponentType.AI;
-
-        [SerializeField] private OpponentMovement opponentMovement;
+        public Transform stackParent;
+        public StackController stackController;
         
+        [SerializeField] private OpponentMovement opponentMovement;
+
         private IControl _IControl;
         private int stackCount = 0;
+        
+        
         public bool HasStack { get => stackCount > 0; }
         public int StackCount { get => stackCount; set=> stackCount = value; }
 
         private void Start()
         {
+            stackController = new StackController(this);
             CreateOpponent();
-            stackCount++;
+            //stackCount++;
         }
 
         private void CreateOpponent()

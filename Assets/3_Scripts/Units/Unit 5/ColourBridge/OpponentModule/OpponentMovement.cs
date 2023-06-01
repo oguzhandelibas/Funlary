@@ -15,18 +15,20 @@ namespace Funlary.Unit5.OpponentModule
 
         [HideInInspector] public IControl _IControl;
 
+
+        private bool fall = false;
         private void Start()
         {
             animationController.PlayAnim(AnimTypes.IDLE);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             Vector3 direction = _IControl.MoveDirection();
             Vector3 move = new Vector3(
-                direction.x * moveSpeed * 1000 * Time.deltaTime,
+                direction.x * moveSpeed * 250 * Time.deltaTime,
                 0,
-                direction.z * moveSpeed * 1000  * Time.deltaTime);
+                direction.z * moveSpeed * 250  * Time.deltaTime);
             
             if (direction.magnitude > 0)
             {

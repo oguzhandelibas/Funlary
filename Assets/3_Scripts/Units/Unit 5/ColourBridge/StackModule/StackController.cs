@@ -1,20 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using Funlary.Unit5.OpponentModule;
 using UnityEngine;
 
 namespace Funlary.Unit5.StackModule
 {
     public class StackController
     {
-        //Opponent stack yönetimi buradan
-        private Queue<Stack> stacks;
-
-        public void AddStack(Stack stack)
+        public Opponent opponent;
+        private Queue<IStack> stacks;
+        private float height;
+        public StackController(Opponent _opponent)
         {
+            opponent = _opponent;
+            stacks = new Queue<IStack>();
+            height = 0;
+        }
+        
+        public void AddStack(IStack stack, Transform parent)
+        {
+            height++;
+            opponent.StackCount++;
+            stack.MoveTo(parent, height);
             stacks.Enqueue(stack);
         }
         
-        public Stack RemoveStack()
+        public IStack RemoveStack()
         {
             return stacks.Dequeue();
         }
