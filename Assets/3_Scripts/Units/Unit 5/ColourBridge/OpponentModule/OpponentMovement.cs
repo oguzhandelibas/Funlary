@@ -11,6 +11,7 @@ namespace Funlary.Unit5.OpponentModule
         [SerializeField] private Opponent opponent;
         public AnimationController animationController;
         [SerializeField] private Rigidbody rb;
+        [SerializeField] private Transform character;
         public float moveSpeed = 2.0f;
 
         [HideInInspector] public IControl _IControl;
@@ -25,14 +26,13 @@ namespace Funlary.Unit5.OpponentModule
         private void FixedUpdate()
         {
             Vector3 direction = _IControl.MoveDirection();
-            Vector3 move = new Vector3(
-                direction.x * moveSpeed * 250 * Time.deltaTime,
-                0,
-                direction.z * moveSpeed * 250  * Time.deltaTime);
-            
+            Vector3 movement = new Vector3(direction.x, 0f, direction.z);
+            movement = movement.normalized * moveSpeed * Time.deltaTime;
+
             if (direction.magnitude > 0)
             {
-                rb.velocity = move;
+                rb.MovePosition(rb.transform.position + movement );
+                //rb.velocity = move;
                 animationController.PlayAnim(AnimTypes.RUN);
             }
             else
@@ -44,7 +44,7 @@ namespace Funlary.Unit5.OpponentModule
                     animTypes = AnimTypes.IDLE;
                 
                 animationController.PlayAnim(animTypes);
-                rb.velocity = _IControl.Stop();
+                rb.velocity = new Vector3(0, rb.velocity.y, 0);
             }
         }
     }

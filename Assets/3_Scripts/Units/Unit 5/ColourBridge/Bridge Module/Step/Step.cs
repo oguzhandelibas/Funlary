@@ -15,31 +15,12 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             transform.localScale = _localScale;
         }
 
-        public void Show()
+        public void SetActiveness(bool gameObjectActiveness, bool triggerActiveness)
         {
-            gameObject.SetActive(true);
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
-        }
-
-        public void Activate()
-        {
-            Show();
-            TriggerActiveness(true);   
-        }
-
-        public void Deactivate()
-        {
-            TriggerActiveness(false); 
+            gameObject.SetActive(gameObjectActiveness);
+            boxCollider.isTrigger = triggerActiveness;
         }
         
-        public void TriggerActiveness(bool activate)
-        {
-            boxCollider.isTrigger = activate;
-        }
 
         public void SetColor(Color color)
         {

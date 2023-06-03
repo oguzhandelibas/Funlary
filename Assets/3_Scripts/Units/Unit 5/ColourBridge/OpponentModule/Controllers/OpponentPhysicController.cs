@@ -11,7 +11,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
     public class OpponentPhysicController : MonoBehaviour
     {
         public Rigidbody rigidbody;
-        [SerializeField] private Opponent opponent;
+        public Opponent opponent;
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable)
