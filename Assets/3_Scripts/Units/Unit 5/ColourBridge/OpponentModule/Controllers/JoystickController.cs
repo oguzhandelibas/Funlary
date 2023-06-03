@@ -18,7 +18,7 @@ public class JoystickController : MonoBehaviour
         {
             direction.x = joystick.Horizontal;
             direction.z = joystick.Vertical;
-            float heading = Mathf.Atan2(direction.x * 100f, direction.z * 100f);
+            float heading = Mathf.Atan2(direction.x * 50f, direction.z * 50f);
             if(direction.z >= 0.1f || direction.z <= -0.1f || direction.x >= 0.1f || direction.x <= -0.1f)
             {
                 transform.rotation = Quaternion.Euler(0f, (heading * Mathf.Rad2Deg), 0f);

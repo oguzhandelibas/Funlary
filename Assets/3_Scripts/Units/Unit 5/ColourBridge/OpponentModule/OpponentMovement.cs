@@ -9,7 +9,7 @@ namespace Funlary.Unit5.OpponentModule
     public class OpponentMovement : MonoBehaviour
     {
         [SerializeField] private Opponent opponent;
-        [SerializeField] private AnimationController animationController;
+        public AnimationController animationController;
         [SerializeField] private Rigidbody rb;
         public float moveSpeed = 2.0f;
 

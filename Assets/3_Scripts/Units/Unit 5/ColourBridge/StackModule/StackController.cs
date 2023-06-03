@@ -8,36 +8,42 @@ namespace Funlary.Unit5.StackModule
     public class StackController
     {
         public Opponent opponent;
-        private Queue<IStack> stacks;
-        private float height;
+        private Stack<IStack> StackQueue; // FIFO DEĞL LIFO???
+        
         public StackController(Opponent _opponent)
         {
             opponent = _opponent;
-            stacks = new Queue<IStack>();
-            height = 0;
+            StackQueue = new Stack<IStack>();
         }
         
         public void AddStack(IStack stack, Transform parent)
         {
-            height++;
             opponent.StackCount++;
-            stack.MoveTo(parent, height);
-            stacks.Enqueue(stack);
+            stack.CanCollectable = false;
+            stack.MoveTo(parent, opponent.StackCount);
+            StackQueue.Push(stack);
         }
         
         public IStack RemoveStack()
         {
-            return stacks.Dequeue();
+            return StackQueue.Pop();
+        }
+
+        public void DropFirstStack(Vector3 targetPosition)
+        {
+            IStack stack = RemoveStack();
+            opponent.StackCount--;
+            stack.SetAsStairStep = true;
+            stack.MoveTo(targetPosition);
         }
 
         public void DropAllStack()
         {
-            while (stacks.Count > 0)
+            while (StackQueue.Count > 0)
             {
-                stacks.Dequeue().DropStack();
+                StackQueue.Pop().DropStack();
+                
             }
-
-            height = 0;
             opponent.StackCount = 0;
         }
     }

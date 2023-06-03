@@ -11,10 +11,11 @@ namespace Funlary.Unit5.OpponentModule
     {
         public enum OpponentType { AI, PLAYER }
         public OpponentType opponentType = OpponentType.AI;
+        public Transform character;
         public Transform stackParent;
         public StackController stackController;
         
-        [SerializeField] private OpponentMovement opponentMovement;
+        public OpponentMovement opponentMovement;
 
         private IControl _IControl;
         private int stackCount = 0;
@@ -46,7 +47,5 @@ namespace Funlary.Unit5.OpponentModule
             
             opponentMovement._IControl = _IControl;
         }
-        
-        
     }
 }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using Funlary.Unit5.OpponentModule.Animation;
 using Funlary.Unit5.StackModule;
 using UnityEngine;
 
@@ -8,12 +10,12 @@ namespace Funlary.Unit5.OpponentModule.Controller
 {
     public class OpponentPhysicController : MonoBehaviour
     {
+        public Rigidbody rigidbody;
         [SerializeField] private Opponent opponent;
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable())
+            if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable)
             {
-                print("Topla");
                 opponent.stackController.AddStack(iStack ,opponent.stackParent);
             }
         }
@@ -21,8 +23,18 @@ namespace Funlary.Unit5.OpponentModule.Controller
 //Collision Detection for Opponent Crash: DropIt and AddForce
         private void OnCollisionEnter(Collision other)
         {
-            print("Bum!");
-            opponent.stackController.DropAllStack();
+            if (other.transform.TryGetComponent(out OpponentPhysicController opponentPhysicController))
+            {
+                Opponent targetOpponent = opponentPhysicController.opponent;
+                rigidbody.velocity = Vector3.zero;
+                if (targetOpponent.StackCount <=  opponent.StackCount)
+                {
+                    targetOpponent.stackController.DropAllStack();
+                    targetOpponent.character.DOLookAt(opponent.character.position, 0.25f);
+                    targetOpponent.opponentMovement.animationController.PlayAnim(AnimTypes.FALL);
+                }
+                
+            }
         }
     }
 
