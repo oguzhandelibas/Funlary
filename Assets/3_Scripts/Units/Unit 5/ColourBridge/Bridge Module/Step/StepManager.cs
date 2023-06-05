@@ -10,17 +10,17 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
     public class StepManager : MonoBehaviour
     {
         private List<IStep> StepList = new List<IStep>();
-        
+        [SerializeField] private GameObject BridgeWall;
         public int ID { get { return ID;} set { ID = value; } }
         public int ActiveStepCount { private get; set; } = -1;
         public Color StepColor { set => StepColor = value; get => StepColor; }
-        [SerializeField] private GameObject wallObject;
-        public void CreateStep(IStep step, Vector3 stepPosition, Vector3 stepScale)
+        
+        
+        public void CreateStep(IStep step, Vector3 stepPosition, Vector3 stepScale, int index)
         {
             StepList.Add(step);
-            step.InitializeStep(stepPosition, stepScale);
+            step.InitializeStep(this, stepPosition, stepScale, index);
             step.SetActiveness(false,false);
-            wallObject.SetActive(true);
         }
         
         public bool CheckId(int x)
@@ -31,34 +31,29 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             {
                 ID = x;
                 ActiveStepCount = -1;
-                ActivateNextStep();
+                //ActivateNextStep();
             }
             
             return value;
         }
 
-        private void ActivateNextStep()
+        private void ActivateNextStep(int stepIndex)
         {
-            if (ActiveStepCount >= StepList.Count) return;
-            
-            ActiveStepCount++;
-            
-            if(ActiveStepCount > 0) StepList[ActiveStepCount].SetActiveness(false,true);
-            StepList[ActiveStepCount].SetActiveness(true, true);
-            StepList[ActiveStepCount].SetColor(StepColor);
+            if(stepIndex >= StepList.Count) return;
+            StepList[stepIndex].SetActiveness(true, false);
+            StepList[stepIndex].SetColor(StepColor);
         }
         
         private void OnTriggerEnter(Collider other)
         {
-            print("a");
             if (other.transform.TryGetComponent(out OpponentPhysicController opponentPhysicController) && opponentPhysicController.opponent.HasStack)
             {
-                print("b");
-                wallObject.SetActive(!opponentPhysicController.opponent.HasStack);
+                BridgeWall.SetActive(!opponentPhysicController.opponent.HasStack);
+                
                 if (ActiveStepCount <= 0)
                 {
                     // Yeni başlıyor, beyazdan asıl renge geçiş
-                    
+                    //opponent'ten veri al, step oluştur.
                 }
                 else
                 {

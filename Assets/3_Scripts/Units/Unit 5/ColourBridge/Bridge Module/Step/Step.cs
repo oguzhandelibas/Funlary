@@ -7,18 +7,29 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 {
     public class Step : MonoBehaviour, IStep
     {
+        public int Index;
         [SerializeField] private BoxCollider boxCollider;
         [SerializeField] private MeshRenderer meshRenderer;
-        public void InitializeStep(Vector3 _localPos, Vector3 _localScale)
+        [SerializeField] private GameObject wallObject;
+        private StepManager stepManager;
+
+        public StepManager GetStepManager()
         {
+            return stepManager;
+        }
+        
+        public void InitializeStep(StepManager _stepManager, Vector3 _localPos, Vector3 _localScale, int index)
+        {
+            stepManager = _stepManager;
+            Index = index;
             transform.localPosition = _localPos;
             transform.localScale = _localScale;
         }
 
-        public void SetActiveness(bool gameObjectActiveness, bool triggerActiveness)
+        public void SetActiveness(bool gameObjectActiveness, bool wallObjectActiveness)
         {
             gameObject.SetActive(gameObjectActiveness);
-            boxCollider.isTrigger = triggerActiveness;
+            wallObject.SetActive(wallObjectActiveness);
         }
         
 
