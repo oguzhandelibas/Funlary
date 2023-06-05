@@ -23,15 +23,10 @@ namespace Funlary.Unit5.StackModule
             stack.MoveTo(parent, opponent.StackCount);
             StackQueue.Push(stack);
         }
-        
-        public IStack RemoveStack()
-        {
-            return StackQueue.Pop();
-        }
 
-        public void DropFirstStack(Vector3 targetPosition)
+        public void RemoveStack (Vector3 targetPosition)
         {
-            IStack stack = RemoveStack();
+            IStack stack = StackQueue.Pop();
             opponent.StackCount--;
             stack.SetAsStairStep = true;
             stack.MoveTo(targetPosition);

@@ -12,7 +12,8 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         private Bridge bridge;
         private List<IStep> StepList = new List<IStep>();
         [SerializeField] private GameObject BridgeWall;
-        public int ID { get { return ID;} set { ID = value; } }
+        public int ID;
+        private bool Used;
         public int ActiveStepCount { private get; set; } = -1;
         public BridgeColor BridgeColor;
         
@@ -22,28 +23,35 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             bridge = _bridge;
             StepList.Add(step);
             step.InitializeStep(this, stepPosition, stepScale, index);
-            step.SetActiveness(false,false);
+            step.SetActiveness(false,true);
+        }
+        
+        
+        public bool ActivateStep(int stepIndex)
+        {
+            if(stepIndex >= StepList.Count || StepList[stepIndex].Used) return false;
+            
+//            if (stepIndex == 0)
+            StepList[stepIndex].Used = true;
+            StepList[stepIndex].SetActiveness(true, false);
+            StepList[stepIndex+1].SetActiveness(true, true);
+            StepList[stepIndex].SetColor(bridge.GetBridgeColorMaterial(BridgeColor));
+            return true;
         }
         
         public bool CheckId(int x)
-        {//eğer eşse color ataması gerekli yerden yapılsın
+        {
+            //eğer eşse color ataması gerekli yerden yapılsın
             bool value = (x == ID);
             
             if (!value)
             {
                 ID = x;
-                ActiveStepCount = -1;
-                //ActivateNextStep();
             }
             
+            ActivateStep(0);
+            
             return value;
-        }
-
-        public void ActivateNextStep(int stepIndex)
-        {
-            if(stepIndex >= StepList.Count) return;
-            StepList[stepIndex].SetActiveness(true, false);
-            StepList[stepIndex].SetColor(bridge.GetBridgeColorMaterial(BridgeColor));
         }
         
         private void OnTriggerEnter(Collider other)
@@ -52,10 +60,11 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             {
                 bool hasStack = opponentPhysicController.opponent.HasStack;
                 BridgeWall.SetActive(!hasStack);
-                if (hasStack)
+                if (hasStack && !Used)
                 {
-                    ActivateNextStep(0);
-                    opponentPhysicController.opponent.StackCount--;
+                    ActivateStep(0);
+                    opponentPhysicController.opponent.stackController.RemoveStack(StepList[0].Position());
+                    Used = true;
                 }
                 
                 if (ActiveStepCount <= 0)

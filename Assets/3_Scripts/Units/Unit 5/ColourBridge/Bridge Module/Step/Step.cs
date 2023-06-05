@@ -13,9 +13,16 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         [SerializeField] private GameObject wallObject;
         private StepManager stepManager;
 
+        public bool Used { get; set; }
+
         public StepManager GetStepManager()
         {
             return stepManager;
+        }
+
+        public Vector3 Position()
+        {
+            return transform.position;
         }
 
         public int Index { get; set; }

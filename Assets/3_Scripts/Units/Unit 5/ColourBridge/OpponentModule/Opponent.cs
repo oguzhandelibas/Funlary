@@ -9,7 +9,7 @@ namespace Funlary.Unit5.OpponentModule
 {
     public class Opponent : MonoBehaviour
     {
-        public int ID { get { return ID;} set { ID = value; } }
+        public int ID;
         public enum OpponentType { AI, PLAYER }
         public OpponentType opponentType = OpponentType.AI;
         public Transform character;

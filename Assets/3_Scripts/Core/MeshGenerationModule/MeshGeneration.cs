@@ -23,7 +23,7 @@ namespace Funlary.MeshGenerationModule
 
             meshRenderer.material = meshMaterial;
             meshCollider.sharedMesh = mesh;
-
+            meshCollider.convex = true;
             meshFilter.mesh = mesh;
             meshRenderer.enabled = isVisible;
             meshObject.transform.rotation = CalculateRotation(startPoint, endPoint);

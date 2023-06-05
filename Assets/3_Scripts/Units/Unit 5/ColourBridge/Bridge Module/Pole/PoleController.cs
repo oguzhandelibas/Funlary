@@ -23,11 +23,12 @@ namespace Funlary
         public void CreateRope(Vector3 endPosition)
         {
             endPole.localPosition = endPosition;
+            /*
             MeshGeneration.Instance.CreateMesh(
                 MeshType.PLANE, MeshRotationType.LEFT,
                 5, endPoint.position.z-startPoint.position.z, 1, 
                 startPoint, endPoint,this.transform
-                );
+                );*/
             
             Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height, startPoint.position, endPoint.position);
             

@@ -6,8 +6,10 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 {
     public interface IStep
     {
+        bool Used { get; set; }
         StepManager GetStepManager();
-        public int Index { get; set; }
+        Vector3 Position();
+        int Index { get; set; }
         void InitializeStep(StepManager _stepManager, Vector3 _localPos, Vector3 _localScale, int _index);
         void SetActiveness(bool gameObjectActiveness, bool wallObjectActiveness);
         void SetColor(Material colorMaterial);
