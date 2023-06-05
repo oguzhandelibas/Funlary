@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Funlary.MeshGenerationModule;
@@ -8,7 +9,34 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
     public class Bridge : MonoBehaviour
     {
         [SerializeField] private StepManager stepManager;
-        
+
+        [Header("Bridge Color Materials")] [SerializeField] private List<Material> bridgeColors;
+
+        public Material GetBridgeColorMaterial(BridgeColor bridgeColor)
+        {
+            Material material;
+            switch (bridgeColor)
+            {
+                case BridgeColor.Red:
+                    material = bridgeColors[0];
+                    break;
+                case BridgeColor.Green:
+                    material = bridgeColors[1];
+                    break;
+                case BridgeColor.Blue:
+                    material = bridgeColors[2];
+                    break;
+                case BridgeColor.Yellow:
+                    material = bridgeColors[3];
+                    break;
+                default:
+                    material = bridgeColors[0];
+                    break;
+            }
+
+            return material;
+        }
+
         [Header("Indicator Transforms")]
         [SerializeField] private Transform stairParent; 
         [SerializeField] private Transform startPoint; 
@@ -52,7 +80,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             for (int i = 0; i < BridgeLength; i++)
             {
                 IStep IStep = Instantiate(stepPrefab, stairParent).GetComponent<IStep>();
-                stepManager.CreateStep(IStep, stepPosition, stepScale, i);
+                stepManager.CreateStep(this, IStep, stepPosition, stepScale, i);
                 
                 stepPosition += new Vector3(0, StepHeight, 1);
             }

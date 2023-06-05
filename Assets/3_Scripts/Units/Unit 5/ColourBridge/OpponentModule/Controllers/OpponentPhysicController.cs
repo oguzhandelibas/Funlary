@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.OpponentModule.Animation;
 using Funlary.Unit5.StackModule;
 using UnityEngine;
@@ -17,6 +18,12 @@ namespace Funlary.Unit5.OpponentModule.Controller
             if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable)
             {
                 opponent.stackController.AddStack(iStack ,opponent.stackParent);
+            }
+            
+            if (other.TryGetComponent(out IStep iStep))
+            {
+                StepManager stepManager = iStep.GetStepManager();
+                stepManager.ActivateNextStep(iStep.Index+1);
             }
         }
         

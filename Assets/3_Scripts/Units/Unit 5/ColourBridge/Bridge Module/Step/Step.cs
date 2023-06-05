@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Funlary.Unit5.ColourBridge.BridgeModule
 {
     public class Step : MonoBehaviour, IStep
     {
-        public int Index;
         [SerializeField] private BoxCollider boxCollider;
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private GameObject wallObject;
@@ -17,7 +17,9 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         {
             return stepManager;
         }
-        
+
+        public int Index { get; set; }
+
         public void InitializeStep(StepManager _stepManager, Vector3 _localPos, Vector3 _localScale, int index)
         {
             stepManager = _stepManager;
@@ -33,9 +35,10 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         }
         
 
-        public void SetColor(Color color)
+        public void SetColor(Material colorMaterial)
         {
-            meshRenderer.sharedMaterial.color = color;
+            meshRenderer.sharedMaterial = colorMaterial;
+
         }
     }
 }

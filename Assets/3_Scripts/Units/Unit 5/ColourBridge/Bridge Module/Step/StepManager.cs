@@ -9,15 +9,17 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 {
     public class StepManager : MonoBehaviour
     {
+        private Bridge bridge;
         private List<IStep> StepList = new List<IStep>();
         [SerializeField] private GameObject BridgeWall;
         public int ID { get { return ID;} set { ID = value; } }
         public int ActiveStepCount { private get; set; } = -1;
-        public Color StepColor { set => StepColor = value; get => StepColor; }
+        public BridgeColor BridgeColor;
         
         
-        public void CreateStep(IStep step, Vector3 stepPosition, Vector3 stepScale, int index)
+        public void CreateStep(Bridge _bridge, IStep step, Vector3 stepPosition, Vector3 stepScale, int index)
         {
+            bridge = _bridge;
             StepList.Add(step);
             step.InitializeStep(this, stepPosition, stepScale, index);
             step.SetActiveness(false,false);
@@ -37,18 +39,24 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             return value;
         }
 
-        private void ActivateNextStep(int stepIndex)
+        public void ActivateNextStep(int stepIndex)
         {
             if(stepIndex >= StepList.Count) return;
             StepList[stepIndex].SetActiveness(true, false);
-            StepList[stepIndex].SetColor(StepColor);
+            StepList[stepIndex].SetColor(bridge.GetBridgeColorMaterial(BridgeColor));
         }
         
         private void OnTriggerEnter(Collider other)
         {
             if (other.transform.TryGetComponent(out OpponentPhysicController opponentPhysicController) && opponentPhysicController.opponent.HasStack)
             {
-                BridgeWall.SetActive(!opponentPhysicController.opponent.HasStack);
+                bool hasStack = opponentPhysicController.opponent.HasStack;
+                BridgeWall.SetActive(!hasStack);
+                if (hasStack)
+                {
+                    ActivateNextStep(0);
+                    opponentPhysicController.opponent.StackCount--;
+                }
                 
                 if (ActiveStepCount <= 0)
                 {
