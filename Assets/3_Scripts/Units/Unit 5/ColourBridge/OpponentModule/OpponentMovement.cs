@@ -28,11 +28,13 @@ namespace Funlary.Unit5.OpponentModule
             Vector3 direction = _IControl.MoveDirection();
             Vector3 movement = new Vector3(direction.x, 0f, direction.z);
             movement = movement.normalized * moveSpeed * Time.deltaTime;
-
+            
             if (direction.magnitude > 0)
             {
-                rb.MovePosition(rb.transform.position + movement );
-                //rb.velocity = move;
+                //rb.transform.position += movement;
+                //rb.transform.Translate(movement);
+                //rb.MovePosition(rb.transform.position + movement );
+                rb.velocity = movement;
                 animationController.PlayAnim(AnimTypes.RUN);
             }
             else
