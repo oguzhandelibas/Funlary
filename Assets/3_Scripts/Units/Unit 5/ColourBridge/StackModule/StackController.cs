@@ -8,7 +8,7 @@ namespace Funlary.Unit5.StackModule
     public class StackController
     {
         public Opponent opponent;
-        private Stack<IStack> StackQueue; // FIFO DEĞL LIFO???
+        private Stack<IStack> StackQueue;
         
         public StackController(Opponent _opponent)
         {
@@ -28,8 +28,9 @@ namespace Funlary.Unit5.StackModule
         {
             IStack stack = StackQueue.Pop();
             opponent.StackCount--;
+
             stack.SetAsStairStep = true;
-            stack.MoveTo(targetPosition);
+            stack.SetAsStep(targetPosition);
         }
 
         public void DropAllStack()
@@ -37,7 +38,6 @@ namespace Funlary.Unit5.StackModule
             while (StackQueue.Count > 0)
             {
                 StackQueue.Pop().DropStack();
-                
             }
             opponent.StackCount = 0;
         }

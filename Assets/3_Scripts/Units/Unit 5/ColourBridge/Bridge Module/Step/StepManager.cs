@@ -12,44 +12,54 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         private Bridge bridge;
         private List<IStep> StepList = new List<IStep>();
         [SerializeField] private GameObject BridgeWall;
-        public int ID;
+        public int ownerID;
         private bool Used;
-        public int ActiveStepCount { private get; set; } = -1;
+        public int ActiveStepCount { private get; set; } = 0;
         public BridgeColor BridgeColor;
         
         
-        public void CreateStep(Bridge _bridge, IStep step, Vector3 stepPosition, Vector3 stepScale, int index)
+        public void CreateStep(Bridge _bridge, IStep step, IStep nextStep, Vector3 stepPosition, Vector3 stepScale, int index)
         {
             bridge = _bridge;
             StepList.Add(step);
-            step.InitializeStep(this, stepPosition, stepScale, index);
+            step.InitializeStep(this, nextStep,stepPosition, stepScale, index);
             step.SetActiveness(false,true);
         }
         
         
         public bool ActivateStep(int stepIndex)
         {
-            if(stepIndex >= StepList.Count || StepList[stepIndex].Used) return false;
+            //Debug.Log($"Index: {stepIndex} & Total List Count: {StepList.Count}");
+            ActiveStepCount++;
+            Debug.Log("Active Step Count : " + ActiveStepCount);
+            if (stepIndex == -1)
+            {
+                StepList[stepIndex+1].SetActiveness(true, true);
+                return true;
+            }
             
-//            if (stepIndex == 0)
+            if(stepIndex > StepList.Count || StepList[stepIndex].Used) return false;
+            
             StepList[stepIndex].Used = true;
             StepList[stepIndex].SetActiveness(true, false);
-            StepList[stepIndex+1].SetActiveness(true, true);
-            StepList[stepIndex].SetColor(bridge.GetBridgeColorMaterial(BridgeColor));
+            
+
+            if (stepIndex+1 < StepList.Count) 
+                StepList[stepIndex+1].SetActiveness(true, true);
+            
             return true;
         }
         
-        public bool CheckId(int x)
+        public bool IsSameOpponent(int x)
         {
             //eğer eşse color ataması gerekli yerden yapılsın
-            bool value = (x == ID);
+            bool value = (x == ownerID);
             
             if (!value)
             {
-                ID = x;
+                ownerID = x;
+                ActivateStep(0);
             }
-            
-            ActivateStep(0);
             
             return value;
         }
@@ -62,21 +72,21 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
                 BridgeWall.SetActive(!hasStack);
                 if (hasStack && !Used)
                 {
-                    ActivateStep(0);
+                    ActivateStep(-1);
                     opponentPhysicController.opponent.stackController.RemoveStack(StepList[0].Position());
                     Used = true;
                 }
-                
+
                 if (ActiveStepCount <= 0)
                 {
                     // Yeni başlıyor, beyazdan asıl renge geçiş
-                    //opponent'ten veri al, step oluştur.
+                    // Opponent'ten veri al, step oluştur.
                 }
                 else
                 {
-                    // Üzerine yazıyor, smooth renk değişimi
-                    
+                    // Yabancı geldi üzerine yazıyor, smooth renk değişimi
                 }
+
 
             }
             // trigger eden karakterin id'si kontrol edilsin, aynı ise bir şey yok

@@ -475,7 +475,7 @@ namespace DG.DOTweenEditor
                 if (_src.loops < -1) _src.loops = -1;
                 if (_src.loops > 1 || _src.loops == -1)
                     _src.loopType = (LoopType)EditorGUILayout.EnumPopup("   Loop Type", _src.loopType);
-                _src.id = EditorGUILayout.TextField("ID", _src.id);
+                _src.id = EditorGUILayout.TextField("ownerID", _src.id);
 
                 bool canBeRelative = true;
                 // End value and eventual specific options

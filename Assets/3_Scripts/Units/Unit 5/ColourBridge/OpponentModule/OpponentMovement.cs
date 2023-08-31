@@ -15,9 +15,10 @@ namespace Funlary.Unit5.OpponentModule
         public float moveSpeed = 2.0f;
 
         [HideInInspector] public IControl _IControl;
-
+        private bool forceAdded = false;
 
         private bool fall = false;
+
         private void Start()
         {
             animationController.PlayAnim(AnimTypes.IDLE);
@@ -25,16 +26,14 @@ namespace Funlary.Unit5.OpponentModule
 
         private void FixedUpdate()
         {
+            float gravity = rb.velocity.y;
             Vector3 direction = _IControl.MoveDirection();
-            Vector3 movement = new Vector3(direction.x, 0f, direction.z);
+            Vector3 movement = new Vector3(direction.x, gravity, direction.z);
             movement = movement.normalized * moveSpeed * Time.deltaTime;
             
             if (direction.magnitude > 0)
             {
-                //rb.transform.position += movement;
-                //rb.transform.Translate(movement);
-                //rb.MovePosition(rb.transform.position + movement );
-                rb.velocity = movement;
+                rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
                 animationController.PlayAnim(AnimTypes.RUN);
             }
             else
@@ -46,7 +45,7 @@ namespace Funlary.Unit5.OpponentModule
                     animTypes = AnimTypes.IDLE;
                 
                 animationController.PlayAnim(animTypes);
-                rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                rb.velocity = new Vector3(0, gravity, 0);
             }
         }
     }

@@ -23,24 +23,25 @@ namespace Funlary.Unit5.StackModule
             stackParent = transform.parent;
             CanCollectable = true;
         }
-        
-        
+
         public void MoveTo(Transform parent, float height)
         {
             if(SetAsStairStep) return;
             SetStackColor(startColor);
+            Vector3 scale = transform.localScale;
+            Destroy(transform.GetComponent<BoxCollider>());
             transform.SetParent(parent);
-            transform.localScale = new Vector3(1.0f, 1.2f, 1.2f);
-            transform.DOLocalMove(Vector3.zero + (height*Vector3.up), .1f).SetEase(Ease.Linear);
+            transform.localScale = scale;
+            transform.DOLocalMove(Vector3.zero + (height*(Vector3.up/4)), .1f).SetEase(Ease.Linear);
             transform.localRotation = Quaternion.Euler(0,0,0);
         }
 
-        public void MoveTo(Vector3 position)
+        public void SetAsStep(Vector3 position)
         {
             SetStackColor(startColor);
             transform.SetParent(null);
-            transform.localScale = new Vector3(1, 1, 1);
-            transform.DOLocalMove(position, .1f).SetEase(Ease.Linear);
+            //transform.localScale = new Vector3(1, 1, 1);
+            transform.DOLocalMove(position, .1f).SetEase(Ease.Linear).OnComplete(() => gameObject.SetActive(false));
             transform.localRotation = Quaternion.Euler(0,0,0);
         }
 
@@ -57,9 +58,9 @@ namespace Funlary.Unit5.StackModule
             transform.DOPath(path, 1.0f, PathType.CatmullRom).OnComplete(SetAsColletable);
         }
 
-        public void SetStackColor(Color targetColor)
+        public void SetStackColor(Color targetColor, float duration = 0.3f)
         {
-            StackMaterial.DOColor(targetColor, 0.4f).From(startColor);
+            StackMaterial.DOColor(targetColor, duration).From(startColor);
         }
 
         public void SetAsColletable()

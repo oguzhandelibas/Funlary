@@ -20,11 +20,11 @@ namespace Funlary.Unit5.OpponentModule.Controller
                 opponent.stackController.AddStack(iStack ,opponent.stackParent);
             }
             
-            if (opponent.HasStack && other.TryGetComponent(out IStep iStep))
+            if (opponent.HasStack && other.TryGetComponent(out IStep iStep) && !iStep.Used)
             {
                 StepManager stepManager = iStep.GetStepManager();
                 if(stepManager.ActivateStep(iStep.Index))
-                    opponent.stackController.RemoveStack(other.transform.position);
+                    opponent.stackController.RemoveStack(iStep.Position());
                 
                 
             }

@@ -12,8 +12,14 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private GameObject wallObject;
         private StepManager stepManager;
-
+        
         public bool Used { get; set; }
+        public IStep NextStep { get; set; }
+
+        private void Start()
+        {
+            Used = false;
+        }
 
         public StepManager GetStepManager()
         {
@@ -26,10 +32,11 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         }
 
         public int Index { get; set; }
-
-        public void InitializeStep(StepManager _stepManager, Vector3 _localPos, Vector3 _localScale, int index)
+        
+        public void InitializeStep(StepManager _stepManager, IStep _nextStep, Vector3 _localPos, Vector3 _localScale, int index)
         {
             stepManager = _stepManager;
+            NextStep = _nextStep;
             Index = index;
             transform.localPosition = _localPos;
             transform.localScale = _localScale;

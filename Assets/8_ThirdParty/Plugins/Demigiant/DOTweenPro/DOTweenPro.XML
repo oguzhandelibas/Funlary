@@ -38,7 +38,7 @@
         </member>
         <member name="M:DG.Tweening.DOTweenPath.DOKillAllById(System.String)">
             <summary>
-            Kills all tweens (path/animations/etc.) with the given ID (regardless of their target gameObject)
+            Kills all tweens (path/animations/etc.) with the given ownerID (regardless of their target gameObject)
             </summary>
         </member>
         <member name="M:DG.Tweening.DOTweenPath.GetDrawPoints">

@@ -6,7 +6,7 @@ namespace AYellowpaper.SerializedCollections
 {
     public class SerializedDictionarySampleTwo : MonoBehaviour
     {
-        [SerializedDictionary("ID", "Person")]
+        [SerializedDictionary("ownerID", "Person")]
         public SerializedDictionary<int, Person> People;
 
         [System.Serializable]

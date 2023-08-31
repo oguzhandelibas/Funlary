@@ -791,7 +791,7 @@
             otherwise they will be ignored</param>
         </member>
         <member name="M:DG.Tweening.DOTween.Complete(System.Object,System.Boolean)">
-            <summary>Completes all tweens with the given ID or target and returns the number of actual tweens completed
+            <summary>Completes all tweens with the given ownerID or target and returns the number of actual tweens completed
             (meaning the tweens that don't have infinite loops and were not already complete)</summary>
             <param name="withCallbacks">For Sequences only: if TRUE internal Sequence callbacks will be fired,
             otherwise they will be ignored</param>
@@ -801,14 +801,14 @@
             then returns the number of actual tweens flipped</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Flip(System.Object)">
-            <summary>Flips the tweens with the given ID or target (changing their direction to forward if it was backwards and viceversa),
+            <summary>Flips the tweens with the given ownerID or target (changing their direction to forward if it was backwards and viceversa),
             then returns the number of actual tweens flipped</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.GotoAll(System.Single,System.Boolean)">
             <summary>Sends all tweens to the given position (calculating also eventual loop cycles) and returns the actual tweens involved</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Goto(System.Object,System.Single,System.Boolean)">
-            <summary>Sends all tweens with the given ID or target to the given position (calculating also eventual loop cycles)
+            <summary>Sends all tweens with the given ownerID or target to the given position (calculating also eventual loop cycles)
             and returns the actual tweens involved</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.KillAll(System.Boolean)">
@@ -821,18 +821,18 @@
             <param name="idsOrTargetsToExclude">Eventual IDs or targets to exclude from the killing</param>
         </member>
         <member name="M:DG.Tweening.DOTween.Kill(System.Object,System.Boolean)">
-            <summary>Kills all tweens with the given ID or target and returns the number of actual tweens killed</summary>
+            <summary>Kills all tweens with the given ownerID or target and returns the number of actual tweens killed</summary>
             <param name="complete">If TRUE completes the tweens before killing them</param>
         </member>
         <member name="M:DG.Tweening.DOTween.Kill(System.Object,System.Object,System.Boolean)">
-            <summary>Kills all tweens with the given target and the given ID, and returns the number of actual tweens killed</summary>
+            <summary>Kills all tweens with the given target and the given ownerID, and returns the number of actual tweens killed</summary>
             <param name="complete">If TRUE completes the tweens before killing them</param>
         </member>
         <member name="M:DG.Tweening.DOTween.PauseAll">
             <summary>Pauses all tweens and returns the number of actual tweens paused</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Pause(System.Object)">
-            <summary>Pauses all tweens with the given ID or target and returns the number of actual tweens paused
+            <summary>Pauses all tweens with the given ownerID or target and returns the number of actual tweens paused
             (meaning the tweens that were actually playing and have been paused)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayAll">
@@ -840,11 +840,11 @@
             (meaning tweens that were not already playing or complete)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Play(System.Object)">
-            <summary>Plays all tweens with the given ID or target and returns the number of actual tweens played
+            <summary>Plays all tweens with the given ownerID or target and returns the number of actual tweens played
             (meaning the tweens that were not already playing or complete)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Play(System.Object,System.Object)">
-            <summary>Plays all tweens with the given target and the given ID, and returns the number of actual tweens played
+            <summary>Plays all tweens with the given target and the given ownerID, and returns the number of actual tweens played
             (meaning the tweens that were not already playing or complete)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayBackwardsAll">
@@ -852,11 +852,11 @@
             (meaning tweens that were not already started, playing backwards or rewinded)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayBackwards(System.Object)">
-            <summary>Plays backwards all tweens with the given ID or target and returns the number of actual tweens played
+            <summary>Plays backwards all tweens with the given ownerID or target and returns the number of actual tweens played
             (meaning the tweens that were not already started, playing backwards or rewinded)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayBackwards(System.Object,System.Object)">
-            <summary>Plays backwards all tweens with the given target and ID and returns the number of actual tweens played
+            <summary>Plays backwards all tweens with the given target and ownerID and returns the number of actual tweens played
             (meaning the tweens that were not already started, playing backwards or rewinded)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayForwardAll">
@@ -864,23 +864,23 @@
             (meaning tweens that were not already playing forward or complete)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayForward(System.Object)">
-            <summary>Plays forward all tweens with the given ID or target and returns the number of actual tweens played
+            <summary>Plays forward all tweens with the given ownerID or target and returns the number of actual tweens played
             (meaning the tweens that were not already playing forward or complete)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayForward(System.Object,System.Object)">
-            <summary>Plays forward all tweens with the given target and ID and returns the number of actual tweens played
+            <summary>Plays forward all tweens with the given target and ownerID and returns the number of actual tweens played
             (meaning the tweens that were not already started, playing backwards or rewinded)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.RestartAll(System.Boolean)">
             <summary>Restarts all tweens, then returns the number of actual tweens restarted</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Restart(System.Object,System.Boolean,System.Single)">
-            <summary>Restarts all tweens with the given ID or target, then returns the number of actual tweens restarted</summary>
+            <summary>Restarts all tweens with the given ownerID or target, then returns the number of actual tweens restarted</summary>
             <param name="includeDelay">If TRUE includes the eventual tweens delays, otherwise skips them</param>
             <param name="changeDelayTo">If >= 0 changes the startup delay of all involved tweens to this value, otherwise doesn't touch it</param>
         </member>
         <member name="M:DG.Tweening.DOTween.Restart(System.Object,System.Object,System.Boolean,System.Single)">
-            <summary>Restarts all tweens with the given target and the given ID, and returns the number of actual tweens played
+            <summary>Restarts all tweens with the given target and the given ownerID, and returns the number of actual tweens played
             (meaning the tweens that were not already playing or complete)</summary>
             <param name="includeDelay">If TRUE includes the eventual tweens delays, otherwise skips them</param>
             <param name="changeDelayTo">If >= 0 changes the startup delay of all involved tweens to this value, otherwise doesn't touch it</param>
@@ -890,7 +890,7 @@
             (meaning tweens that were not already rewinded)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.Rewind(System.Object,System.Boolean)">
-            <summary>Rewinds and pauses all tweens with the given ID or target, then returns the number of actual tweens rewinded
+            <summary>Rewinds and pauses all tweens with the given ownerID or target, then returns the number of actual tweens rewinded
             (meaning the tweens that were not already rewinded)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.SmoothRewindAll">
@@ -901,7 +901,7 @@
             <para>Note that a tween that was smoothly rewinded will have its play direction flipped</para></summary>
         </member>
         <member name="M:DG.Tweening.DOTween.SmoothRewind(System.Object)">
-            <summary>Smoothly rewinds all tweens (delays excluded) with the given ID or target, then returns the number of actual tweens rewinding/rewinded
+            <summary>Smoothly rewinds all tweens (delays excluded) with the given ownerID or target, then returns the number of actual tweens rewinding/rewinded
             (meaning the tweens that were not already rewinded).
             A "smooth rewind" animates the tween to its start position,
             skipping all elapsed loops (except in case of LoopType.Incremental) while keeping the animation fluent.
@@ -912,19 +912,19 @@
             (meaning tweens that could be played or paused, depending on the toggle state)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.TogglePause(System.Object)">
-            <summary>Toggles the play state of all tweens with the given ID or target and returns the number of actual tweens toggled
+            <summary>Toggles the play state of all tweens with the given ownerID or target and returns the number of actual tweens toggled
             (meaning the tweens that could be played or paused, depending on the toggle state)</summary>
         </member>
         <member name="M:DG.Tweening.DOTween.IsTweening(System.Object,System.Boolean)">
             <summary>
-            Returns TRUE if a tween with the given ID or target is active.
+            Returns TRUE if a tween with the given ownerID or target is active.
             <para>You can also use this to know if a shortcut tween is active for a given target.</para>
             <para>Example:</para>
             <para><code>transform.DOMoveX(45, 1); // transform is automatically added as the tween target</code></para>
             <para><code>DOTween.IsTweening(transform); // Returns true</code></para>
             </summary>
-            <param name="targetOrId">The target or ID to look for</param>
-            <param name="alsoCheckIfIsPlaying">If FALSE (default) returns TRUE as long as a tween for the given target/ID is active,
+            <param name="targetOrId">The target or ownerID to look for</param>
+            <param name="alsoCheckIfIsPlaying">If FALSE (default) returns TRUE as long as a tween for the given target/ownerID is active,
             otherwise also requires it to be playing</param>
         </member>
         <member name="M:DG.Tweening.DOTween.TotalActiveTweens">
@@ -955,7 +955,7 @@
             <summary>
             Returns a the total number of active tweens with the given id.
             </summary>
-            <param name="playingOnly">If TRUE returns only the tweens with the given ID that are currently playing</param>
+            <param name="playingOnly">If TRUE returns only the tweens with the given ownerID that are currently playing</param>
         </member>
         <member name="M:DG.Tweening.DOTween.PlayingTweens(System.Collections.Generic.List{DG.Tweening.Tween})">
             <summary>
@@ -979,7 +979,7 @@
             Returns NULL if there are no active tweens with the given id.
             <para>Beware: each time you call this method a new list is generated</para>
             </summary>
-            <param name="playingOnly">If TRUE returns only the tweens with the given ID that are currently playing</param>
+            <param name="playingOnly">If TRUE returns only the tweens with the given ownerID that are currently playing</param>
             <param name="fillableList">If NULL creates a new list, otherwise clears and fills this one (and thus saves allocations)</param>
         </member>
         <member name="M:DG.Tweening.DOTween.TweensByTarget(System.Object,System.Boolean,System.Collections.Generic.List{DG.Tweening.Tween})">
@@ -1712,10 +1712,10 @@
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOColor(UnityEngine.Material,UnityEngine.Color,System.Int32,System.Single)">
-            <summary>Tweens a Material's named color property with the given ID to the given value.
+            <summary>Tweens a Material's named color property with the given ownerID to the given value.
             Also stores the material as the tween's target so it can be used for filtered operations</summary>
             <param name="endValue">The end value to reach</param>
-            <param name="propertyID">The ID of the material property to tween (also called nameID in Unity's manual)</param>
+            <param name="propertyID">The ownerID of the material property to tween (also called nameID in Unity's manual)</param>
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOFade(UnityEngine.Material,System.Single,System.Single)">
@@ -1733,11 +1733,11 @@
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOFade(UnityEngine.Material,System.Single,System.Int32,System.Single)">
-            <summary>Tweens a Material's alpha color with the given ID to the given value
+            <summary>Tweens a Material's alpha color with the given ownerID to the given value
             (will have no effect unless your material supports transparency).
             Also stores the material as the tween's target so it can be used for filtered operations</summary>
             <param name="endValue">The end value to reach</param>
-            <param name="propertyID">The ID of the material property to tween (also called nameID in Unity's manual)</param>
+            <param name="propertyID">The ownerID of the material property to tween (also called nameID in Unity's manual)</param>
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOFloat(UnityEngine.Material,System.Single,System.String,System.Single)">
@@ -1748,10 +1748,10 @@
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOFloat(UnityEngine.Material,System.Single,System.Int32,System.Single)">
-            <summary>Tweens a Material's named float property with the given ID to the given value.
+            <summary>Tweens a Material's named float property with the given ownerID to the given value.
             Also stores the material as the tween's target so it can be used for filtered operations</summary>
             <param name="endValue">The end value to reach</param>
-            <param name="propertyID">The ID of the material property to tween (also called nameID in Unity's manual)</param>
+            <param name="propertyID">The ownerID of the material property to tween (also called nameID in Unity's manual)</param>
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOOffset(UnityEngine.Material,UnityEngine.Vector2,System.Single)">
@@ -1788,10 +1788,10 @@
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOVector(UnityEngine.Material,UnityEngine.Vector4,System.Int32,System.Single)">
-            <summary>Tweens a Material's named Vector property with the given ID to the given value.
+            <summary>Tweens a Material's named Vector property with the given ownerID to the given value.
             Also stores the material as the tween's target so it can be used for filtered operations</summary>
             <param name="endValue">The end value to reach</param>
-            <param name="propertyID">The ID of the material property to tween (also called nameID in Unity's manual)</param>
+            <param name="propertyID">The ownerID of the material property to tween (also called nameID in Unity's manual)</param>
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOResize(UnityEngine.TrailRenderer,System.Single,System.Single,System.Single)">
@@ -2104,12 +2104,12 @@
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOBlendableColor(UnityEngine.Material,UnityEngine.Color,System.Int32,System.Single)">
-            <summary>Tweens a Material's named color property with the given ID to the given value,
+            <summary>Tweens a Material's named color property with the given ownerID to the given value,
             in a way that allows other DOBlendableColor tweens to work together on the same target,
             instead than fight each other as multiple DOColor would do.
             Also stores the Material as the tween's target so it can be used for filtered operations</summary>
             <param name="endValue">The value to tween to</param>
-            <param name="propertyID">The ID of the material property to tween (also called nameID in Unity's manual)</param>
+            <param name="propertyID">The ownerID of the material property to tween (also called nameID in Unity's manual)</param>
             <param name="duration">The duration of the tween</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOBlendableMoveBy(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Boolean)">
@@ -2368,20 +2368,20 @@
             <param name="autoKillOnCompletion">If TRUE the tween will be automatically killed when complete</param>
         </member>
         <member name="M:DG.Tweening.TweenParams.SetId(System.Object)">
-            <summary>Sets an ID for the tween, which can then be used as a filter with DOTween's static methods.</summary>
-            <param name="objectId">The ID to assign to this tween. Can be an int, a string, an object or anything else.</param>
+            <summary>Sets an ownerID for the tween, which can then be used as a filter with DOTween's static methods.</summary>
+            <param name="objectId">The ownerID to assign to this tween. Can be an int, a string, an object or anything else.</param>
         </member>
         <member name="M:DG.Tweening.TweenParams.SetId(System.String)">
-            <summary>Sets an ID for the tween, which can then be used as a filter with DOTween's static methods.</summary>
-            <param name="stringId">The ID to assign to this tween. Can be an int, a string, an object or anything else.</param>
+            <summary>Sets an ownerID for the tween, which can then be used as a filter with DOTween's static methods.</summary>
+            <param name="stringId">The ownerID to assign to this tween. Can be an int, a string, an object or anything else.</param>
         </member>
         <member name="M:DG.Tweening.TweenParams.SetId(System.Int32)">
-            <summary>Sets an ID for the tween, which can then be used as a filter with DOTween's static methods.</summary>
-            <param name="intId">The ID to assign to this tween. Can be an int, a string, an object or anything else.</param>
+            <summary>Sets an ownerID for the tween, which can then be used as a filter with DOTween's static methods.</summary>
+            <param name="intId">The ownerID to assign to this tween. Can be an int, a string, an object or anything else.</param>
         </member>
         <member name="M:DG.Tweening.TweenParams.SetTarget(System.Object)">
             <summary>Sets the target for the tween, which can then be used as a filter with DOTween's static methods.
-            <para>IMPORTANT: use it with caution. If you just want to set an ID for the tween use <code>SetId</code> instead.</para>
+            <para>IMPORTANT: use it with caution. If you just want to set an ownerID for the tween use <code>SetId</code> instead.</para>
             When using shorcuts the shortcut target is already assigned as the tween's target,
             so using this method will overwrite it and prevent shortcut-operations like myTarget.DOPause from working correctly.</summary>
             <param name="target">The target to assign to this tween. Can be an int, a string, an object or anything else.</param>
@@ -2484,18 +2484,18 @@
             <param name="autoKillOnCompletion">If TRUE the tween will be automatically killed when complete</param>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.SetId``1(``0,System.Object)">
-            <summary>Sets an ID for the tween (<see cref="F:DG.Tweening.Tween.id"/>), which can then be used as a filter with DOTween's static methods.</summary>
-            <param name="objectId">The ID to assign to this tween. Can be an int, a string, an object or anything else.</param>
+            <summary>Sets an ownerID for the tween (<see cref="F:DG.Tweening.Tween.id"/>), which can then be used as a filter with DOTween's static methods.</summary>
+            <param name="objectId">The ownerID to assign to this tween. Can be an int, a string, an object or anything else.</param>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.SetId``1(``0,System.String)">
-            <summary>Sets a string ID for the tween (<see cref="F:DG.Tweening.Tween.stringId"/>), which can then be used as a filter with DOTween's static methods.<para/>
-            Filtering via string is 2X faster than using an object as an ID (using the alternate obejct overload)</summary>
-            <param name="stringId">The string ID to assign to this tween.</param>
+            <summary>Sets a string ownerID for the tween (<see cref="F:DG.Tweening.Tween.stringId"/>), which can then be used as a filter with DOTween's static methods.<para/>
+            Filtering via string is 2X faster than using an object as an ownerID (using the alternate obejct overload)</summary>
+            <param name="stringId">The string ownerID to assign to this tween.</param>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.SetId``1(``0,System.Int32)">
-            <summary>Sets an int ID for the tween (<see cref="F:DG.Tweening.Tween.intId"/>), which can then be used as a filter with DOTween's static methods.<para/>
+            <summary>Sets an int ownerID for the tween (<see cref="F:DG.Tweening.Tween.intId"/>), which can then be used as a filter with DOTween's static methods.<para/>
             Filtering via int is 4X faster than via object, 2X faster than via string (using the alternate object/string overloads)</summary>
-            <param name="intId">The int ID to assign to this tween.</param>
+            <param name="intId">The int ownerID to assign to this tween.</param>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.SetLink``1(``0,UnityEngine.GameObject)">
             <summary>Allows to link this tween to a GameObject
@@ -2512,7 +2512,7 @@
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.SetTarget``1(``0,System.Object)">
             <summary>Sets the target for the tween, which can then be used as a filter with DOTween's static methods.
-            <para>IMPORTANT: use it with caution. If you just want to set an ID for the tween use <code>SetId</code> instead.</para>
+            <para>IMPORTANT: use it with caution. If you just want to set an ownerID for the tween use <code>SetId</code> instead.</para>
             When using shorcuts the shortcut target is already assigned as the tween's target,
             so using this method will overwrite it and prevent shortcut-operations like myTarget.DOPause from working correctly.</summary>
             <param name="target">The target to assign to this tween. Can be an int, a string, an object or anything else.</param>
@@ -2930,15 +2930,15 @@
             (play backwards will actually play the tween in the original direction)</summary>
         </member>
         <member name="F:DG.Tweening.Tween.id">
-            <summary>Object ID (usable for filtering with DOTween static methods). Can be anything except a string or an int
+            <summary>Object ownerID (usable for filtering with DOTween static methods). Can be anything except a string or an int
             (use <see cref="F:DG.Tweening.Tween.stringId"/> or <see cref="F:DG.Tweening.Tween.intId"/> for those)</summary>
         </member>
         <member name="F:DG.Tweening.Tween.stringId">
-            <summary>String ID (usable for filtering with DOTween static methods). 2X faster than using an object id</summary>
+            <summary>String ownerID (usable for filtering with DOTween static methods). 2X faster than using an object id</summary>
         </member>
         <member name="F:DG.Tweening.Tween.intId">
-            <summary>Int ID (usable for filtering with DOTween static methods). 4X faster than using an object id, 2X faster than using a string id.
-            Default is -999 so avoid using an ID like that or it will capture all unset intIds</summary>
+            <summary>Int ownerID (usable for filtering with DOTween static methods). 4X faster than using an object id, 2X faster than using a string id.
+            Default is -999 so avoid using an ownerID like that or it will capture all unset intIds</summary>
         </member>
         <member name="F:DG.Tweening.Tween.target">
             <summary>Tween target (usable for filtering with DOTween static methods). Automatically set by tween creation shortcuts</summary>
@@ -2976,7 +2976,7 @@
         </member>
         <member name="F:DG.Tweening.Tween.debugTargetId">
             <summary>
-            Set by SetTarget if DOTween's Debug Mode is on (see DOTween Utility Panel -> "Store GameObject's ID" debug option
+            Set by SetTarget if DOTween's Debug Mode is on (see DOTween Utility Panel -> "Store GameObject's ownerID" debug option
             </summary>
         </member>
         <member name="P:DG.Tweening.Tween.active">

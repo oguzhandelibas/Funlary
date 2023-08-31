@@ -9,9 +9,9 @@ namespace Funlary.Unit5.StackModule
         bool CanCollectable { get; set; }
         bool SetAsStairStep { get; set; }
         void MoveTo(Transform parent, float height);
-        void MoveTo(Vector3 position);
+        void SetAsStep(Vector3 position);
         void DropStack();
-        void SetStackColor(Color targetColor);
+        void SetStackColor(Color targetColor, float duration);
         void SetAsColletable();
     }
 }

@@ -559,7 +559,7 @@ namespace DG.Tweening
         /// </summary>
         /// <param name="tweenTarget">
         /// New target for the animation (must be of the same type of the previous one)</param>
-        /// <param name="useTweenTargetGameObjectForGroupOperations">If TRUE also uses tweenTarget's gameObject when settings the target-ID of the tween
+        /// <param name="useTweenTargetGameObjectForGroupOperations">If TRUE also uses tweenTarget's gameObject when settings the target-ownerID of the tween
         /// (which is used with DOPlay/DORestart/etc to apply the same operation on all tweens that have the same target-id).<para/>
         /// You should usually leave this to TRUE if you change the target.
         /// </param>
@@ -672,14 +672,14 @@ namespace DG.Tweening
         #region Specifics
 
         /// <summary>
-        /// Plays all tweens with the given ID and whose target-id is the same as the one set by this animation
+        /// Plays all tweens with the given ownerID and whose target-id is the same as the one set by this animation
         /// </summary>
         public void DOPlayById(string id)
         {
             DOTween.Play(GetTweenTarget(), id);
         }
         /// <summary>
-        /// Plays all tweens with the given ID (regardless of their target gameObject)
+        /// Plays all tweens with the given ownerID (regardless of their target gameObject)
         /// </summary>
         public void DOPlayAllById(string id)
         {
@@ -687,7 +687,7 @@ namespace DG.Tweening
         }
 
         /// <summary>
-        /// Pauses all tweens that with the given ID (regardless of their target gameObject)
+        /// Pauses all tweens that with the given ownerID (regardless of their target gameObject)
         /// </summary>
         public void DOPauseAllById(string id)
         {
@@ -695,14 +695,14 @@ namespace DG.Tweening
         }
 
         /// <summary>
-        /// Plays backwards all tweens with the given ID and whose target-id is the same as the one set by this animation
+        /// Plays backwards all tweens with the given ownerID and whose target-id is the same as the one set by this animation
         /// </summary>
         public void DOPlayBackwardsById(string id)
         {
             DOTween.PlayBackwards(GetTweenTarget(), id);
         }
         /// <summary>
-        /// Plays backwards all tweens with the given ID (regardless of their target gameObject)
+        /// Plays backwards all tweens with the given ownerID (regardless of their target gameObject)
         /// </summary>
         public void DOPlayBackwardsAllById(string id)
         {
@@ -710,14 +710,14 @@ namespace DG.Tweening
         }
 
         /// <summary>
-        /// Plays forward all tweens with the given ID and whose target-id is the same as the one set by this animation
+        /// Plays forward all tweens with the given ownerID and whose target-id is the same as the one set by this animation
         /// </summary>
         public void DOPlayForwardById(string id)
         {
             DOTween.PlayForward(GetTweenTarget(), id);
         }
         /// <summary>
-        /// Plays forward all tweens with the given ID (regardless of their target gameObject)
+        /// Plays forward all tweens with the given ownerID (regardless of their target gameObject)
         /// </summary>
         public void DOPlayForwardAllById(string id)
         {
@@ -741,7 +741,7 @@ namespace DG.Tweening
         }
 
         /// <summary>
-        /// Rewinds all tweens with the given ID and whose target-id is the same as the one set by this animation,
+        /// Rewinds all tweens with the given ownerID and whose target-id is the same as the one set by this animation,
         /// then plays the next animation on this animation's gameObject (if any)
         /// </summary>
         public void DORewindAndPlayNext()
@@ -752,7 +752,7 @@ namespace DG.Tweening
         }
 
         /// <summary>
-        /// Rewinds all tweens with the given ID (regardless of their target gameObject)
+        /// Rewinds all tweens with the given ownerID (regardless of their target gameObject)
         /// </summary>
         public void DORewindAllById(string id)
         {
@@ -761,7 +761,7 @@ namespace DG.Tweening
         }
 
         /// <summary>
-        /// Restarts all tweens with the given ID and whose target-id is the same as the one set by this animation
+        /// Restarts all tweens with the given ownerID and whose target-id is the same as the one set by this animation
         /// </summary>
         public void DORestartById(string id)
         {
@@ -769,7 +769,7 @@ namespace DG.Tweening
             DOTween.Restart(GetTweenTarget(), id);
         }
         /// <summary>
-        /// Restarts all tweens with the given ID (regardless of their target gameObject)
+        /// Restarts all tweens with the given ownerID (regardless of their target gameObject)
         /// </summary>
         public void DORestartAllById(string id)
         {
@@ -778,14 +778,14 @@ namespace DG.Tweening
         }
 
         /// <summary>
-        /// Kills all tweens with the given ID and whose target-id is the same as the one set by this animation
+        /// Kills all tweens with the given ownerID and whose target-id is the same as the one set by this animation
         /// </summary>
         public void DOKillById(string id)
         {
             DOTween.Kill(GetTweenTarget(), id);
         }
         /// <summary>
-        /// Kills all tweens with the given ID (regardless of their target gameObject)
+        /// Kills all tweens with the given ownerID (regardless of their target gameObject)
         /// </summary>
         public void DOKillAllById(string id)
         {

@@ -77,11 +77,16 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             Vector3 stepPosition = new Vector3(0,0,0.5f);
             Vector3 stepScale = new Vector3(3, StepHeight, 1);
 
+            List<IStep> stepList = new List<IStep>();
             for (int i = 0; i < BridgeLength; i++)
             {
                 IStep IStep = Instantiate(stepPrefab, stairParent).GetComponent<IStep>();
-                stepManager.CreateStep(this, IStep, stepPosition, stepScale, i);
-                
+                stepList.Add(IStep);
+            }
+            stepList.Add(stepList[stepList.Count-1]);
+            for (int i = 0; i < BridgeLength; i++)
+            {
+                stepManager.CreateStep(this, stepList[i], stepList[i+1], stepPosition, stepScale, i);
                 stepPosition += new Vector3(0, StepHeight, 1);
             }
         }
