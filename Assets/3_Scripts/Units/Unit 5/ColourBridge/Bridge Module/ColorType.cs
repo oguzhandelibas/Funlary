@@ -1,7 +1,8 @@
 ﻿namespace Funlary.Unit5.ColourBridge.BridgeModule
 {
-    public enum BridgeColor
+    public enum ColorType
     {
+        None,
         Red,
         Green,
         Blue,

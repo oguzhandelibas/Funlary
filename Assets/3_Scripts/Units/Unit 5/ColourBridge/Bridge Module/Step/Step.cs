@@ -49,10 +49,9 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         }
         
 
-        public void SetColor(Material colorMaterial)
+        public void SetColor(Color color)
         {
-            meshRenderer.sharedMaterial = colorMaterial;
-
+            meshRenderer.sharedMaterial.color = color;
         }
     }
 }

@@ -12,21 +12,21 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         [Header("Bridge Color Materials")] [SerializeField] private List<Material> bridgeColors;
 
-        public Material GetBridgeColorMaterial(BridgeColor bridgeColor)
+        public Material GetBridgeColorMaterial(ColorType colorType)
         {
             Material material;
-            switch (bridgeColor)
+            switch (colorType)
             {
-                case BridgeColor.Red:
+                case ColorType.Red:
                     material = bridgeColors[0];
                     break;
-                case BridgeColor.Green:
+                case ColorType.Green:
                     material = bridgeColors[1];
                     break;
-                case BridgeColor.Blue:
+                case ColorType.Blue:
                     material = bridgeColors[2];
                     break;
-                case BridgeColor.Yellow:
+                case ColorType.Yellow:
                     material = bridgeColors[3];
                     break;
                 default:

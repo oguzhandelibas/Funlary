@@ -13,6 +13,6 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         int Index { get; set; }
         void InitializeStep(StepManager _stepManager, IStep _nextStep, Vector3 _localPos, Vector3 _localScale, int _index);
         void SetActiveness(bool gameObjectActiveness, bool wallObjectActiveness);
-        void SetColor(Material colorMaterial);
+        void SetColor(Color color);
     }
 }

@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Funlary.Unit5.OpponentModule;
 using Funlary.Unit5.OpponentModule.Controller;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Funlary.Unit5.ColourBridge.BridgeModule
 {
-    public class StepManager : MonoBehaviour
+    public class StepManager : MonoBehaviour, IColor
     {
         private Bridge bridge;
         private List<IStep> StepList = new List<IStep>();
@@ -15,9 +16,9 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         public int ownerID;
         private bool Used;
         public int ActiveStepCount { private get; set; } = 0;
-        public BridgeColor BridgeColor;
-        
-        
+        public ColorType BridgeColor = ColorType.None;
+        public Color[] colors;
+        public ColorData colorData;
         public void CreateStep(Bridge _bridge, IStep step, IStep nextStep, Vector3 stepPosition, Vector3 stepScale, int index)
         {
             bridge = _bridge;
@@ -27,7 +28,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         }
         
         
-        public bool ActivateStep(int stepIndex)
+        public bool ActivateStep(int stepIndex, Color color)
         {
             //Debug.Log($"Index: {stepIndex} & Total List Count: {StepList.Count}");
             ActiveStepCount++;
@@ -42,7 +43,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             
             StepList[stepIndex].Used = true;
             StepList[stepIndex].SetActiveness(true, false);
-            
+            StepList[stepIndex].SetColor(color);
 
             if (stepIndex+1 < StepList.Count) 
                 StepList[stepIndex+1].SetActiveness(true, true);
@@ -50,20 +51,10 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             return true;
         }
         
-        public bool IsSameOpponent(int x)
-        {
-            //eğer eşse color ataması gerekli yerden yapılsın
-            bool value = (x == ownerID);
-            
-            if (!value)
-            {
-                ownerID = x;
-                ActivateStep(0);
-            }
-            
-            return value;
-        }
-        
+        public bool CheckColor(ColorType targetColor) => targetColor == this.BridgeColor;
+
+        public Color GetColor() => colors[(int)BridgeColor];
+        /*
         private void OnTriggerEnter(Collider other)
         {
             if (other.transform.TryGetComponent(out OpponentPhysicController opponentPhysicController) && opponentPhysicController.opponent.HasStack)
@@ -91,6 +82,40 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             }
             // trigger eden karakterin id'si kontrol edilsin, aynı ise bir şey yok
             // değil ise index sıfırlansın ve objeler yeniden renklendirilmeye başlansın.
+        }
+        */
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.transform.TryGetComponent(out OpponentPhysicController opponentPhysicController) && opponentPhysicController.opponent.HasStack)
+            {
+                Debug.Log("<color=yellow>Has Stack</color>");
+                if (this.BridgeColor == ColorType.None)
+                {
+                    // Sıfırdan inşa süreci
+                    BridgeWall.SetActive(false);
+                    BridgeColor = opponentPhysicController.opponent.ColorType;
+                    ActivateStep(-1, GetColor());
+                    opponentPhysicController.opponent.stackController.RemoveStack(StepList[0].Position());
+                    
+                    Debug.Log("<color=green>Bridge Creation is Started</color>");
+                }
+                else if(CheckColor(opponentPhysicController.opponent.ColorType))
+                {
+                    // Başlatılan inşa süreci devam ettirilir
+                    Debug.Log("<color=green>Same Color</color>");
+                }
+                else
+                {
+                    // İnşa başka renk ile başlatılmış, üzerine yazılacak
+                    Debug.Log("<color=red>Different Color</color>");
+                }
+
+            }
+            else
+            {
+                Debug.Log("<color=black>No Stack</color>");
+            }
         }
     }
 }

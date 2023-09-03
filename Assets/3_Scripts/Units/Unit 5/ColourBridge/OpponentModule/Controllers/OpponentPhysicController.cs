@@ -23,7 +23,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
             if (opponent.HasStack && other.TryGetComponent(out IStep iStep) && !iStep.Used)
             {
                 StepManager stepManager = iStep.GetStepManager();
-                if(stepManager.ActivateStep(iStep.Index))
+                if(stepManager.ActivateStep(iStep.Index, opponent.GetColor()))
                     opponent.stackController.RemoveStack(iStep.Position());
                 
                 
