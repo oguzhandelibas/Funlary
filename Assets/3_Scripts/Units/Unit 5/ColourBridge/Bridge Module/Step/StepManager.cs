@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Funlary.Unit5.OpponentModule;
 using Funlary.Unit5.OpponentModule.Controller;
+using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,8 +18,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         private bool Used;
         public int ActiveStepCount { private get; set; } = 0;
         public ColorType BridgeColor = ColorType.None;
-        public Color[] colors;
-        public ColorData colorData;
+        [SerializeField] private ColorData colorData;
         public void CreateStep(Bridge _bridge, IStep step, IStep nextStep, Vector3 stepPosition, Vector3 stepScale, int index)
         {
             bridge = _bridge;
@@ -53,7 +53,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         
         public bool CheckColor(ColorType targetColor) => targetColor == this.BridgeColor;
 
-        public Color GetColor() => colors[(int)BridgeColor];
+        public Color GetColor() => colorData.ColorType[BridgeColor];
         /*
         private void OnTriggerEnter(Collider other)
         {

@@ -12,3 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e099791c4dd3b4489e05ae5f62ad84, type: 3}
   m_Name: ColorData
   m_EditorClassIdentifier: 
+  ColorType:
+    _serializedList:
+    - Key: 1
+      Value: {r: 1, g: 0, b: 0, a: 1}
+    - Key: 2
+      Value: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
+    - Key: 3
+      Value: {r: 0.015686274, g: 0.5144282, b: 1, a: 1}
+    - Key: 4
+      Value: {r: 0.8062385, g: 1, b: 0.015686274, a: 1}

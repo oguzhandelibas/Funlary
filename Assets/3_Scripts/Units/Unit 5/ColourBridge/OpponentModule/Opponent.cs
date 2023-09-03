@@ -5,6 +5,7 @@ using Funlary.Unit5.ColourBridge.BridgeModule;
 using UnityEngine;
 using Funlary.Unit5.OpponentModule.Controller;
 using Funlary.Unit5.StackModule;
+using NaughtyAttributes;
 
 namespace Funlary.Unit5.OpponentModule
 {
@@ -18,6 +19,7 @@ namespace Funlary.Unit5.OpponentModule
         public Transform stackParent;
         public StackController stackController;
         public OpponentMovement opponentMovement;
+        [SerializeField] private ColorData colorData;
 
         private IControl _IControl;
         private int stackCount = 0;
@@ -52,28 +54,6 @@ namespace Funlary.Unit5.OpponentModule
 
         public bool CheckColor(ColorType targetColor) => targetColor == this.ColorType;
 
-        public Color GetColor()
-        {
-            Color color;
-            switch (this.ColorType)
-            {
-                case ColorType.Red:
-                    color = Color.red;
-                    break;
-                case ColorType.Green:
-                    color = Color.green;
-                    break;
-                case ColorType.Blue:
-                    color = Color.blue;
-                    break;
-                case ColorType.Yellow:
-                    color = Color.yellow;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            return color;
-        }
+        public Color GetColor() => colorData.ColorType[ColorType];
     }
 }

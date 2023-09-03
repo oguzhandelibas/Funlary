@@ -421,8 +421,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BridgeWall: {fileID: 1880695904}
-  ID: 1234
+  ownerID: 0
   BridgeColor: 0
+  colorData: {fileID: 11400000, guid: 0ee8fde899b627544b2d23d381c0f188, type: 2}
 --- !u!4 &51632240 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6812736527861874912, guid: 6cc8de963d92e934f974e7692af081ff,
@@ -1185,10 +1186,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 1
+  ColorType: 3
   opponentType: 1
   character: {fileID: 621674436}
   stackParent: {fileID: 812822319}
   opponentMovement: {fileID: 230761066}
+  colorData: {fileID: 11400000, guid: 0ee8fde899b627544b2d23d381c0f188, type: 2}
 --- !u!114 &230761069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,7 +1555,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450225756}
-  m_LocalRotation: {x: 0.28978413, y: 0.000000016468091, z: -0.0000000049861364, w: 0.95709205}
+  m_LocalRotation: {x: 0.28978413, y: -0.000000016468091, z: 0.0000000049861364, w: 0.95709205}
   m_LocalPosition: {x: 0, y: 25, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5891,10 +5894,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 2
+  ColorType: 0
   opponentType: 1
   character: {fileID: 898636984}
   stackParent: {fileID: 1316378400}
   opponentMovement: {fileID: 1623268492}
+  colorData: {fileID: 0}
 --- !u!4 &1623268494
 Transform:
   m_ObjectHideFlags: 0
@@ -6945,7 +6950,7 @@ GameObject:
   - component: {fileID: 1880695907}
   - component: {fileID: 1880695906}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: ShieldWall
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
