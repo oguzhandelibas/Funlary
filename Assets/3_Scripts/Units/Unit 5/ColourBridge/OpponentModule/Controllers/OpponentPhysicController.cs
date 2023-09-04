@@ -20,13 +20,33 @@ namespace Funlary.Unit5.OpponentModule.Controller
                 opponent.stackController.AddStack(iStack ,opponent.stackParent);
             }
             
-            if (opponent.HasStack && other.TryGetComponent(out IStep iStep) && !iStep.Used)
+            if (opponent.HasStack && other.TryGetComponent(out IStep iStep))
             {
                 StepManager stepManager = iStep.GetStepManager();
-                if(stepManager.ActivateStep(iStep.Index, opponent.GetColor()))
-                    opponent.stackController.RemoveStack(iStep.Position());
-                
-                
+                print("aa 1: " + (iStep.StepColorType));
+                print("aa 2: " + (opponent.ColorType));
+                print("bb : " + (!iStep.Used));
+                if (iStep.StepColorType == opponent.ColorType && !iStep.Used)
+                {
+                    if (stepManager.ActivateStep(iStep.Index+1, opponent.GetColor(), opponent.ColorType))
+                    {
+                        opponent.stackController.RemoveStack(iStep.Position());
+                    }
+                    
+                    // Baþlatýlan inþa süreci devam ettirilir
+                    Debug.Log("<color=green>Same Color</color>");
+                }
+                else
+                {
+                    iStep.Used = false;
+                    if (stepManager.ActivateStep(iStep.Index-1, opponent.GetColor(), opponent.ColorType))
+                    {
+                        opponent.stackController.RemoveStack(iStep.Position());
+                    }
+
+                    // Ýnþa baþka renk ile baþlatýlmýþ, üzerine yazýlacak
+                    Debug.Log("<color=red>Different Color</color>");
+                }
             }
         }
         
