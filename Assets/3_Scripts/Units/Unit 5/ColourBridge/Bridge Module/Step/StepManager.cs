@@ -29,26 +29,28 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             step.SetActiveness(false,true);
         }
 
-        public bool ActivateStep(int stepIndex, Color color, ColorType colorType)
+        public bool ActivateStep(int stepIndex, int remainingStepCount, Color color, ColorType colorType)
         {
-            print("buurdayım be burdayım:" + stepIndex);
             //Debug.Log($"Index: {stepIndex} & Total List Count: {_stepList.Count}");
             if (stepIndex > _stepList.Count || _stepList[stepIndex].Used) return false;
             
             ActiveStepCount++;
 
-            _stepList[stepIndex].Used = true;
-            _stepList[stepIndex].SetActiveness(true, false);
+            if(stepIndex == 0) _stepList[stepIndex].Used = true;
+            else if (remainingStepCount == 0) _stepList[stepIndex+1].Used = true;
+            else _stepList[stepIndex - 1].Used = true;
+
+
+            _stepList[stepIndex].SetActiveness(true, remainingStepCount <= 1);
 
             _stepList[stepIndex].SetColor(color, colorType);
             _usedStepList.Add(_stepList[stepIndex]);
 
-            
+            /*
             if (stepIndex + 1 < _stepList.Count)
             {
                 _stepList[stepIndex + 1].SetActiveness(false, true);
-            }
-
+            }*/
 
             return true;
         }
@@ -92,26 +94,43 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         private void BrdigeConstruction(Collider other)
         {
-            if (other.transform.TryGetComponent(out OpponentPhysicController opponentPhysicController) && opponentPhysicController.opponent.HasStack)
+            if (other.transform.TryGetComponent(out OpponentPhysicController opponentPhysicController))
             {
-                Debug.Log("<color=yellow>Has Stack</color>");
                 ColorType opponentColorType = opponentPhysicController.opponent.ColorType;
 
-                if (this.bridgeColorType == ColorType.None)
+                if (bridgeColorType == opponentColorType)
                 {
-                    // Sıfırdan inşa süreci
                     bridgeShieldWall.SetActive(false);
-                    bridgeColorType = opponentColorType;
-                    ActivateStep(0, GetColor(), bridgeColorType);
-                    opponentPhysicController.opponent.stackController.RemoveStack(_stepList[0].Position());
-
-                    Debug.Log("<color=green>Bridge Creation is Started</color>");
+                    return;
+                }
+                else if (bridgeColorType == ColorType.None)
+                {
+                    if(!opponentPhysicController.opponent.HasStack)
+                    {
+                       return; 
+                    }
+                    SetFirstStep(opponentColorType, opponentPhysicController);
+                }
+                else if (this.bridgeColorType != opponentColorType)
+                {
+                    if (!opponentPhysicController.opponent.HasStack)
+                    {
+                        bridgeShieldWall.SetActive(true);
+                    }
+                    else
+                    {
+                        SetFirstStep(opponentColorType, opponentPhysicController);
+                    }
                 }
             }
-            else
-            {
-                Debug.Log("<color=black>No Stack</color>");
-            }
+        }
+
+        private void SetFirstStep(ColorType opponentColorType, OpponentPhysicController opponentPhysicController)
+        {
+            bridgeShieldWall.SetActive(false);
+            bridgeColorType = opponentColorType;
+            ActivateStep(0, 10, GetColor(), bridgeColorType);
+            opponentPhysicController.opponent.stackController.RemoveStack(_stepList[0].Position());
         }
     }
 }

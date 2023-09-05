@@ -23,29 +23,25 @@ namespace Funlary.Unit5.OpponentModule.Controller
             if (opponent.HasStack && other.TryGetComponent(out IStep iStep))
             {
                 StepManager stepManager = iStep.GetStepManager();
-                print("aa 1: " + (iStep.StepColorType));
-                print("aa 2: " + (opponent.ColorType));
-                print("bb : " + (!iStep.Used));
+
+                print("Step Color: " + (iStep.StepColorType) + " , " 
+                      + "Opponent Color: " + (opponent.ColorType) + " , " 
+                      + "Step Used: " + (!iStep.Used));
                 if (iStep.StepColorType == opponent.ColorType && !iStep.Used)
                 {
-                    if (stepManager.ActivateStep(iStep.Index+1, opponent.GetColor(), opponent.ColorType))
+                    // Step'in rengi Opponentin rengi ile aynýysa ve Step kullanýlmamýþsa
+                    if (stepManager.ActivateStep(iStep.Index+1, opponent.StackCount, opponent.GetColor(), opponent.ColorType))
                     {
                         opponent.stackController.RemoveStack(iStep.Position());
                     }
-                    
-                    // Baþlatýlan inþa süreci devam ettirilir
-                    Debug.Log("<color=green>Same Color</color>");
                 }
-                else
+                else if (iStep.StepColorType != opponent.ColorType && iStep.Used)
                 {
                     iStep.Used = false;
-                    if (stepManager.ActivateStep(iStep.Index-1, opponent.GetColor(), opponent.ColorType))
+                    if (stepManager.ActivateStep(iStep.Index+1, opponent.StackCount, opponent.GetColor(), opponent.ColorType))
                     {
                         opponent.stackController.RemoveStack(iStep.Position());
                     }
-
-                    // Ýnþa baþka renk ile baþlatýlmýþ, üzerine yazýlacak
-                    Debug.Log("<color=red>Different Color</color>");
                 }
             }
         }
