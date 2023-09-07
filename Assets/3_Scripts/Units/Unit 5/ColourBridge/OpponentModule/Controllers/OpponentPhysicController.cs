@@ -11,22 +11,23 @@ namespace Funlary.Unit5.OpponentModule.Controller
 {
     public class OpponentPhysicController : MonoBehaviour
     {
+        #region FIELDS
         public Rigidbody rigidbody;
         public Opponent opponent;
+        #endregion
+
+        #region UNITY FUNCTIONS
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable)
             {
-                opponent.stackController.AddStack(iStack ,opponent.stackParent);
+                opponent.stackController.AddStack(iStack, opponent.stackParent);
             }
-            
+
             if (opponent.HasStack && other.TryGetComponent(out IStep iStep))
             {
                 StepManager stepManager = iStep.GetStepManager();
 
-                //print("Step Color: " + (iStep.StepColorType) + " , " 
-                  //    + "Opponent Color: " + (opponent.ColorType) + " , " 
-                    //  + "Step Used: " + (!iStep.Used));
                 if (iStep.StepColorType == opponent.ColorType && !iStep.Used)
                 {
                     // Step'in rengi Opponentin rengi ile aynýysa ve Step kullanýlmamýþsa
@@ -45,23 +46,25 @@ namespace Funlary.Unit5.OpponentModule.Controller
                 }
             }
         }
-        
-//Collision Detection for Opponent Crash: DropIt and AddForce
+
+        //Collision Detection for Opponent Crash: DropIt and AddForce
         private void OnCollisionEnter(Collision other)
         {
             if (other.transform.TryGetComponent(out OpponentPhysicController opponentPhysicController))
             {
                 Opponent targetOpponent = opponentPhysicController.opponent;
                 rigidbody.velocity = Vector3.zero;
-                if (targetOpponent.StackCount <=  opponent.StackCount)
+                if (targetOpponent.StackCount <= opponent.StackCount)
                 {
                     targetOpponent.stackController.DropAllStack();
                     targetOpponent.character.DOLookAt(opponent.character.position, 0.25f);
                     targetOpponent.opponentMovement.animationController.PlayAnim(AnimTypes.FALL);
                 }
-                
+
             }
         }
+
+        #endregion
     }
 
     

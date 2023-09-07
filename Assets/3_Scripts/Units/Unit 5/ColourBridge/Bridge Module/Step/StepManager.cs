@@ -21,8 +21,19 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         public int ownerID;
         public ColorType bridgeColorType = ColorType.None;
         public int ActiveStepCount { private get; set; } = 0;
-        public List<IStep> _stepList = new List<IStep>();
-        public List<IStep> _usedStepList = new List<IStep>();
+        private List<IStep> _stepList = new List<IStep>();
+        private List<IStep> _usedStepList = new List<IStep>();
+        #endregion
+
+        #region PROPERTIES
+
+        public bool CheckColor(ColorType targetColor) => targetColor == this.bridgeColorType;
+
+        public Color GetColor
+        {
+            get => colorData.ColorType[bridgeColorType];
+        }
+
         #endregion
 
         #region UNITY FUNCTIONS
@@ -65,8 +76,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
             return true;
         }
-        public bool CheckColor(ColorType targetColor) => targetColor == this.bridgeColorType;
-        public Color GetColor() => colorData.ColorType[bridgeColorType];
+        
         private void BrdigeConstruction(Collider other)
         {
             if (other.transform.TryGetComponent(out OpponentPhysicController opponentPhysicController))

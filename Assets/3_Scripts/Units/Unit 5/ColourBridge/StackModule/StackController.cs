@@ -8,12 +8,12 @@ namespace Funlary.Unit5.StackModule
     public class StackController
     {
         public Opponent opponent;
-        private Stack<IStack> StackQueue;
+        private Stack<IStack> _stackQueue;
         
         public StackController(Opponent _opponent)
         {
             opponent = _opponent;
-            StackQueue = new Stack<IStack>();
+            _stackQueue = new Stack<IStack>();
         }
         
         public void AddStack(IStack stack, Transform parent)
@@ -21,12 +21,12 @@ namespace Funlary.Unit5.StackModule
             opponent.StackCount++;
             stack.CanCollectable = false;
             stack.MoveTo(parent, opponent.StackCount);
-            StackQueue.Push(stack);
+            _stackQueue.Push(stack);
         }
 
         public void RemoveStack (Vector3 targetPosition)
         {
-            IStack stack = StackQueue.Pop();
+            IStack stack = _stackQueue.Pop();
             opponent.StackCount--;
 
             stack.SetAsStairStep = true;
@@ -35,9 +35,9 @@ namespace Funlary.Unit5.StackModule
 
         public void DropAllStack()
         {
-            while (StackQueue.Count > 0)
+            while (_stackQueue.Count > 0)
             {
-                StackQueue.Pop().DropStack();
+                _stackQueue.Pop().DropStack();
             }
             opponent.StackCount = 0;
         }
