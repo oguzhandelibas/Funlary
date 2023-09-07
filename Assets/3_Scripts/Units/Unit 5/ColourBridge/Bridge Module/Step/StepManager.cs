@@ -31,26 +31,26 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         public bool ActivateStep(int stepIndex, int remainingStepCount, Color color, ColorType colorType)
         {
-            //Debug.Log($"Index: {stepIndex} & Total List Count: {_stepList.Count}");
-            if (stepIndex > _stepList.Count || _stepList[stepIndex].Used) return false;
-            
+            stepIndex++;
+            if (stepIndex >= _stepList.Count || _stepList[stepIndex].Used) return false;
             ActiveStepCount++;
 
-            if(stepIndex == 0) _stepList[stepIndex].Used = true;
-            else if (remainingStepCount == 0) _stepList[stepIndex+1].Used = true;
-            else _stepList[stepIndex - 1].Used = true;
-
-
-            _stepList[stepIndex].SetActiveness(true, remainingStepCount <= 1);
+            if (stepIndex == 0)
+            {
+                _stepList[stepIndex]
+                    .SetActiveness(true, true);
+            }
+            if ((stepIndex + 1) <= _stepList.Count)
+            {
+                _stepList[stepIndex-1].Used = true;
+                _stepList[stepIndex]
+                    .SetActiveness(true, remainingStepCount < 2 && (stepIndex + 1) != _stepList.Count);
+                _stepList[stepIndex-1]
+                    .SetActiveness(true, false);
+            }
 
             _stepList[stepIndex].SetColor(color, colorType);
             _usedStepList.Add(_stepList[stepIndex]);
-
-            /*
-            if (stepIndex + 1 < _stepList.Count)
-            {
-                _stepList[stepIndex + 1].SetActiveness(false, true);
-            }*/
 
             return true;
         }
@@ -129,7 +129,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         {
             bridgeShieldWall.SetActive(false);
             bridgeColorType = opponentColorType;
-            ActivateStep(0, 10, GetColor(), bridgeColorType);
+            ActivateStep(-1, 10, GetColor(), bridgeColorType);
             opponentPhysicController.opponent.stackController.RemoveStack(_stepList[0].Position());
         }
     }

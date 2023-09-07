@@ -41,7 +41,7 @@ namespace Funlary.Unit5.StackModule
             SetStackColor(startColor);
             transform.SetParent(null);
             //transform.localScale = new Vector3(1, 1, 1);
-            transform.DOLocalMove(position, .1f).SetEase(Ease.Linear).OnComplete(() => gameObject.SetActive(false));
+            transform.DOLocalMove(position, .1f).SetEase(Ease.Linear).OnComplete(() => Destroy(gameObject));
             transform.localRotation = Quaternion.Euler(0,0,0);
         }
 

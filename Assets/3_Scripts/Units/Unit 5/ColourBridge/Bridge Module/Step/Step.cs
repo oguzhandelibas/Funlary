@@ -19,7 +19,6 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         private void Start()
         {
-            Used = false;
             Material stepMaterial = meshRenderer.material;
             meshRenderer.material = stepMaterial;
         }
