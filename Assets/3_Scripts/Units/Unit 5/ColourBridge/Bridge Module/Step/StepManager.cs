@@ -21,7 +21,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         public int ownerID;
         public ColorType bridgeColorType = ColorType.None;
         public int ActiveStepCount { private get; set; } = 0;
-        private List<IStep> _stepList = new List<IStep>();
+        public List<IStep> _stepList = new List<IStep>();
         private List<IStep> _usedStepList = new List<IStep>();
         #endregion
 
@@ -62,7 +62,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
                 _stepList[stepIndex]
                     .SetActiveness(true, true);
             }
-            if ((stepIndex + 1) <= _stepList.Count)
+            else if ((stepIndex + 1) <= _stepList.Count)
             {
                 _stepList[stepIndex - 1].Used = true;
                 _stepList[stepIndex]
