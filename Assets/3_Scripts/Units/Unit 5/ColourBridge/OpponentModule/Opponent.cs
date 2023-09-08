@@ -11,29 +11,49 @@ namespace Funlary.Unit5.OpponentModule
 {
     public class Opponent : MonoBehaviour, IColor
     {
-        public int ID;
-        public ColorType ColorType;
-        public enum OpponentType { AI, PLAYER }
-        public OpponentType opponentType = OpponentType.AI;
+        #region FIELDS
+
         public Transform character;
         public Transform stackParent;
         public StackController stackController;
         public OpponentMovement opponentMovement;
         [SerializeField] private ColorData colorData;
 
+        #endregion
+
+        #region VARIABLES
+
+        public int ID;
+        public enum OpponentType { AI, PLAYER }
+        public OpponentType opponentType = OpponentType.AI;
+
+        public ColorType ColorType;
         private IControl _IControl;
-        private int stackCount = 0;
-        
-        
-        public bool HasStack { get => stackCount > 0; }
-        public int StackCount { get => stackCount; set=> stackCount = value; }
+
+        private int _stackCount = 0;
+
+        #endregion
+
+        #region PROPERTIES
+
+        public Color GetColor => colorData.ColorType[ColorType];
+        public bool CheckColor(ColorType targetColor) => targetColor == this.ColorType;
+        public bool HasStack { get => _stackCount > 0; }
+        public int StackCount { get => _stackCount; set => _stackCount = value; }
+
+        #endregion
+
+        #region UNITY FUNCTIONS
 
         private void Start()
         {
             stackController = new StackController(this);
             CreateOpponent();
-            //stackCount++;
         }
+
+        #endregion
+
+        #region OPPONENT FUNCTIONS
 
         private void CreateOpponent()
         {
@@ -45,15 +65,14 @@ namespace Funlary.Unit5.OpponentModule
             {
                 PlayerController playerController = new PlayerController();
                 _IControl = playerController;
-                
+
                 playerController.joystickController = FindObjectOfType<JoystickController>();
             }
-            
+
             opponentMovement._IControl = _IControl;
         }
 
-        public bool CheckColor(ColorType targetColor) => targetColor == this.ColorType;
+        #endregion
 
-        public Color GetColor() => colorData.ColorType[ColorType];
     }
 }
