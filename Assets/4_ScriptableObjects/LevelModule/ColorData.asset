@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColorType:
     _serializedList:
+    - Key: 0
+      Value: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
     - Key: 1
       Value: {r: 1, g: 0, b: 0, a: 1}
     - Key: 2

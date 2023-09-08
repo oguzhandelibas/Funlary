@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Funlary.Unit5.ColourBridge.BridgeModule;
 using Random = UnityEngine.Random;
 
 namespace Funlary.Unit5.StackModule
@@ -10,8 +11,10 @@ namespace Funlary.Unit5.StackModule
     public class Stack : MonoBehaviour, IStack
     {
         #region FIELDS
-        private MeshRenderer renderer;
+
+        public ColorType StackColorType;
         public Material StackMaterial { get => renderer.material; }
+        private MeshRenderer renderer;
         private Color startColor;
         private Transform stackParent;
         #endregion

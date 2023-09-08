@@ -211,3 +211,4 @@ MonoBehaviour:
   boxCollider: {fileID: 4645395392409778646}
   meshRenderer: {fileID: 4645395392409778647}
   wallObject: {fileID: 475355335799600673}
+  colorData: {fileID: 11400000, guid: 0ee8fde899b627544b2d23d381c0f188, type: 2}

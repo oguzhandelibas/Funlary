@@ -11,11 +11,22 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         [SerializeField] private BoxCollider boxCollider;
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private GameObject wallObject;
+        [SerializeField] private ColorData colorData;
+
         private StepManager stepManager;
-        public ColorType stepColorType;
         public bool Used { get; set; }
         public IStep NextStep { get; set; }
-        public ColorType StepColorType { get; set; }
+
+        private ColorType _stepColorType;
+        public ColorType StepColorType
+        {
+            get => _stepColorType;
+            set
+            {
+                _stepColorType = value;
+                meshRenderer.sharedMaterial.color = colorData.ColorType[_stepColorType];
+            }
+        }
 
         private void Start()
         {
@@ -42,15 +53,5 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             gameObject.SetActive(gameObjectActiveness); 
             wallObject.SetActive(wallObjectActiveness);
         }
-        
-
-        public void SetColor(Color color, ColorType _stepColorType)
-        {
-            meshRenderer.sharedMaterial.color = color;
-            StepColorType = _stepColorType;
-            stepColorType = _stepColorType;
-        }
-
-        public ColorType GetColor() => StepColorType;
     }
 }

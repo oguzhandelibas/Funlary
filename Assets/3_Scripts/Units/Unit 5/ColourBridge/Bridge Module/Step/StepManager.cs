@@ -71,7 +71,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
                     .SetActiveness(true, false);
             }
 
-            _stepList[stepIndex].SetColor(color, colorType);
+            _stepList[stepIndex].StepColorType = colorType;
             _usedStepList.Add(_stepList[stepIndex]);
 
             return true;
