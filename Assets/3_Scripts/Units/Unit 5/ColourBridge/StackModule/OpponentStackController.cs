@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Funlary.Unit5.StackModule
 {
-    public class StackController
+    public class OpponentStackController
     {
         public Opponent opponent;
         private Stack<IStack> _stackQueue;
         
-        public StackController(Opponent _opponent)
+        public OpponentStackController(Opponent _opponent)
         {
             opponent = _opponent;
             _stackQueue = new Stack<IStack>();

@@ -15,7 +15,7 @@ namespace Funlary.Unit5.OpponentModule
 
         public Transform character;
         public Transform stackParent;
-        public StackController stackController;
+        public OpponentStackController OpponentStackController;
         public OpponentMovement opponentMovement;
         [SerializeField] private ColorData colorData;
 
@@ -47,7 +47,7 @@ namespace Funlary.Unit5.OpponentModule
 
         private void Start()
         {
-            stackController = new StackController(this);
+            OpponentStackController = new OpponentStackController(this);
             CreateOpponent();
         }
 

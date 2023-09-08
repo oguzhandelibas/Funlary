@@ -21,7 +21,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
         {
             if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable)
             {
-                opponent.stackController.AddStack(iStack, opponent.stackParent);
+                opponent.OpponentStackController.AddStack(iStack, opponent.stackParent);
             }
 
             if (opponent.HasStack && other.TryGetComponent(out IStep iStep))
@@ -33,7 +33,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
                     // Step'in rengi Opponentin rengi ile aynýysa ve Step kullanýlmamýþsa
                     if (stepManager.ActivateStep(iStep.Index, opponent.StackCount, opponent.GetColor, opponent.ColorType))
                     {
-                        opponent.stackController.RemoveStack(iStep.Position());
+                        opponent.OpponentStackController.RemoveStack(iStep.Position());
                     }
                 }
                 else if (iStep.StepColorType != opponent.ColorType && iStep.Used)
@@ -41,7 +41,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
                     iStep.Used = false;
                     if (stepManager.ActivateStep(iStep.Index, opponent.StackCount, opponent.GetColor, opponent.ColorType))
                     {
-                        opponent.stackController.RemoveStack(iStep.Position());
+                        opponent.OpponentStackController.RemoveStack(iStep.Position());
                     }
                 }
             }
@@ -56,7 +56,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
                 rigidbody.velocity = Vector3.zero;
                 if (targetOpponent.StackCount <= opponent.StackCount)
                 {
-                    targetOpponent.stackController.DropAllStack();
+                    targetOpponent.OpponentStackController.DropAllStack();
                     targetOpponent.character.DOLookAt(opponent.character.position, 0.25f);
                     targetOpponent.opponentMovement.animationController.PlayAnim(AnimTypes.FALL);
                 }
