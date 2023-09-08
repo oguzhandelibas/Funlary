@@ -113,7 +113,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         {
             bridgeShieldWall.SetActive(false);
             bridgeColorType = opponentColorType;
-            ActivateStep(-1, 10, GetColor(), bridgeColorType);
+            ActivateStep(-1, 10, GetColor, bridgeColorType);
             opponentPhysicController.opponent.stackController.RemoveStack(_stepList[0].Position());
         }
         #endregion
