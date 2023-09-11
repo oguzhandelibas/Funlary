@@ -12,9 +12,13 @@ namespace Funlary.Unit5.StackModule
     {
         #region FIELDS
 
-        public ColorType StackColorType;
-        public Material StackMaterial { get => renderer.material; }
-        private MeshRenderer renderer;
+        public ColorType StackColorType { get; set; }
+        public Material StackMaterial
+        {
+            get => renderer.material;
+            set => renderer.material = value;
+        }
+        [SerializeField] private MeshRenderer renderer;
         private Color startColor;
         private Transform stackParent;
         #endregion
@@ -29,7 +33,6 @@ namespace Funlary.Unit5.StackModule
         #region UNITY FUNCTIONS
         private void Start()
         {
-            renderer = GetComponent<MeshRenderer>();
             startColor = StackMaterial.color;
             stackParent = transform.parent;
             CanCollectable = true;
@@ -40,7 +43,7 @@ namespace Funlary.Unit5.StackModule
         public void MoveTo(Transform parent, float height)
         {
             if (SetAsStairStep) return;
-            SetStackColor(startColor);
+            //SetColor(StackMaterial);
             Vector3 scale = transform.localScale;
             Destroy(transform.GetComponent<BoxCollider>());
             transform.SetParent(parent);
@@ -51,7 +54,7 @@ namespace Funlary.Unit5.StackModule
 
         public void SetAsStep(Vector3 position)
         {
-            SetStackColor(startColor);
+            //SetColor(stackMaterial);
             transform.SetParent(null);
             //transform.localScale = new Vector3(1, 1, 1);
             transform.DOLocalMove(position, .1f).SetEase(Ease.Linear).OnComplete(() => Destroy(gameObject));
@@ -67,16 +70,29 @@ namespace Funlary.Unit5.StackModule
             Vector3 endPos = new Vector3(controlPos.x, transform.localScale.y / 2, controlPos.z + 2);
             Vector3[] path = { startPos, controlPos, endPos };
 
-            SetStackColor(Color.gray);
-            transform.DOPath(path, 1.0f, PathType.CatmullRom).OnComplete(SetAsColletable);
+           // Material stackMatTemp = stackMaterial;
+            //stackMatTemp.color = Color.gray;
+            //SetColor(stackMatTemp);
+            transform.DOPath(path, 1.0f, PathType.CatmullRom).OnComplete(SetAsCollectable);
         }
 
-        public void SetStackColor(Color targetColor, float duration = 0.3f)
+        public void SetColor(ColorType colorType, Material targetMaterial, float duration = 0.3f)
         {
+            StackColorType = colorType;
+            StackMaterial.DOColor(targetMaterial.color, duration)
+                .From(startColor)
+                .OnComplete((() => StackMaterial = targetMaterial));
+        }
+
+        public void SetColor(ColorType colorType, Color targetColor, float duration = 0.3f)
+        {
+            StackColorType = colorType;
+            Debug.Log(StackMaterial == null);
             StackMaterial.DOColor(targetColor, duration).From(startColor);
         }
 
-        public void SetAsColletable()
+
+        public void SetAsCollectable()
         {
             print("CanCollectable");
             CanCollectable = true;

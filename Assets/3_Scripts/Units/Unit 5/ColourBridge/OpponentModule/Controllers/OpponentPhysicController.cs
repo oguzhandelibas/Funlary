@@ -19,7 +19,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
         #region UNITY FUNCTIONS
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable)
+            if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable && iStack.StackColorType == opponent.ColorType)
             {
                 opponent.OpponentStackController.AddStack(iStack, opponent.stackParent);
             }

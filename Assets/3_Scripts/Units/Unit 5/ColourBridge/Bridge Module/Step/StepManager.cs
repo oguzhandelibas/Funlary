@@ -29,7 +29,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         public bool CheckColor(ColorType targetColor) => targetColor == this.bridgeColorType;
 
-        public Color GetColor
+        public Material GetColor
         {
             get => colorData.ColorType[bridgeColorType];
         }
@@ -51,7 +51,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             step.InitializeStep(this, nextStep, stepPosition, stepScale, index);
             step.SetActiveness(false, true);
         }
-        public bool ActivateStep(int stepIndex, int remainingStepCount, Color color, ColorType colorType)
+        public bool ActivateStep(int stepIndex, int remainingStepCount, Material material, ColorType colorType)
         {
             stepIndex++;
             if (stepIndex >= _stepList.Count || _stepList[stepIndex].Used) return false;

@@ -24,7 +24,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             set
             {
                 _stepColorType = value;
-                meshRenderer.sharedMaterial.color = colorData.ColorType[_stepColorType];
+                meshRenderer.sharedMaterial = colorData.ColorType[_stepColorType];
             }
         }
 

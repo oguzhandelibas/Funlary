@@ -18,7 +18,7 @@ namespace Funlary.Unit5.OpponentModule
         public OpponentStackController OpponentStackController;
         public OpponentMovement opponentMovement;
         [SerializeField] private ColorData colorData;
-
+        [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
         #endregion
 
         #region VARIABLES
@@ -36,7 +36,7 @@ namespace Funlary.Unit5.OpponentModule
 
         #region PROPERTIES
 
-        public Color GetColor => colorData.ColorType[ColorType];
+        public Material GetColor => colorData.ColorType[ColorType];
         public bool CheckColor(ColorType targetColor) => targetColor == this.ColorType;
         public bool HasStack { get => _stackCount > 0; }
         public int StackCount { get => _stackCount; set => _stackCount = value; }
@@ -47,6 +47,7 @@ namespace Funlary.Unit5.OpponentModule
 
         private void Start()
         {
+            skinnedMeshRenderer.material = colorData.ColorType[ColorType];
             OpponentStackController = new OpponentStackController(this);
             CreateOpponent();
         }

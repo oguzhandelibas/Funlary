@@ -8,6 +8,6 @@ namespace Funlary
     public interface IColor
     {
         bool CheckColor(ColorType targetColor);
-        Color GetColor { get; }
+        Material GetColor { get; }
     }
 }
