@@ -7,28 +7,38 @@ namespace Funlary.Unit5.StackModule
 {
     public class StackManager : MonoBehaviour
     {
+        #region FIELDS
         [SerializeField] private ColorData colorData;
-        [SerializeField] private MeshRenderer stackAreaMeshRenderer;
         [SerializeField] private Stack stack;
-        public Vector3 stackAreaSize = new Vector3(30, 0, 20);
-        private Vector3[] stackPositions;
-        public int opponentCount;
-        public float stackWidth = 1.5f;
-        public float stackLength = 1.5f;
+        #endregion
 
-        [Header("Vertical")]
-        public float vSafeStart = 1.0f;
-        public float vSpaceBetweenStacks = 2.5f;
+        #region VARIABLES
+        [SerializeField] private Vector3 stackAreaSize = new Vector3(30, 0, 20);
+        private Vector3[] _stackPositions;
 
-        [Header("Horizontal")]
-        public float hSafeStart = 1.0f;
-        public float hSpaceBetweenStacks = 2.5f;
+        [Header("Stack Variables")]
+        [SerializeField][Range(0.0f, 10.0f)] private float stackWidth = 1.5f;
+        [SerializeField][Range(0.0f, 10.0f)] private float stackLength = 1.5f;
 
+        [Header("Vertical Placement")]
+        [SerializeField][Range(0.0f, 10.0f)] private float vSafeStart = 1.0f;
+        [SerializeField][Range(0.0f, 10.0f)] private float vSpaceBetweenStacks = 2.5f;
+
+        [Header("Horizontal Placement")]
+        [SerializeField][Range(0.0f, 10.0f)] private float hSafeStart = 1.0f;
+        [SerializeField][Range(0.0f, 10.0f)] private float hSpaceBetweenStacks = 2.5f;
+        #endregion
+
+        #region UNITY
 
         void Start()
         {
             GenerateAllStacks();
         }
+
+        #endregion
+
+        #region STACK GENERATION
 
         private void GenerateAllStacks()
         {
@@ -44,7 +54,7 @@ namespace Funlary.Unit5.StackModule
             int horizontalStackCount = Mathf.FloorToInt(a / (stackWidth + hSpaceBetweenStacks));
             int verticalStackCount = Mathf.FloorToInt(b / (stackLength + vSpaceBetweenStacks));
 
-            stackPositions = new Vector3[horizontalStackCount * verticalStackCount];
+            _stackPositions = new Vector3[horizontalStackCount * verticalStackCount];
             int stackIndex = 0;
 
             for (int i = 0; i < horizontalStackCount; i++)
@@ -56,7 +66,7 @@ namespace Funlary.Unit5.StackModule
 
                     Vector3 stackLastPos = new Vector3(leftDownCorner.x + xPos, 0, leftDownCorner.y + yPos);
 
-                    stackPositions[stackIndex] = stackLastPos;
+                    _stackPositions[stackIndex] = stackLastPos;
 
                     Stack stackTemp = Instantiate(stack, stackLastPos, Quaternion.identity, transform);
                     stackTemp.stackManager = this;
@@ -67,21 +77,24 @@ namespace Funlary.Unit5.StackModule
             }
         }
 
-
         public async void GenerateStackAsync(int index, ColorType colorType)
         {
             await Task.Delay(5000);
-            Stack stackTemp = Instantiate(stack, stackPositions[index], Quaternion.identity, transform);
+            Stack stackTemp = Instantiate(stack, _stackPositions[index], Quaternion.identity, transform);
             stackTemp.stackManager = this;
             stackTemp.StackIndex = index;
             stackTemp.SetColor(colorType, colorData.ColorType[colorType]);
         }
 
+        #endregion
+
+        #region DEBUG
         void OnDrawGizmos()
         {
             // Draw a semitransparent red cube at the transforms position
             Gizmos.color = new Color(1, 0, 0, 0.5f);
             Gizmos.DrawCube(transform.position, stackAreaSize);
         }
+        #endregion
     }
 }
