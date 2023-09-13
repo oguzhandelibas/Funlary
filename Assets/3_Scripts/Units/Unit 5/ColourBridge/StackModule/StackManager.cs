@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using UnityEngine;
@@ -9,51 +10,54 @@ namespace Funlary.Unit5.StackModule
         [SerializeField] private ColorData colorData;
         [SerializeField] private MeshRenderer stackAreaMeshRenderer;
         [SerializeField] private Stack stack;
-        public Vector3 stackAreaSize;
-        public Vector3 safeArea;
+        public Vector3 stackAreaSize = new Vector3(30, 0, 20);
         private Vector3[] stackPositions;
+        public int opponentCount;
+        public float stackWidth = 1.5f;
+        public float stackLength = 1.5f;
 
         [Header("Vertical")]
-        public float verticalStartPoint = 1.0f;
-        public float stackLength = 1.5f;
-        public float verticalSpaceBetweenStacks = 2.5f;
+        public float vSafeStart = 1.0f;
+        public float vSpaceBetweenStacks = 2.5f;
 
         [Header("Horizontal")]
-        public float horizontalStartPoint = 1.0f;
-        public float stackWidth = 1.5f;
-        public float horizontalSpaceBetweenStacks = 2.5f;
-        public int opponentCount;
+        public float hSafeStart = 1.0f;
+        public float hSpaceBetweenStacks = 2.5f;
+
 
         void Start()
         {
             GenerateAllStacks();
         }
 
-        private Vector3 CalculateStackCount() => stackAreaMeshRenderer.bounds.size - safeArea;
-
         private void GenerateAllStacks()
         {
-            stackAreaSize = CalculateStackCount();
-            float width = stackAreaSize.x / 2;
-            float height = stackAreaSize.z / 2;
+            float width = stackAreaSize.x;
+            float height = stackAreaSize.z;
 
-            Vector2 leftDownCorner = new Vector2(-width, -height);
-            Vector2 leftUpCorner = new Vector2(-width, height);
-            Vector2 rightDownCorner = new Vector2(width, -height);
-            Vector2 rightUpCorner = new Vector2(width, height);
+            Vector2 leftDownCorner = new Vector2(-width / 2 + hSafeStart, -height / 2 + vSafeStart);
+            Vector2 rightUpCorner = new Vector2(width / 2, height / 2);
 
-            Vector3 stackPosition = new Vector3(leftDownCorner.x, 0.0f, leftDownCorner.y);
+            float a = rightUpCorner.x - leftDownCorner.x;
+            float b = rightUpCorner.y - leftDownCorner.y;
 
-            int horizontalStackCount = (int)((rightDownCorner.x - leftDownCorner.x) / stackWidth);
-            int verticalStackCount = (int)((leftUpCorner.y - leftDownCorner.y) / stackLength);
+            int horizontalStackCount = Mathf.FloorToInt(a / (stackWidth + hSpaceBetweenStacks));
+            int verticalStackCount = Mathf.FloorToInt(b / (stackLength + vSpaceBetweenStacks));
+
             stackPositions = new Vector3[horizontalStackCount * verticalStackCount];
             int stackIndex = 0;
+
             for (int i = 0; i < horizontalStackCount; i++)
             {
                 for (int j = 0; j < verticalStackCount; j++)
                 {
-                    Vector3 stackLastPos = stackPosition + new Vector3(((j + horizontalStartPoint) * horizontalSpaceBetweenStacks), 0, ((i + verticalStartPoint) * verticalSpaceBetweenStacks));
+                    float xPos = i * (stackWidth + hSpaceBetweenStacks);
+                    float yPos = j * (stackLength + vSpaceBetweenStacks);
+
+                    Vector3 stackLastPos = new Vector3(leftDownCorner.x + xPos, 0, leftDownCorner.y + yPos);
+
                     stackPositions[stackIndex] = stackLastPos;
+
                     Stack stackTemp = Instantiate(stack, stackLastPos, Quaternion.identity, transform);
                     stackTemp.stackManager = this;
                     stackTemp.StackIndex = stackIndex++;
@@ -61,8 +65,8 @@ namespace Funlary.Unit5.StackModule
                     stackTemp.SetColor(colorType, colorData.ColorType[colorType]);
                 }
             }
-
         }
+
 
         public async void GenerateStackAsync(int index, ColorType colorType)
         {
@@ -73,7 +77,7 @@ namespace Funlary.Unit5.StackModule
             stackTemp.SetColor(colorType, colorData.ColorType[colorType]);
         }
 
-        void OnDrawGizmosSelected()
+        void OnDrawGizmos()
         {
             // Draw a semitransparent red cube at the transforms position
             Gizmos.color = new Color(1, 0, 0, 0.5f);
