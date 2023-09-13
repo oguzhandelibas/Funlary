@@ -14,10 +14,11 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         [SerializeField] private ColorData colorData;
 
         private StepManager stepManager;
-        public bool Used { get; set; }
+        public bool Used { get => used; set { used = value; } }
+        public bool used;
         public IStep NextStep { get; set; }
 
-        private ColorType _stepColorType;
+        [SerializeField] private ColorType _stepColorType;
         public ColorType StepColorType
         {
             get => _stepColorType;
@@ -38,7 +39,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         public Vector3 Position() => transform.position;
 
         public int Index { get; set; }
-        
+
         public void InitializeStep(StepManager _stepManager, IStep _nextStep, Vector3 _localPos, Vector3 _localScale, int index)
         {
             stepManager = _stepManager;
@@ -50,7 +51,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         public void SetActiveness(bool gameObjectActiveness, bool wallObjectActiveness)
         {
-            gameObject.SetActive(gameObjectActiveness); 
+            gameObject.SetActive(gameObjectActiveness);
             wallObject.SetActive(wallObjectActiveness);
         }
     }

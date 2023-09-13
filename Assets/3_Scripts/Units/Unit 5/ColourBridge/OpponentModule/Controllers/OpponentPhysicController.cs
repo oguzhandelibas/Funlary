@@ -27,10 +27,9 @@ namespace Funlary.Unit5.OpponentModule.Controller
             if (opponent.HasStack && other.TryGetComponent(out IStep iStep))
             {
                 StepManager stepManager = iStep.GetStepManager();
-
                 if (iStep.StepColorType == opponent.ColorType && !iStep.Used)
                 {
-                    // Step'in rengi Opponentin rengi ile aynýysa ve Step kullanýlmamýþsa
+                    // Step'in rengi Opponentin rengi ile aynï¿½ysa ve Step kullanï¿½lmamï¿½ï¿½sa
                     if (stepManager.ActivateStep(iStep.Index, opponent.StackCount, opponent.GetColor, opponent.ColorType))
                     {
                         opponent.OpponentStackController.RemoveStack(iStep.Position());
@@ -67,5 +66,5 @@ namespace Funlary.Unit5.OpponentModule.Controller
         #endregion
     }
 
-    
+
 }

@@ -11,7 +11,8 @@ namespace Funlary.Unit5.StackModule
     public class Stack : MonoBehaviour, IStack
     {
         #region FIELDS
-
+        public StackManager stackManager;
+        public int StackIndex;
         public ColorType StackColorType { get; set; }
         public Material StackMaterial
         {
@@ -44,12 +45,14 @@ namespace Funlary.Unit5.StackModule
         {
             if (SetAsStairStep) return;
             //SetColor(StackMaterial);
+            stackManager.GenerateStackAsync(StackIndex, StackColorType);
             Vector3 scale = transform.localScale;
             Destroy(transform.GetComponent<BoxCollider>());
             transform.SetParent(parent);
             transform.localScale = scale;
             transform.DOLocalMove(Vector3.zero + (height * (Vector3.up / 4)), .1f).SetEase(Ease.Linear);
             transform.localRotation = Quaternion.Euler(0, 0, 0);
+
         }
 
         public void SetAsStep(Vector3 position)
@@ -70,7 +73,7 @@ namespace Funlary.Unit5.StackModule
             Vector3 endPos = new Vector3(controlPos.x, transform.localScale.y / 2, controlPos.z + 2);
             Vector3[] path = { startPos, controlPos, endPos };
 
-           // Material stackMatTemp = stackMaterial;
+            // Material stackMatTemp = stackMaterial;
             //stackMatTemp.color = Color.gray;
             //SetColor(stackMatTemp);
             transform.DOPath(path, 1.0f, PathType.CatmullRom).OnComplete(SetAsCollectable);
