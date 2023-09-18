@@ -64,7 +64,7 @@ namespace Funlary.Unit5.StackModule
                     float xPos = i * (stackWidth + hSpaceBetweenStacks);
                     float yPos = j * (stackLength + vSpaceBetweenStacks);
 
-                    Vector3 stackLastPos = new Vector3(leftDownCorner.x + xPos, 0, leftDownCorner.y + yPos);
+                    Vector3 stackLastPos = transform.position + new Vector3(leftDownCorner.x + xPos, 0, leftDownCorner.y + yPos);
 
                     _stackPositions[stackIndex] = stackLastPos;
 

@@ -14,7 +14,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         #region FIELDS
         [SerializeField] private ColorData colorData;
         [SerializeField] private GameObject bridgeShieldWall;
-        private Bridge _bridge;
+        [HideInInspector] public Bridge bridge;
         #endregion
 
         #region VARIABLES
@@ -77,6 +77,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         private void SetFirstStep(ColorType opponentColorType, Opponent opponent)
         {
+            bridge.ChangeBridgeColor(colorData.ColorType[opponentColorType]);
             bridgeShieldWall.SetActive(false);
             bridgeColorType = opponentColorType;
 
@@ -84,9 +85,8 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             opponent.OpponentStackController.RemoveStack(_stepList[0].Position());
         }
 
-        public void CreateStep(Bridge bridge, IStep step, IStep nextStep, Vector3 stepPosition, Vector3 stepScale, int index)
+        public void CreateStep(IStep step, IStep nextStep, Vector3 stepPosition, Vector3 stepScale, int index)
         {
-            _bridge = bridge;
             _stepList.Add(step);
             step.InitializeStep(this, nextStep, stepPosition, stepScale, index);
             step.SetActiveness(false, true);

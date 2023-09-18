@@ -8,42 +8,46 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 {
     public class Bridge : MonoBehaviour
     {
-        [SerializeField] private StepManager stepManager;
+        #region FIELDS
 
+        [SerializeField] private StepManager stepManager;
         [SerializeField] private ColorData colorData;
 
-        public Material GetBridgeColorMaterial(ColorType colorType)
-        {
-            return colorData.ColorType[colorType];
-        }
-
         [Header("Indicator Transforms")]
-        [SerializeField] private Transform stairParent; 
-        [SerializeField] private Transform startPoint; 
+        [SerializeField] private Transform stairParent;
+        [SerializeField] private Transform startPoint;
         [SerializeField] private Transform endPoint;
 
         [Header("Prefabs")]
         [SerializeField] private GameObject stepPrefab;
+        [SerializeField] private PoleController leftPole;
+        [SerializeField] private PoleController rightPole;
 
-        [Header("Privete Variables")]
+        [Header("Materials Will Change Renderers")]
+        [SerializeField] private MeshRenderer[] willChangeMeshRenderers;
+        [SerializeField] private LineRenderer[] willChangeLineRenderers;
+
+        #endregion
+
+        #region VARIABLES
+        [Header("Private Variables")]
         private float BridgeWidth = 3.0f;
         private float BridgeLength = 20.0f;
         private float BridgeHeight = 5.0f;
         private float StepHeight;
+        #endregion
 
-        [SerializeField] private PoleController leftPole;
-        [SerializeField] private PoleController rightPole;
-
+        #region UNITY FUNCTIONS
         private void Start()
         {
-            BridgeLength = endPoint.position.z - startPoint.position.z;
-            BridgeHeight = endPoint.position.y - startPoint.position.y;
+            BridgeLength = endPoint.localPosition.z - startPoint.localPosition.z;
+            BridgeHeight = endPoint.localPosition.y - startPoint.localPosition.y;
             StepHeight = BridgeHeight / BridgeLength;
-            
+
             MeshGeneration.Instance.CreateMesh(
-                MeshType.PLANE, MeshRotationType.UP, 
-                BridgeWidth, BridgeLength, BridgeHeight, 
-                startPoint, endPoint,transform
+                MeshType.PLANE, MeshRotationType.UP,
+                BridgeWidth, BridgeLength, BridgeHeight,
+                startPoint, endPoint, transform
                 );
 
             InitializeBridge();
@@ -51,10 +55,18 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             leftPole.CreateRope(new Vector3(0, BridgeHeight + 1, BridgeLength));
             rightPole.CreateRope(new Vector3(0, BridgeHeight + 1, BridgeLength));
         }
+        #endregion
+
+        #region BRIDGE
+        public Material GetBridgeColorMaterial(ColorType colorType)
+        {
+            return colorData.ColorType[colorType];
+        }
 
         private void InitializeBridge()
         {
-            Vector3 stepPosition = new Vector3(0,0,0.5f);
+            stepManager.bridge = this;
+            Vector3 stepPosition = new Vector3(0, 0, 0.5f);
             Vector3 stepScale = new Vector3(3, StepHeight, 1);
 
             List<IStep> stepList = new List<IStep>();
@@ -62,13 +74,21 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             {
                 IStep IStep = Instantiate(stepPrefab, stairParent).GetComponent<IStep>();
                 stepList.Add(IStep);
+
             }
-            stepList.Add(stepList[stepList.Count-1]);
+            stepList.Add(stepList[stepList.Count - 1]);
             for (int i = 0; i < BridgeLength; i++)
             {
-                stepManager.CreateStep(this, stepList[i], stepList[i+1], stepPosition, stepScale, i);
+                stepManager.CreateStep(stepList[i], stepList[i + 1], stepPosition, stepScale, i);
                 stepPosition += new Vector3(0, StepHeight, 1);
             }
         }
+
+        public void ChangeBridgeColor(Material newMaterial)
+        {
+            foreach (var item in willChangeMeshRenderers) item.material = newMaterial;
+            foreach (var item in willChangeLineRenderers) item.material = newMaterial;
+        }
+        #endregion
     }
 }
