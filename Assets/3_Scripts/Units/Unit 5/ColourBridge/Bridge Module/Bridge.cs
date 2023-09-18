@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Funlary.MeshGenerationModule;
 using Funlary.MeshGenerationModule.Enum;
+using Funlary.Unit5.StackModule;
 
 namespace Funlary.Unit5.ColourBridge.BridgeModule
 {
@@ -11,6 +12,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         #region FIELDS
 
         [SerializeField] private StepManager stepManager;
+        [SerializeField] private StackManager stackManager;
         [SerializeField] private ColorData colorData;
 
         [Header("Indicator Transforms")]
@@ -89,6 +91,12 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             foreach (var item in willChangeMeshRenderers) item.material = newMaterial;
             foreach (var item in willChangeLineRenderers) item.material = newMaterial;
         }
+
+        public void SetStackManagerColorTypes(List<ColorType> colorTypes)
+        {
+            stackManager.SetStackManagerColorTypes(colorTypes);
+        }
+
         #endregion
     }
 }

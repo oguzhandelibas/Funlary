@@ -10,10 +10,11 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         [SerializedDictionary("Color Type", "Material")]
         public SerializedDictionary<ColorType, Material> ColorType;
 
-        public ColorType GetRandomColorType()
+        public ColorType GetRandomColorType(List<ColorType> colorTypes)
         {
             List<ColorType> keys = new List<ColorType>(ColorType.Keys);
-            return keys[Random.Range(0, ColorType.Count)];
+            int it = (int)colorTypes[Random.Range(0, colorTypes.Count)];
+            return keys[it - 1];
         }
     }
 }
