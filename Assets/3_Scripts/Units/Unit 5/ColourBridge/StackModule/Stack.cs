@@ -44,7 +44,6 @@ namespace Funlary.Unit5.StackModule
         public void MoveTo(Transform parent, float height)
         {
             if (SetAsStairStep) return;
-            //SetColor(StackMaterial);
             stackManager.GenerateStackAsync(StackIndex, StackColorType);
             Vector3 scale = transform.localScale;
             Destroy(transform.GetComponent<BoxCollider>());

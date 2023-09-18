@@ -13,7 +13,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         public ColorType GetRandomColorType()
         {
             List<ColorType> keys = new List<ColorType>(ColorType.Keys);
-            return keys[Random.Range(1, ColorType.Count)];
+            return keys[Random.Range(0, ColorType.Count)];
         }
     }
 }

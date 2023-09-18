@@ -3,9 +3,15 @@
     public enum ColorType
     {
         None,
-        Red,
-        Green,
+        Black,
         Blue,
+        Brown,
+        Green,
+        Orange,
+        Pink,
+        Purple,
+        Red,
+        White,
         Yellow
     }
 }

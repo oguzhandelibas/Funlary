@@ -80,6 +80,7 @@ namespace Funlary.Unit5.StackModule
         public async void GenerateStackAsync(int index, ColorType colorType)
         {
             await Task.Delay(5000);
+            if (this == null) return;
             Stack stackTemp = Instantiate(stack, _stackPositions[index], Quaternion.identity, transform);
             stackTemp.stackManager = this;
             stackTemp.StackIndex = index;
