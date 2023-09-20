@@ -10,6 +10,7 @@ namespace Funlary.UIModule.Game
 {
     public class GameUIManager : AbstractSingleton<GameUIManager>, IUI
     {
+        public GameUI gameUI;
         [SerializeField]
         Canvas m_Canvas;
         [SerializeField]
