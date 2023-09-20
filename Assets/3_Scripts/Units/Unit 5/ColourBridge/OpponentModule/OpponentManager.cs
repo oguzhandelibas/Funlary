@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Funlary.UIModule.Core;
+using Funlary.UIModule.Game;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using UnityEngine;
 
@@ -28,6 +30,8 @@ namespace Funlary.Unit5.OpponentModule
                 item.SetColor(_colorTypes[colorTypeIndex[j]]);
                 colorTypeIndex.RemoveAt(j);
             }
+            ColorType colorType = opponents[0].ColorType;
+            GameUIManager.Instance.gameUI.SetLevelColorText(colorType.ToString(), ColorManager.Instance.GetColor(colorType));
         }
     }
 }

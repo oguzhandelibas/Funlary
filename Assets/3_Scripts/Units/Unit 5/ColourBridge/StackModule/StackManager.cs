@@ -11,10 +11,13 @@ namespace Funlary.Unit5.StackModule
         #region FIELDS
         [SerializeField] private ColorData colorData;
         [SerializeField] private Stack stack;
+        [SerializeField] private Collider generationStarterCollider;
         #endregion
 
         #region VARIABLES
+        [SerializeField] private bool activeOnStart;
         [SerializeField] private Vector3 stackAreaSize = new Vector3(30, 0, 20);
+        private List<Stack> _stackList = new List<Stack>();
         private Vector3[] _stackPositions;
 
         [Header("Stack Variables")]
@@ -38,6 +41,13 @@ namespace Funlary.Unit5.StackModule
         void Start()
         {
             GenerateAllStacks();
+            StackActiveness(activeOnStart);
+            generationStarterCollider.enabled = !activeOnStart;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!activeOnStart) StackActiveness(true);
         }
 
         #endregion
@@ -46,6 +56,7 @@ namespace Funlary.Unit5.StackModule
 
         private void GenerateAllStacks()
         {
+            generationStarterCollider.enabled = false;
             float width = stackAreaSize.x;
             float height = stackAreaSize.z;
 
@@ -77,7 +88,16 @@ namespace Funlary.Unit5.StackModule
                     stackTemp.StackIndex = stackIndex++;
                     ColorType colorType = colorData.GetRandomColorType(_colorTypes);
                     stackTemp.SetColor(colorType, colorData.ColorType[colorType]);
+                    _stackList.Add(stackTemp);
                 }
+            }
+        }
+
+        private void StackActiveness(bool value)
+        {
+            foreach (var item in _stackList)
+            {
+                item.gameObject.SetActive(value);
             }
         }
 

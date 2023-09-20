@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameUI : MonoBehaviour
 {
+
     [SerializeField] private TextMeshProUGUI levelCountText;
+    [SerializeField] private TextMeshProUGUI levelColorText;
     [SerializeField] private TextMeshProUGUI coinCountText;
     [SerializeField] private RectTransform settingsHolder;
 
@@ -19,7 +21,7 @@ public class GameUI : MonoBehaviour
     public void ToggleSettingsButtonClick()
     {
         var sizeDelta = settingsSizeDelta;
-        
+
         if (settingsToggle)
             sizeDelta = new Vector2(sizeDelta.x, sizeDelta.y);
         else
@@ -28,12 +30,18 @@ public class GameUI : MonoBehaviour
         settingsToggle = !settingsToggle;
         settingsHolder.DOSizeDelta(sizeDelta, .25f);
     }
-    
+
     public void SetLevelCountText(string levelText)
     {
         levelCountText.text = levelText;
     }
-    
+
+    public void SetLevelColorText(string colorText, Color color)
+    {
+        levelColorText.text = colorText;
+        levelColorText.color = color;
+    }
+
     public void SetCoinText(string coinText)
     {
         coinCountText.text = coinText;
