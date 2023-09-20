@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Funlary.InventoryModule;
+using Funlary.UIModule.Game;
 using Funlary.Unit5.OpponentModule;
 using Funlary.Unit5.OpponentModule.Controller;
 using NaughtyAttributes;

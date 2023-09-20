@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Funlary.InventoryModule;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.OpponentModule.Animation;
 using Funlary.Unit5.StackModule;
@@ -43,6 +44,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
                         opponent.OpponentStackController.RemoveStack(iStep.Position());
                     }
                 }
+                InventoryManager.Instance.AddCoin(1);
             }
         }
 
