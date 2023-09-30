@@ -19,7 +19,7 @@ namespace Funlary
                 
                 opponent.transform.position = new Vector3(transform.localPosition.x, opponent.transform.position.y, transform.localPosition.z);
                 opponent.character.LookAt(lookAtPosition);
-                opponent.OpponentStackController.DropAllStack(false);
+                opponent.DropAllStacks(false, false);
                 opponent.animationController.PlayAnim(AnimTypes.DANCE);
             }
         }

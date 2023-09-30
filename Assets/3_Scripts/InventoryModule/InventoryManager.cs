@@ -9,6 +9,11 @@ namespace Funlary.InventoryModule
     {
         [SerializeField] private InventoryData inventoryData;
 
+        private void Start()
+        {
+            GameUIManager.Instance.gameUI.SetCoinText(inventoryData.Coin.ToString());
+        }
+
         public void AddCoin(int addValue)
         {
             inventoryData.Coin += addValue;

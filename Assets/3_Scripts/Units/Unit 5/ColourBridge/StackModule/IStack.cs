@@ -12,7 +12,7 @@ namespace Funlary.Unit5.StackModule
         bool SetAsStairStep { get; set; }
         void MoveTo(Transform parent, float height);
         void SetAsStep(Vector3 position);
-        void DropStack();
+        void DropStack(bool destroyAfter = false);
         void SetColor(ColorType colorType, Material targetMaterial, float duration = 0.3f);
         void SetColor(ColorType colorType, Color targetColor, float duration = 0.3f);
         void SetAsCollectable();

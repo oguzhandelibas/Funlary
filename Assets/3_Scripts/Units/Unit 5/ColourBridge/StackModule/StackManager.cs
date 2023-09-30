@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Funlary.Unit5.ColourBridge.BridgeModule;
+using Funlary.Unit5.OpponentModule;
+using Funlary.Unit5.OpponentModule.Controller;
 using UnityEngine;
 
 namespace Funlary.Unit5.StackModule
@@ -48,6 +50,11 @@ namespace Funlary.Unit5.StackModule
         private void OnTriggerEnter(Collider other)
         {
             if (!activeOnStart) StackActiveness(true);
+            if (other.TryGetComponent(out OpponentPhysicsController opponentPhysicsController))
+            {
+                opponentPhysicsController.opponent.DropAllStacks(true, true);
+                opponentPhysicsController.opponent.SetColor(OpponentManager.Instance.GetRandomColorType());
+            }
         }
 
         #endregion

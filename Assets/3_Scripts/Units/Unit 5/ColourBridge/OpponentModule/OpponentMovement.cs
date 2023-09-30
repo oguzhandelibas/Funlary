@@ -26,13 +26,19 @@ namespace Funlary.Unit5.OpponentModule
 
         private void FixedUpdate()
         {
-            if(!opponent.CanMove) return;
-            float gravity = rb.velocity.y;
-            if (gravity < -2)
+            if (!opponent.CanMove) return;
+
+            RaycastHit hit;
+            if (!Physics.Raycast(character.position + Vector3.up, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
             {
                 animationController.PlayAnim(AnimTypes.FALLING);
+                opponent.CanMove = false;
+                opponent.DropAllStacks(false, true);
                 return;
             }
+
+            float gravity = rb.velocity.y;
+
             Vector3 direction = _IControl.MoveDirection();
             Vector3 movement = new Vector3(direction.x, gravity, direction.z);
             movement = movement.normalized * moveSpeed * Time.deltaTime;

@@ -57,7 +57,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
                 rigidbody.velocity = Vector3.zero;
                 if (targetOpponent.StackCount <= opponent.StackCount)
                 {
-                    targetOpponent.OpponentStackController.DropAllStack();
+                    targetOpponent.OpponentStackController.DropAllStack(false, false);
                     targetOpponent.character.DOLookAt(opponent.character.position, 0.25f);
                     targetOpponent.opponentMovement.animationController.PlayAnim(AnimTypes.FALL);
                 }

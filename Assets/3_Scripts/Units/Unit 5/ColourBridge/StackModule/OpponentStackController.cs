@@ -33,13 +33,13 @@ namespace Funlary.Unit5.StackModule
             stack.SetAsStep(targetPosition);
         }
 
-        public void DropAllStack(bool canCollectStack = true)
+        public void DropAllStack(bool canCollectStack, bool destroyAfer = false)
         {
             opponent.CanMove = canCollectStack;
             opponent.CanCollectStack = canCollectStack;
             while (_stackQueue.Count > 0)
             {
-                _stackQueue.Pop().DropStack();
+                _stackQueue.Pop().DropStack(destroyAfer);
             }
             opponent.StackCount = 0;
         }

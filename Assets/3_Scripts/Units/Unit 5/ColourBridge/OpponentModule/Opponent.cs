@@ -83,9 +83,9 @@ namespace Funlary.Unit5.OpponentModule
             opponentMovement._IControl = _IControl;
         }
 
-        public void DisperseStacks()
+        public void DropAllStacks(bool canCollectStack, bool destroyAfter)
         {
-
+            OpponentStackController.DropAllStack(canCollectStack, destroyAfter);
         }
 
         #endregion

@@ -63,7 +63,7 @@ namespace Funlary.Unit5.StackModule
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
-        public void DropStack()
+        public void DropStack(bool destroyAfter = false)
         {
             transform.SetParent(stackParent);
 
@@ -76,7 +76,14 @@ namespace Funlary.Unit5.StackModule
             stackMatTemp.color = Color.gray;
             SetColor(ColorType.None, Color.gray);
 
-            transform.DOPath(path, 1.0f, PathType.CatmullRom).OnComplete(SetAsCollectable);
+            if (destroyAfter)
+            {
+                transform.DOPath(path, 1.0f, PathType.CatmullRom).OnComplete((() => Destroy(gameObject)));
+            }
+            else
+            {
+                transform.DOPath(path, 1.0f, PathType.CatmullRom).OnComplete((SetAsCollectable));
+            }
         }
 
         public void SetColor(ColorType colorType, Material targetMaterial, float duration = 0.3f)
