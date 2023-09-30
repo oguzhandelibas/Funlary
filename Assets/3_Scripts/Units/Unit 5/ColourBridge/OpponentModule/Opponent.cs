@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Funlary.Unit5.ColourBridge.BridgeModule;
+using Funlary.Unit5.OpponentModule.Animation;
 using UnityEngine;
 using Funlary.Unit5.OpponentModule.Controller;
 using Funlary.Unit5.StackModule;
@@ -15,6 +16,7 @@ namespace Funlary.Unit5.OpponentModule
 
         public Transform character;
         public Transform stackParent;
+        public AnimationController animationController;
         public OpponentStackController OpponentStackController;
         public OpponentMovement opponentMovement;
         [SerializeField] private ColorData colorData;
@@ -44,6 +46,8 @@ namespace Funlary.Unit5.OpponentModule
         public Material GetColor => colorData.ColorType[ColorType];
         public bool CheckColor(ColorType targetColor) => targetColor == this.ColorType;
         public bool HasStack { get => _stackCount > 0; }
+        public bool CanCollectStack { get; set; }
+        public bool CanMove { get; set; }
         public int StackCount { get => _stackCount; set => _stackCount = value; }
 
         #endregion
@@ -54,6 +58,8 @@ namespace Funlary.Unit5.OpponentModule
         {
             OpponentStackController = new OpponentStackController(this);
             CreateOpponent();
+            CanCollectStack = true;
+            CanMove = true;
         }
 
         #endregion
@@ -75,6 +81,11 @@ namespace Funlary.Unit5.OpponentModule
             }
 
             opponentMovement._IControl = _IControl;
+        }
+
+        public void DisperseStacks()
+        {
+
         }
 
         #endregion

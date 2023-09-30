@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Funlary.Unit5.OpponentModule.Controller
 {
-    public class OpponentPhysicController : MonoBehaviour
+    public class OpponentPhysicsController : MonoBehaviour
     {
         #region FIELDS
         public Rigidbody rigidbody;
@@ -51,7 +51,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
         //Collision Detection for Opponent Crash: DropIt and AddForce
         private void OnCollisionEnter(Collision other)
         {
-            if (other.transform.TryGetComponent(out OpponentPhysicController opponentPhysicController))
+            if (other.transform.TryGetComponent(out OpponentPhysicsController opponentPhysicController))
             {
                 Opponent targetOpponent = opponentPhysicController.opponent;
                 rigidbody.velocity = Vector3.zero;

@@ -9,6 +9,8 @@ namespace Funlary.Unit5.OpponentModule.Animation
         IDLE, 
         HOLDING_IDLE,
         RUN, 
-        FALL
+        FALL,
+        FALLING,
+        DANCE
     }
 }

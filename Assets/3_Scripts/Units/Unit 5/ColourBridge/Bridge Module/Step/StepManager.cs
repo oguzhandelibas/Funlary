@@ -49,7 +49,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         private void BrdigeConstruction(Collider other)
         {
-            if (other.transform.TryGetComponent(out OpponentPhysicController opponentPhysicController))
+            if (other.transform.TryGetComponent(out OpponentPhysicsController opponentPhysicController))
             {
                 ColorType opponentColorType = opponentPhysicController.opponent.ColorType;
 

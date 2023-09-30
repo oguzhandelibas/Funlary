@@ -26,7 +26,13 @@ namespace Funlary.Unit5.OpponentModule
 
         private void FixedUpdate()
         {
+            if(!opponent.CanMove) return;
             float gravity = rb.velocity.y;
+            if (gravity < -2)
+            {
+                animationController.PlayAnim(AnimTypes.FALLING);
+                return;
+            }
             Vector3 direction = _IControl.MoveDirection();
             Vector3 movement = new Vector3(direction.x, gravity, direction.z);
             movement = movement.normalized * moveSpeed * Time.deltaTime;
@@ -34,7 +40,8 @@ namespace Funlary.Unit5.OpponentModule
             if (direction.magnitude > 0)
             {
                 rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
-                animationController.PlayAnim(AnimTypes.RUN);
+                float blend = opponent.HasStack ? 1 : 0;
+                animationController.PlayAnim(AnimTypes.RUN, blend);
             }
             else
             {

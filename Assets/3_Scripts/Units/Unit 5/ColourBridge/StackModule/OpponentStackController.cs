@@ -9,7 +9,6 @@ namespace Funlary.Unit5.StackModule
     {
         public Opponent opponent;
         private Stack<IStack> _stackQueue;
-        
         public OpponentStackController(Opponent _opponent)
         {
             opponent = _opponent;
@@ -18,6 +17,7 @@ namespace Funlary.Unit5.StackModule
         
         public void AddStack(IStack stack, Transform parent)
         {
+            if(!opponent.CanCollectStack) return;
             opponent.StackCount++;
             stack.CanCollectable = false;
             stack.MoveTo(parent, opponent.StackCount);
@@ -33,8 +33,10 @@ namespace Funlary.Unit5.StackModule
             stack.SetAsStep(targetPosition);
         }
 
-        public void DropAllStack()
+        public void DropAllStack(bool canCollectStack = true)
         {
+            opponent.CanMove = canCollectStack;
+            opponent.CanCollectStack = canCollectStack;
             while (_stackQueue.Count > 0)
             {
                 _stackQueue.Pop().DropStack();

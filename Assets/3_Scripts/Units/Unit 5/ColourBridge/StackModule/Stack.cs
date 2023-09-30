@@ -72,9 +72,10 @@ namespace Funlary.Unit5.StackModule
             Vector3 endPos = new Vector3(controlPos.x, transform.localScale.y / 2, controlPos.z + 2);
             Vector3[] path = { startPos, controlPos, endPos };
 
-            // Material stackMatTemp = stackMaterial;
-            //stackMatTemp.color = Color.gray;
-            //SetColor(stackMatTemp);
+            Material stackMatTemp = StackMaterial;
+            stackMatTemp.color = Color.gray;
+            SetColor(ColorType.None, Color.gray);
+
             transform.DOPath(path, 1.0f, PathType.CatmullRom).OnComplete(SetAsCollectable);
         }
 
@@ -89,14 +90,12 @@ namespace Funlary.Unit5.StackModule
         public void SetColor(ColorType colorType, Color targetColor, float duration = 0.3f)
         {
             StackColorType = colorType;
-            Debug.Log(StackMaterial == null);
             StackMaterial.DOColor(targetColor, duration).From(startColor);
         }
 
 
         public void SetAsCollectable()
         {
-            print("CanCollectable");
             CanCollectable = true;
         }
 
