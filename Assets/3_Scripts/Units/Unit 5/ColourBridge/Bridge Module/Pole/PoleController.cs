@@ -23,13 +23,27 @@ namespace Funlary
         public void CreateRope(Vector3 endPosition)
         {
             endPole.localPosition = endPosition;
-            
+
             MeshGeneration.Instance.CreateMesh(
                 MeshType.PLANE, MeshRotationType.LEFT,
-                5, endPoint.position.z-startPoint.position.z, 1, 
+                5, endPoint.position.z - startPoint.position.z, 1,
+                startPoint, endPoint, this.transform
+            );
+
+            Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height, startPoint.position, endPoint.position);
+
+            lineRenderer.positionCount = resolution + 1;
+            lineRenderer.SetPositions(curvePositions);
+        }
+
+        public void CreateRope()
+        {
+            MeshGeneration.Instance.CreateMesh(
+                MeshType.PLANE, MeshRotationType.LEFT,
+                5, endPoint.parent.localPosition.z-startPoint.parent.localPosition.z, 1, 
                 startPoint, endPoint,this.transform
                 );
-            
+
             Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height, startPoint.position, endPoint.position);
             
             lineRenderer.positionCount = resolution + 1;
