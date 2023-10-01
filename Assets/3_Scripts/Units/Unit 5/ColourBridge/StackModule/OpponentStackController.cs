@@ -20,7 +20,7 @@ namespace Funlary.Unit5.StackModule
             if(!opponent.CanCollectStack) return;
             opponent.StackCount++;
             stack.CanCollectable = false;
-            stack.MoveTo(parent, opponent.StackCount);
+            stack.Collect(parent, opponent.StackCount);
             _stackQueue.Push(stack);
         }
 

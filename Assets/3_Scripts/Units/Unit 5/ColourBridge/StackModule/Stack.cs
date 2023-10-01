@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using DG.Tweening;
 using Funlary.Unit5.ColourBridge.BridgeModule;
@@ -11,6 +12,8 @@ namespace Funlary.Unit5.StackModule
     public class Stack : MonoBehaviour, IStack
     {
         #region FIELDS
+
+        [SerializeField] private TrailRenderer[] trailRenderers;
         public StackManager stackManager;
         public int StackIndex;
         public ColorType StackColorType { get; set; }
@@ -37,11 +40,12 @@ namespace Funlary.Unit5.StackModule
             startColor = StackMaterial.color;
             stackParent = transform.parent;
             CanCollectable = true;
+            SetTrailRendererActiveness(true);
         }
         #endregion
 
         #region STEP FUNCTIONS
-        public void MoveTo(Transform parent, float height)
+        public void Collect(Transform parent, float height)
         {
             if (SetAsStairStep) return;
             stackManager.GenerateStackAsync(StackIndex, StackColorType);
@@ -49,7 +53,9 @@ namespace Funlary.Unit5.StackModule
             Destroy(transform.GetComponent<BoxCollider>());
             transform.SetParent(parent);
             transform.localScale = scale;
-            transform.DOLocalMove(Vector3.zero + (height * (Vector3.up / 4)), .1f).SetEase(Ease.Linear);
+            transform.DOLocalMove(Vector3.zero + (height * (Vector3.up / 4)), .1f).
+                SetEase(Ease.Linear)
+                .OnComplete((() => SetTrailRendererActiveness(false, 100)));
             transform.localRotation = Quaternion.Euler(0, 0, 0);
 
         }
@@ -59,7 +65,11 @@ namespace Funlary.Unit5.StackModule
             //SetColor(stackMaterial);
             transform.SetParent(null);
             //transform.localScale = new Vector3(1, 1, 1);
-            transform.DOLocalMove(position, .1f).SetEase(Ease.Linear).OnComplete(() => Destroy(gameObject));
+            transform.DOLocalMove(position, .1f).SetEase(Ease.Linear).
+                OnComplete(() =>
+                {
+                    Destroy(gameObject, 1f);
+                });
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
@@ -104,6 +114,15 @@ namespace Funlary.Unit5.StackModule
         public void SetAsCollectable()
         {
             CanCollectable = true;
+        }
+
+        private async void SetTrailRendererActiveness(bool value, int delay = 0)
+        {
+            await Task.Delay(delay);
+            foreach (var item in trailRenderers)
+            {
+                item.gameObject.SetActive(value);
+            }
         }
 
         #endregion

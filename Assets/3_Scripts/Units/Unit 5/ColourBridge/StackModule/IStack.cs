@@ -10,7 +10,7 @@ namespace Funlary.Unit5.StackModule
         ColorType StackColorType { get; set; }
         bool CanCollectable { get; set; }
         bool SetAsStairStep { get; set; }
-        void MoveTo(Transform parent, float height);
+        void Collect(Transform parent, float height);
         void SetAsStep(Vector3 position);
         void DropStack(bool destroyAfter = false);
         void SetColor(ColorType colorType, Material targetMaterial, float duration = 0.3f);
