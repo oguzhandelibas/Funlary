@@ -12,7 +12,7 @@ namespace Funlary.Unit5.StackModule
     {
         #region FIELDS
 
-        [SerializeField] private GameObject previousGround;
+        [SerializeField] private GameObject previousArena;
         [SerializeField] private ColorData colorData;
         [SerializeField] private Stack stack;
         [SerializeField] private Collider generationStarterCollider;
@@ -54,7 +54,7 @@ namespace Funlary.Unit5.StackModule
             if (!activeOnStart) StackActiveness(true);
             if (other.TryGetComponent(out OpponentPhysicsController opponentPhysicsController))
             {
-                previousGround?.SetActive(false);
+                previousArena?.SetActive(false);
                 opponentPhysicsController.opponent.DropAllStacks(true, true);
                 opponentPhysicsController.opponent.SetColor(OpponentManager.Instance.GetRandomColorType());
             }

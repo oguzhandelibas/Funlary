@@ -68,7 +68,7 @@ namespace Funlary.Unit5.StackModule
             transform.DOLocalMove(position, .1f).SetEase(Ease.Linear).
                 OnComplete(() =>
                 {
-                    Destroy(gameObject, 1f);
+                    Destroy(gameObject);
                 });
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }

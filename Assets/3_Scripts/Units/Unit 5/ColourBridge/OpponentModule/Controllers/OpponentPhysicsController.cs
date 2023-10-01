@@ -34,6 +34,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
                     if (stepManager.ActivateStep(iStep.Index, opponent.StackCount, opponent.GetColor, opponent.ColorType))
                     {
                         opponent.OpponentStackController.RemoveStack(iStep.Position());
+                        InventoryManager.Instance.AddCoin(1);
                     }
                 }
                 else if (iStep.StepColorType != opponent.ColorType && iStep.Used)
@@ -44,7 +45,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
                         opponent.OpponentStackController.RemoveStack(iStep.Position());
                     }
                 }
-                InventoryManager.Instance.AddCoin(1);
+                
             }
         }
 
