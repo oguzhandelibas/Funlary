@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
-public class LevelCompletedUI : MonoBehaviour
+namespace Funlary.UIModule.Core
 {
+    public class LevelCompletedUI : View
+    {
+    }
 }

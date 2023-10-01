@@ -39,6 +39,8 @@ namespace Funlary.UIModule.Game
                 view.Hide();
             Show<MenuScreen>();
             m_History.Clear();
+
+            Show<GameUI>();
         }
 
         /// <summary>

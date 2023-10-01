@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Funlary.UIModule.Core;
+using Funlary.UIModule.Game;
 using Funlary.Unit5.OpponentModule;
 using Funlary.Unit5.OpponentModule.Animation;
 using Funlary.Unit5.OpponentModule.Controller;
@@ -21,6 +23,8 @@ namespace Funlary
                 opponent.character.LookAt(lookAtPosition);
                 opponent.DropAllStacks(false, false);
                 opponent.animationController.PlayAnim(AnimTypes.DANCE);
+
+                GameUIManager.Instance.Show<LevelCompletedUI>();
             }
         }
     }

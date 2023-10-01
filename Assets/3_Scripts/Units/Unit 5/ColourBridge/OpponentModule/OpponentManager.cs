@@ -43,7 +43,6 @@ namespace Funlary.Unit5.OpponentModule
                 item.SetColor(GetRandomColorType(colorTypeIndex));
             }
             ColorType colorType = opponents[0].ColorType;
-            GameUIManager.Instance.gameUI.SetLevelColorText(colorType.ToString(), ColorManager.Instance.GetColor(colorType));
         }
     }
 }

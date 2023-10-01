@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Funlary.UIModule.Game;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.OpponentModule.Animation;
 using UnityEngine;
 using Funlary.Unit5.OpponentModule.Controller;
 using Funlary.Unit5.StackModule;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 
 namespace Funlary.Unit5.OpponentModule
 {
@@ -21,10 +23,10 @@ namespace Funlary.Unit5.OpponentModule
         public OpponentMovement opponentMovement;
         [SerializeField] private ColorData colorData;
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
+
         #endregion
 
         #region VARIABLES
-
         public int ID;
         public enum OpponentType { AI, PLAYER }
         public OpponentType opponentType = OpponentType.AI;
@@ -33,13 +35,18 @@ namespace Funlary.Unit5.OpponentModule
         private IControl _IControl;
 
         private int _stackCount = 0;
-
+        
         #endregion
 
         #region PROPERTIES
 
         public void SetColor(ColorType colorType)
         {
+            if (opponentType == OpponentType.PLAYER)
+            {
+                GameUIManager.Instance.gameUI.
+                    SetLevelColorText(colorType.ToString(), ColorManager.Instance.GetColor(colorType));
+            }
             ColorType = colorType;
             skinnedMeshRenderer.material = colorData.ColorType[ColorType];
         }
