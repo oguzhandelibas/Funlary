@@ -9,10 +9,13 @@ namespace Funlary.Unit5.OpponentModule
     public class OpponentMovement : MonoBehaviour
     {
         [SerializeField] private Opponent opponent;
+        [SerializeField] private OpponentMovementData movementData;
         public AnimationController animationController;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Transform character;
-        public float moveSpeed = 2.0f;
+
+        public bool DoubleSpeed { get => movementData.DoubleSpeed; set => movementData.DoubleSpeed = value; }
+
 
         [HideInInspector] public IControl _IControl;
         private bool forceAdded = false;
@@ -22,6 +25,7 @@ namespace Funlary.Unit5.OpponentModule
         private void Start()
         {
             animationController.PlayAnim(AnimTypes.IDLE);
+            movementData = new OpponentMovementData();
         }
 
         private void FixedUpdate()
@@ -41,8 +45,9 @@ namespace Funlary.Unit5.OpponentModule
 
             Vector3 direction = _IControl.MoveDirection();
             Vector3 movement = new Vector3(direction.x, gravity, direction.z);
-            movement = movement.normalized * moveSpeed * Time.deltaTime;
-            
+            movement = movement.normalized * movementData.MovementSpeed * Time.deltaTime;
+            movement = movementData.DoubleSpeed ? movement *= 2 : movement;
+
             if (direction.magnitude > 0)
             {
                 rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);

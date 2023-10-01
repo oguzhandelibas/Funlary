@@ -25,6 +25,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         public int ActiveStepCount { private get; set; } = 0;
         private List<IStep> _stepList = new List<IStep>();
         private List<IStep> _usedStepList = new List<IStep>();
+        private float speedTemp = 0;
         #endregion
 
         #region PROPERTIES
@@ -43,11 +44,12 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         {
             BrdigeConstruction(other);
         }
+
         #endregion
 
         #region BRIDGE CONSTRUCTION
 
-        private void BrdigeConstruction(Collider other)
+            private void BrdigeConstruction(Collider other)
         {
             if (other.transform.TryGetComponent(out OpponentPhysicsController opponentPhysicController))
             {
