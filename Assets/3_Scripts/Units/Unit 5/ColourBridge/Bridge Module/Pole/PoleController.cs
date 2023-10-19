@@ -26,7 +26,7 @@ namespace Funlary
 
             MeshGeneration.Instance.CreateMesh(
                 MeshType.PLANE, MeshRotationType.LEFT,
-                5, endPoint.position.z - startPoint.position.z, 1,
+                5, endPoint.position.z - startPoint.position.z, 5,
                 startPoint, endPoint, this.transform
             );
 
@@ -36,11 +36,11 @@ namespace Funlary
             lineRenderer.SetPositions(curvePositions);
         }
 
-        public void CreateRope()
+        public void CreateRope(float meshLength)
         {
             MeshGeneration.Instance.CreateMesh(
                 MeshType.PLANE, MeshRotationType.LEFT,
-                5, endPoint.parent.localPosition.z-startPoint.parent.localPosition.z, 1, 
+                5, meshLength, 5, 
                 startPoint, endPoint,this.transform
                 );
 
