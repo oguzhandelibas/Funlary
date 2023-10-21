@@ -1,4 +1,6 @@
 ﻿using DG.Tweening;
+using Funlary.SoundModule.Signals;
+using Funlary.Unit5.ColourBridge.BridgeModule;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +18,7 @@ namespace Funlary.UIModule.Core
 
         private bool settingsToggle;
         private Vector2 settingsSizeDelta;
+        private ColorType currentColorType;
 
         private void Start()
         {
@@ -40,16 +43,32 @@ namespace Funlary.UIModule.Core
             levelCountText.text = levelText;
         }
 
-        public void SetLevelColorText(string colorText, Color color)
+        public void SetLevelColorText(ColorType colorType, Color color)
         {
-            levelColorText.text = colorText;
+            levelColorText.text = colorType.ToString();
             levelColorText.color = color;
             playLevelColorSoundImage.color = color;
+            SetAndPlayColorSound(colorType);
         }
 
         public void SetCoinText(string coinText)
         {
             coinCountText.text = coinText;
         }
+
+        private void SetAndPlayColorSound(ColorType colorType)
+        {
+            currentColorType = colorType;
+            _PlayColorSound();
+        }
+
+        #region BUTTONS
+
+        public void _PlayColorSound()
+        {
+            AudioSignals.Instance.onPlaySound(currentColorType);
+        }
+
+        #endregion
     }
 }

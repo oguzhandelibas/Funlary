@@ -45,9 +45,8 @@ namespace Funlary.Unit5.OpponentModule
         {
             if (opponentType == OpponentType.PLAYER)
             {
-                AudioSignals.Instance.onPlaySound(colorType);
                 GameUIManager.Instance.gameUI.
-                    SetLevelColorText(colorType.ToString(), ColorManager.Instance.GetColor(colorType));
+                    SetLevelColorText(colorType, ColorManager.Instance.GetColor(colorType));
             }
             ColorType = colorType;
             skinnedMeshRenderer.material = colorData.ColorType[ColorType];
