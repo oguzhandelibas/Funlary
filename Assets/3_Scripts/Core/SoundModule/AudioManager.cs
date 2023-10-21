@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Funlary.SoundModule.Data.ScriptableObjects;
 using Funlary.SoundModule.Signals;
 using Funlary.SoundModule.Enums;
+using Funlary.Unit5.ColourBridge.BridgeModule;
 
 namespace Funlary.SoundModule
 {
@@ -21,7 +22,7 @@ namespace Funlary.SoundModule
 
         #endregion
 
-        private CD_Sound GetSoundData(SoundType soundType)
+        private CD_Sound GetSoundData(ColorType soundType)
         {
             return Resources.Load<CD_Sound>("Sound/CD_Sound_" + soundType);
         }
@@ -49,7 +50,7 @@ namespace Funlary.SoundModule
         }
         #endregion
 
-        private void OnPlaySound(SoundType arg0)
+        private void OnPlaySound(ColorType arg0)
         {
             Source.clip = GetSoundData(arg0).SoundData;
             Source.Play();

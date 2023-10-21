@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Funlary.UIModule.Core
 {
@@ -9,6 +10,7 @@ namespace Funlary.UIModule.Core
 
         [SerializeField] private TextMeshProUGUI levelCountText;
         [SerializeField] private TextMeshProUGUI levelColorText;
+        [SerializeField] private Image playLevelColorSoundImage;
         [SerializeField] private TextMeshProUGUI coinCountText;
         [SerializeField] private RectTransform settingsHolder;
 
@@ -42,6 +44,7 @@ namespace Funlary.UIModule.Core
         {
             levelColorText.text = colorText;
             levelColorText.color = color;
+            playLevelColorSoundImage.color = color;
         }
 
         public void SetCoinText(string coinText)

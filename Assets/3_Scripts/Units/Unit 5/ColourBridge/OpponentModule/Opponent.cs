@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Funlary.SoundModule.Signals;
 using Funlary.UIModule.Game;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.OpponentModule.Animation;
@@ -44,6 +45,7 @@ namespace Funlary.Unit5.OpponentModule
         {
             if (opponentType == OpponentType.PLAYER)
             {
+                AudioSignals.Instance.onPlaySound(colorType);
                 GameUIManager.Instance.gameUI.
                     SetLevelColorText(colorType.ToString(), ColorManager.Instance.GetColor(colorType));
             }

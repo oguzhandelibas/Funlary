@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc1163c5ee18e1a45a75a00f64788234, type: 3}
-  m_Name: CD_Sound_Orange
+  m_Name: CD_Sound_ORANGE
   m_EditorClassIdentifier: 
-  SoundData: {fileID: 0}
+  SoundData: {fileID: 8300000, guid: f81325a151f7b204e8dc0d703bee59fe, type: 3}

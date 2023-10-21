@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Funlary.SoundModule.Signals;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.OpponentModule;
 using Funlary.Unit5.OpponentModule.Controller;
