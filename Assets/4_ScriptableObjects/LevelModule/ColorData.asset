@@ -15,22 +15,22 @@ MonoBehaviour:
   ColorType:
     _serializedList:
     - Key: 1
-      Value: {fileID: 2100000, guid: fa3a33e3b2a730c48adaf52b474fbb26, type: 2}
+      Value: {fileID: 2100000, guid: 66c05709e04ed42a3a537ad26aca9cb8, type: 2}
     - Key: 2
-      Value: {fileID: 2100000, guid: f0b3b0e177b8ef248b09afedaad04dfa, type: 2}
+      Value: {fileID: 2100000, guid: 0d337a70f9e175348909eb917056c239, type: 2}
     - Key: 3
-      Value: {fileID: 2100000, guid: aecdee83a0348a84091f59c56478ebb1, type: 2}
+      Value: {fileID: 2100000, guid: d07dc9a550022a74792d211f343e0b16, type: 2}
     - Key: 4
-      Value: {fileID: 2100000, guid: c7a02fec24d167340add9a7ed14a7c61, type: 2}
+      Value: {fileID: 2100000, guid: fb045539f4b18a242aca8e57e88c5cd7, type: 2}
     - Key: 5
-      Value: {fileID: 2100000, guid: 4ade437cca5fc9147953108c08eec020, type: 2}
+      Value: {fileID: 2100000, guid: 700ae469e5be9ac4095d29b97116027a, type: 2}
     - Key: 6
-      Value: {fileID: 2100000, guid: 6f06aa38de624a54988527ec9e534c1e, type: 2}
+      Value: {fileID: 2100000, guid: c44501de50bef411e8f88b70fe39490e, type: 2}
     - Key: 7
-      Value: {fileID: 2100000, guid: f0f2611fd7436e2488f68524bd12392f, type: 2}
+      Value: {fileID: 2100000, guid: be11bb95eeb9f45e2a4ab7d03f51b6a0, type: 2}
     - Key: 8
-      Value: {fileID: 2100000, guid: 559d1dc2b0f4ad04a893e2d57faffca3, type: 2}
+      Value: {fileID: 2100000, guid: 1d41f8c57e738e44f9f12fc053be388c, type: 2}
     - Key: 9
-      Value: {fileID: 2100000, guid: 8f4eb1fa885c16b4d985d78324ed9b76, type: 2}
+      Value: {fileID: 2100000, guid: 11a8c080607cf47c299aff53087e0334, type: 2}
     - Key: 10
-      Value: {fileID: 2100000, guid: 0188edfc9eacdbe4f93cb4884ed921b0, type: 2}
+      Value: {fileID: 2100000, guid: 42caffe1132386f4daa037a9663088b9, type: 2}
