@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Conductor
+  - Freezable
+  - PPaint
+  - Tornado
+  - Grass
+  - Flamer
+  - Flammable
+  - SkyMasterTree
+  - water
+  - Butter
+  - NoForcePDM
   layers:
   - Default
   - TransparentFX
@@ -15,8 +26,8 @@ TagManager:
   - Green
   - Blue
   - Yellow
-  - 
-  - 
+  - Outline
+  - No Outline
   - 
   - 
   - 

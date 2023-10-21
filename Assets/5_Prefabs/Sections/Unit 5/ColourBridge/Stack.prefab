@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 8159655019440389934}
   - component: {fileID: 8159655019440389935}
   - component: {fileID: 8159655019440389932}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stack Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
