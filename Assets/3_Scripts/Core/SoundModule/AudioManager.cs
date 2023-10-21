@@ -11,8 +11,8 @@ namespace Funlary.SoundModule
         #region Self Variables
 
         #region Serializable Variables
-        [SerializeField]
-        private List<AudioSource> Sources = new List<AudioSource>();
+
+        [SerializeField] private AudioSource Source;
         #endregion
 
         #region Private Variables
@@ -20,21 +20,10 @@ namespace Funlary.SoundModule
         #endregion
 
         #endregion
-        private void Awake()
-        {
-            _cdSound = GetSoundData();
-            foreach (var item in _cdSound.SoundData)
-            {
-                item.AudioSource = Sources[(int)item.SoundType];
 
-                item.AudioSource.clip = item.SoundClip;
-                item.AudioSource.volume = item.Volume;
-                item.AudioSource.pitch = item.Pitch;
-            }
-        }
-        private CD_Sound GetSoundData()
+        private CD_Sound GetSoundData(SoundType soundType)
         {
-            return Resources.Load<CD_Sound>("Datas/CD_Sound");
+            return Resources.Load<CD_Sound>("Sound/CD_Sound_" + soundType);
         }
 
         #region Events Subscriptions
@@ -60,10 +49,10 @@ namespace Funlary.SoundModule
         }
         #endregion
 
-        private void OnPlaySound(SoundType arg0, float pitchValue)
+        private void OnPlaySound(SoundType arg0)
         {
-            Sources[(int)arg0].Play();
-            Sources[(int)arg0].pitch = pitchValue;
+            Source.clip = GetSoundData(arg0).SoundData;
+            Source.Play();
         }
     }
 }

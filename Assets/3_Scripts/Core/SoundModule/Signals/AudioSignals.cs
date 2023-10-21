@@ -5,6 +5,6 @@ namespace Funlary.SoundModule.Signals
 {
     public class AudioSignals : AbstractSingleton<AudioSignals>
     {
-        public UnityAction<SoundType, float> onPlaySound = delegate { };
+        public UnityAction<SoundType> onPlaySound = delegate { };
     }
 }

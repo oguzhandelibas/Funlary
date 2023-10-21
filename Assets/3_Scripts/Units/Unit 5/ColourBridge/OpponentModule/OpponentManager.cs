@@ -26,6 +26,27 @@ namespace Funlary.Unit5.OpponentModule
             colorTypeIndex.RemoveAt(j);
             return colorType;
         }
+
+        public ColorType GetRandomColorType(ColorType currentColorType, List<int> colorTypeIndex = null)
+        {
+            if (colorTypeIndex == null)
+            {
+                int count = _colorTypes.Count;
+                colorTypeIndex = new List<int>(count);
+                for (var i = 0; i < count; i++) colorTypeIndex.Add(i);
+            }
+
+            int j = Random.Range(0, colorTypeIndex.Count);
+            while ((int)currentColorType == j)
+            {
+                j = Random.Range(0, colorTypeIndex.Count);
+            }
+
+            ColorType colorType = _colorTypes[colorTypeIndex[j]];
+            colorTypeIndex.RemoveAt(j);
+            return colorType;
+        }
+
         public void SetColorTypes(List<ColorType> colorTypes)
         {
             _colorTypes = colorTypes;

@@ -14,7 +14,7 @@ namespace Funlary.MeshGenerationModule
         {
             GameObject meshObject = new GameObject("CreatedMesh by MeshGenerator");
             meshObject.transform.parent = meshParent;
-            meshObject.transform.position = new Vector3(startPoint.position.x, 0, startPoint.position.z);
+            meshObject.transform.position = startPoint.position;
             
             MeshFilter meshFilter = meshObject.AddComponent<MeshFilter>();
             MeshRenderer meshRenderer = meshObject.AddComponent<MeshRenderer>();
