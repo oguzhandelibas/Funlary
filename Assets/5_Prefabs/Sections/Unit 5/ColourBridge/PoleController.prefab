@@ -438,8 +438,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 4269007375419830322}
-  startPoint: {fileID: 4269007373599863259}
-  endPoint: {fileID: 4269007373777562289}
+  startPoint: {fileID: 4269007374765888598}
+  endPoint: {fileID: 4269007374034117176}
   endPole: {fileID: 4269007374034117176}
   height: -2
   resolution: 100

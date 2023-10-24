@@ -11,8 +11,8 @@ namespace Funlary
         [SerializeField] private LineRenderer lineRenderer;
         
         [Header("Indicator Transform")]
-        [SerializeField] private Transform startPoint;
-        [SerializeField] private Transform endPoint;
+        public Transform startPoint;
+        public Transform endPoint;
         [SerializeField] private Transform endPole;
 
         [Header("Variables")] 
@@ -26,7 +26,7 @@ namespace Funlary
 
             MeshGeneration.Instance.CreateMesh(
                 MeshType.PLANE, MeshRotationType.LEFT,
-                5, endPoint.position.z - startPoint.position.z, 5,
+                5, endPoint.position.z - startPoint.position.z, 5, startPoint.position,
                 startPoint, endPoint, this.transform
             );
 
@@ -36,15 +36,15 @@ namespace Funlary
             lineRenderer.SetPositions(curvePositions);
         }
 
-        public void CreateRope(float meshLength)
+        public void CreateRope(float meshLength, float ropeHeight = 1)
         {
             MeshGeneration.Instance.CreateMesh(
                 MeshType.PLANE, MeshRotationType.LEFT,
-                5, meshLength, 5, 
+                5, meshLength, 5, new Vector3(startPoint.position.x, startPoint.position.y-1, startPoint.position.z),
                 startPoint, endPoint,this.transform
                 );
 
-            Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height, startPoint.position, endPoint.position);
+            Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height, startPoint.position + Vector3.up * ropeHeight, endPoint.position + Vector3.up * ropeHeight);
             
             lineRenderer.positionCount = resolution + 1;
             lineRenderer.SetPositions(curvePositions);

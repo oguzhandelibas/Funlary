@@ -52,7 +52,7 @@ namespace Funlary.SoundModule
 
         private void OnPlaySound(ColorType arg0)
         {
-            Source.clip = GetSoundData(arg0).SoundData;
+            Source.clip = GetSoundData(arg0).SoundDatas[Random.Range(0,2)];
             Source.Play();
         }
     }

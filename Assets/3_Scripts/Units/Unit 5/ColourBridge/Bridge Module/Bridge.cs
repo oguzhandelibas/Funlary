@@ -48,7 +48,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
             MeshGeneration.Instance.CreateMesh(
                 MeshType.PLANE, MeshRotationType.UP,
-                BridgeWidth, BridgeLength, BridgeHeight,
+                BridgeWidth, BridgeLength, BridgeHeight, startPoint.position,
                 startPoint, endPoint, transform
                 );
 

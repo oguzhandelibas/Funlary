@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1163c5ee18e1a45a75a00f64788234, type: 3}
   m_Name: CD_Sound_BLACK
   m_EditorClassIdentifier: 
-  SoundData: {fileID: 8300000, guid: 0a158cac1c2b291488d40677f528a3ef, type: 3}
+  SoundDatas:
+  - {fileID: 8300000, guid: 82104715820482b4c8ce8c6c4f7b38b8, type: 3}
+  - {fileID: 8300000, guid: 2a352e18eac754f488c2860ef01ec4e0, type: 3}

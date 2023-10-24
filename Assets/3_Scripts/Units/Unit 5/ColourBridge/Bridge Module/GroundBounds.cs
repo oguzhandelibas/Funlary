@@ -50,24 +50,18 @@ namespace Funlary
                 EnterRight_PoleController.transform.localPosition = Vector3.zero;
                 EnterLeft_PoleController.transform.localPosition = Vector3.zero;
 
-                Transform RightFirst = EnterRight_PoleController.transform.GetChild(0);
-                Transform RightSecond = EnterRight_PoleController.transform.GetChild(1);
+                EnterRight_PoleController.startPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
+                EnterRight_PoleController.endPoint.localPosition = new Vector3(1.5f, 1, -arenaTransform.localScale.x / 2);
+                EnterLeft_PoleController.startPoint.localPosition = new Vector3(-1.5f, 1, -arenaTransform.localScale.x / 2);
+                EnterLeft_PoleController.endPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1,-arenaTransform.localScale.x / 2);
 
-                Transform LeftFirst = EnterLeft_PoleController.transform.GetChild(0);
-                Transform LeftSecond = EnterLeft_PoleController.transform.GetChild(1);
+                EnterRight_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
+                EnterRight_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
+                EnterLeft_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
+                EnterLeft_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
 
-                EnterRight_PoleController.transform.GetChild(0).localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
-                EnterRight_PoleController.transform.GetChild(1).localPosition = new Vector3(1.5f, 1, -arenaTransform.localScale.x / 2);
-                EnterLeft_PoleController.transform.GetChild(0).localPosition = new Vector3(-1.5f, 1, -arenaTransform.localScale.x / 2);
-                EnterLeft_PoleController.transform.GetChild(1).localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1,-arenaTransform.localScale.x / 2);
-
-                EnterRight_PoleController.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-                EnterRight_PoleController.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
-                EnterLeft_PoleController.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-                EnterLeft_PoleController.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
-
-                EnterRight_PoleController.CreateRope(RightSecond.position.x - RightFirst.position.x);
-                EnterLeft_PoleController.CreateRope(LeftSecond.position.x - LeftFirst.position.x);
+                EnterRight_PoleController.CreateRope(EnterRight_PoleController.endPoint.position.x - EnterRight_PoleController.startPoint.position.x);
+                EnterLeft_PoleController.CreateRope(EnterLeft_PoleController.endPoint.position.x - EnterLeft_PoleController.startPoint.position.x);
             }
             else
             {
@@ -77,16 +71,13 @@ namespace Funlary
 
                 Enter_PoleController.transform.localPosition = Vector3.zero;
 
-                Transform First = Enter_PoleController.transform.GetChild(0);
-                Transform Second = Enter_PoleController.transform.GetChild(1);
+                Enter_PoleController.startPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
+                Enter_PoleController.endPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
 
-                Enter_PoleController.transform.GetChild(0).localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
-                Enter_PoleController.transform.GetChild(1).localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
+                Enter_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
+                Enter_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
 
-                Enter_PoleController.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-                Enter_PoleController.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
-
-                Enter_PoleController.CreateRope(Second.position.x - First.position.x);
+                Enter_PoleController.CreateRope(Enter_PoleController.endPoint.position.x - Enter_PoleController.startPoint.position.x);
 
             }
         }
@@ -103,43 +94,33 @@ namespace Funlary
                 ExitRight_PoleController.transform.localPosition = Vector3.zero;
                 ExitLeft_PoleController.transform.localPosition = Vector3.zero;
 
-                Transform RightFirst = ExitRight_PoleController.transform.GetChild(0);
-                Transform RightSecond = ExitRight_PoleController.transform.GetChild(1);
+                ExitRight_PoleController.startPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.x / 2);
+                ExitRight_PoleController.endPoint.localPosition = new Vector3(1.5f, 1, arenaTransform.localScale.x / 2);
+                ExitRight_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
+                ExitRight_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
 
-                Transform LeftFirst = ExitLeft_PoleController.transform.GetChild(0);
-                Transform LeftSecond = ExitLeft_PoleController.transform.GetChild(1);
+                ExitLeft_PoleController.startPoint.localPosition = new Vector3(- 1.5f, 1, arenaTransform.localScale.x / 2);
+                ExitLeft_PoleController.endPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.x / 2);
+                ExitLeft_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
+                ExitLeft_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
 
-                ExitRight_PoleController.transform.GetChild(0).localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.x / 2);
-                ExitRight_PoleController.transform.GetChild(1).localPosition = new Vector3(1.5f, 1, arenaTransform.localScale.x / 2);
-                ExitRight_PoleController.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-                ExitRight_PoleController.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
-
-                ExitLeft_PoleController.transform.GetChild(0).localPosition = new Vector3(- 1.5f, 1, arenaTransform.localScale.x / 2);
-                ExitLeft_PoleController.transform.GetChild(1).localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.x / 2);
-                ExitLeft_PoleController.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-                ExitLeft_PoleController.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
-
-                ExitRight_PoleController.CreateRope(RightSecond.position.x - RightFirst.position.x);
-                ExitLeft_PoleController.CreateRope(LeftSecond.position.x - LeftFirst.position.x);
+                ExitRight_PoleController.CreateRope(ExitRight_PoleController.endPoint.position.x - ExitRight_PoleController.startPoint.position.x);
+                ExitLeft_PoleController.CreateRope(ExitLeft_PoleController.endPoint.position.x - ExitLeft_PoleController.startPoint.position.x);
             }
             else
             {
                 PoleController Exit_PoleController = Instantiate(poleController, transform);
 
                 Exit_PoleController.name = "Exit_PoleController";
-
                 Exit_PoleController.transform.localPosition = Vector3.zero;
 
-                Transform First = Exit_PoleController.transform.GetChild(0);
-                Transform Second = Exit_PoleController.transform.GetChild(1);
+                Exit_PoleController.startPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.z / 2);
+                Exit_PoleController.endPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.z / 2);
 
-                Exit_PoleController.transform.GetChild(0).localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.z / 2);
-                Exit_PoleController.transform.GetChild(1).localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.z / 2);
+                Exit_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
+                Exit_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
 
-                Exit_PoleController.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-                Exit_PoleController.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
-
-                Exit_PoleController.CreateRope(Second.position.x - First.position.x);
+                Exit_PoleController.CreateRope(Exit_PoleController.endPoint.position.x - Exit_PoleController.startPoint.position.x);
             }
             
         }
@@ -154,20 +135,14 @@ namespace Funlary
             Right_PoleController.transform.localPosition = Vector3.zero;
             Left_PoleController.transform.localPosition = Vector3.zero;
 
-            Transform RightFirst = Right_PoleController.transform.GetChild(0);
-            Transform RightSecond = Right_PoleController.transform.GetChild(1);
-
-            Transform LeftFirst = Left_PoleController.transform.GetChild(0);
-            Transform LeftSecond = Left_PoleController.transform.GetChild(1);
-
-            Right_PoleController.transform.GetChild(0).localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.z / 2);
-            Right_PoleController.transform.GetChild(1).localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.z / 2);
-            Left_PoleController.transform.GetChild(0).localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.z / 2);
-            Left_PoleController.transform.GetChild(1).localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.z / 2);
+            Right_PoleController.startPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.z / 2);
+            Right_PoleController.endPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.z / 2);
+            Left_PoleController.startPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.z / 2);
+            Left_PoleController.endPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.z / 2);
             
 
-            Right_PoleController.CreateRope(RightSecond.position.z - RightFirst.position.z);
-            Left_PoleController.CreateRope(LeftSecond.position.z - LeftFirst.position.z);
+            Right_PoleController.CreateRope(Right_PoleController.endPoint.position.z - Right_PoleController.startPoint.position.z);
+            Left_PoleController.CreateRope(Left_PoleController.endPoint.position.z - Left_PoleController.startPoint.position.z);
         }
     }
 }

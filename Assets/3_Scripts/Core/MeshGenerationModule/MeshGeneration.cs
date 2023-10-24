@@ -8,13 +8,13 @@ namespace Funlary.MeshGenerationModule
     {
         [SerializeField] private Material meshMaterial;
         public void CreateMesh(MeshType meshType, MeshRotationType meshRotationType,
-            float meshWidth, float meshLength, float meshHeight, 
+            float meshWidth, float meshLength, float meshHeight, Vector3 meshPosition,
             Transform startPoint, Transform endPoint, Transform meshParent,
             bool isVisible = false)
         {
             GameObject meshObject = new GameObject("CreatedMesh by MeshGenerator");
             meshObject.transform.parent = meshParent;
-            meshObject.transform.position = startPoint.position;
+            meshObject.transform.position = meshPosition;
             
             MeshFilter meshFilter = meshObject.AddComponent<MeshFilter>();
             MeshRenderer meshRenderer = meshObject.AddComponent<MeshRenderer>();

@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1163c5ee18e1a45a75a00f64788234, type: 3}
   m_Name: CD_Sound_ORANGE
   m_EditorClassIdentifier: 
-  SoundData: {fileID: 8300000, guid: f81325a151f7b204e8dc0d703bee59fe, type: 3}
+  SoundDatas:
+  - {fileID: 8300000, guid: a0988418e33041b4f812ae8e6cfb10ad, type: 3}
+  - {fileID: 8300000, guid: 0d21cf2d6f0305d4592d914cbb7ff442, type: 3}
