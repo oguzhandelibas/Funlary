@@ -45,6 +45,7 @@ namespace Funlary.UIModule.Core
 
         public void SetLevelColorText(ColorType colorType, Color color)
         {
+            color = new Color(color.r+0.2f, color.g + 0.2f, color.b + 0.2f, color.a);
             levelColorText.text = colorType.ToString();
             levelColorText.color = color;
             playLevelColorSoundImage.color = color;
