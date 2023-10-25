@@ -19,14 +19,27 @@ namespace Funlary.MeshGenerationModule
             MeshFilter meshFilter = meshObject.AddComponent<MeshFilter>();
             MeshRenderer meshRenderer = meshObject.AddComponent<MeshRenderer>();
             MeshCollider meshCollider = meshObject.AddComponent<MeshCollider>();
-            Mesh mesh = BuildPlaneMesh(meshRotationType, meshWidth, meshLength, meshHeight, meshParent);
+
+
+            if (meshType == MeshType.BRIDGE)
+            {
+                meshLength = Mathf.Sqrt(Mathf.Pow(meshLength, 2) + Mathf.Pow(meshHeight, 2));
+                meshObject.transform.rotation = CalculateRotation(startPoint, endPoint);
+            }
+            else if (meshType == MeshType.WALL)
+            {
+                meshObject.transform.rotation = CalculateRotation(endPoint, startPoint);
+            }
+
+            Mesh mesh = BuildPlaneMesh(meshRotationType, meshWidth, meshLength, meshParent);
 
             meshRenderer.material = meshMaterial;
             meshCollider.sharedMesh = mesh;
             meshCollider.convex = true;
             meshFilter.mesh = mesh;
             meshRenderer.enabled = isVisible;
-            meshObject.transform.rotation = CalculateRotation(startPoint, endPoint);
+
+            
         }
 
         private Quaternion CalculateRotation(Transform startPoint, Transform endPoint)
@@ -34,13 +47,12 @@ namespace Funlary.MeshGenerationModule
             Vector3 direction = endPoint.position - startPoint.position;
             return Quaternion.LookRotation(direction);
         }
-        
-        private Mesh BuildPlaneMesh(MeshRotationType meshRotationType, float bridgeWidth, float bridgeLength, float bridgeHeight, Transform meshParent, int segmentCount = 5)
+
+        private Mesh BuildPlaneMesh(MeshRotationType meshRotationType, float bridgeWidth, float meshLength, Transform meshParent, int segmentCount = 5)
         {
             float height = 0f;
             float width = bridgeWidth / 2;
-            float length = Mathf.Sqrt(Mathf.Pow(bridgeLength,2) + Mathf.Pow(bridgeHeight,2));
-            
+
             Vector3[] vertices = new Vector3[4];
             switch (meshRotationType)
             {
@@ -49,8 +61,8 @@ namespace Funlary.MeshGenerationModule
                     {
                         new Vector3(width, 0, 0f),
                         new Vector3(-width, 0, 0f),
-                        new Vector3(width, 0, length),
-                        new Vector3(-width, 0, length)
+                        new Vector3(width, 0, meshLength),
+                        new Vector3(-width, 0, meshLength)
                     };
                     break;
                 case MeshRotationType.DOWN:
@@ -58,8 +70,8 @@ namespace Funlary.MeshGenerationModule
                     {
                         new Vector3(-width, 0, 0f),
                         new Vector3(width, 0, 0f),
-                        new Vector3(-width, 0, length),
-                        new Vector3(width, 0, length)
+                        new Vector3(-width, 0, meshLength),
+                        new Vector3(width, 0, meshLength)
                     };
                     break;
                 case MeshRotationType.RIGHT:
@@ -67,8 +79,8 @@ namespace Funlary.MeshGenerationModule
                     {
                         new Vector3(0, 0, 0f),
                         new Vector3(0, width, 0f),
-                        new Vector3(0, 0, length),
-                        new Vector3(0, width, length)
+                        new Vector3(0, 0, meshLength),
+                        new Vector3(0, width, meshLength)
                     };
                     break;
                 case MeshRotationType.LEFT:
@@ -76,8 +88,8 @@ namespace Funlary.MeshGenerationModule
                     {
                         new Vector3(0, 0, 0f),
                         new Vector3(0, width, 0f),
-                        new Vector3(0, 0, length),
-                        new Vector3(0, width, length)
+                        new Vector3(0, 0, meshLength),
+                        new Vector3(0, width, meshLength)
                     };
                     break;
             }

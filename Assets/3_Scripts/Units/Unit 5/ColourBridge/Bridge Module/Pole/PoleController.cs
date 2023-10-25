@@ -20,32 +20,22 @@ namespace Funlary
         [SerializeField] private int resolution  = 100;
         BezierCurve bezierCurve = new BezierCurve();
 
-        public void CreateRope(Vector3 endPosition)
+        public void SetEndPolePosition(Vector3 endPosition)
         {
             endPole.localPosition = endPosition;
+            CreateMeshAndRope(MeshType.BRIDGE, endPoint.position.z - startPoint.position.z);
+        }
 
+        public void CreateMeshAndRope(MeshType meshType, float meshLength)
+        {
             MeshGeneration.Instance.CreateMesh(
-                MeshType.PLANE, MeshRotationType.LEFT,
-                5, endPoint.position.z - startPoint.position.z, 5, startPoint.position,
+                meshType, MeshRotationType.RIGHT,
+                5, meshLength, 5, new Vector3(startPoint.position.x, startPoint.position.y - 1, startPoint.position.z),
                 startPoint, endPoint, this.transform
             );
 
-            Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height, startPoint.position, endPoint.position);
+            Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height, startPoint.position + Vector3.up * 1, endPoint.position + Vector3.up * 1);
 
-            lineRenderer.positionCount = resolution + 1;
-            lineRenderer.SetPositions(curvePositions);
-        }
-
-        public void CreateRope(float meshLength, float ropeHeight = 1)
-        {
-            MeshGeneration.Instance.CreateMesh(
-                MeshType.PLANE, MeshRotationType.LEFT,
-                5, meshLength, 5, new Vector3(startPoint.position.x, startPoint.position.y-1, startPoint.position.z),
-                startPoint, endPoint,this.transform
-                );
-
-            Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height, startPoint.position + Vector3.up * ropeHeight, endPoint.position + Vector3.up * ropeHeight);
-            
             lineRenderer.positionCount = resolution + 1;
             lineRenderer.SetPositions(curvePositions);
         }

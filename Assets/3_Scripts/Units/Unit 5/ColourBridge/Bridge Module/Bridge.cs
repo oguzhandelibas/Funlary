@@ -47,15 +47,15 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             StepHeight = BridgeHeight / BridgeLength;
 
             MeshGeneration.Instance.CreateMesh(
-                MeshType.PLANE, MeshRotationType.UP,
+                MeshType.BRIDGE, MeshRotationType.UP,
                 BridgeWidth, BridgeLength, BridgeHeight, startPoint.position,
                 startPoint, endPoint, transform
                 );
 
             InitializeBridge();
 
-            leftPole.CreateRope(new Vector3(0, BridgeHeight + 1, BridgeLength));
-            rightPole.CreateRope(new Vector3(0, BridgeHeight + 1, BridgeLength));
+            leftPole.SetEndPolePosition(new Vector3(0, BridgeHeight + 1, BridgeLength));
+            rightPole.SetEndPolePosition(new Vector3(0, BridgeHeight + 1, BridgeLength));
         }
         #endregion
 
