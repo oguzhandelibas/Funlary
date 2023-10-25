@@ -6,7 +6,8 @@ namespace Funlary.MeshGenerationModule.Enum
 {
     public enum MeshType
     {
-        WALL,
-        BRIDGE
+        HORIZONTAL_WALL,
+        VERTICAL_WALL,
+        BRIDGE_ROPE
     }
 }

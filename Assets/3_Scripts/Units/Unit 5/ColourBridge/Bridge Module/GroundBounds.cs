@@ -66,8 +66,8 @@ namespace Funlary
                 float leftWallLength = EnterLeft_PoleController.endPoint.position.x -
                                       EnterLeft_PoleController.startPoint.position.x;
 
-                EnterRight_PoleController.CreateMeshAndRope(MeshType.WALL, rightWallLength);
-                EnterLeft_PoleController.CreateMeshAndRope(MeshType.WALL, leftWallLength);
+                EnterRight_PoleController.CreateMeshAndRope(MeshType.HORIZONTAL_WALL, rightWallLength);
+                EnterLeft_PoleController.CreateMeshAndRope(MeshType.HORIZONTAL_WALL, leftWallLength);
             }
             else
             {
@@ -86,7 +86,7 @@ namespace Funlary
                 float enterWallLength = Enter_PoleController.endPoint.position.x -
                                         Enter_PoleController.startPoint.position.x;
 
-                Enter_PoleController.CreateMeshAndRope(MeshType.WALL, enterWallLength);
+                Enter_PoleController.CreateMeshAndRope(MeshType.HORIZONTAL_WALL, enterWallLength);
 
             }
         }
@@ -113,8 +113,8 @@ namespace Funlary
                 ExitLeft_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
                 ExitLeft_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
 
-                ExitRight_PoleController.CreateMeshAndRope(MeshType.WALL, ExitRight_PoleController.endPoint.position.x - ExitRight_PoleController.startPoint.position.x);
-                ExitLeft_PoleController.CreateMeshAndRope(MeshType.WALL, ExitLeft_PoleController.endPoint.position.x - ExitLeft_PoleController.startPoint.position.x);
+                ExitRight_PoleController.CreateMeshAndRope(MeshType.HORIZONTAL_WALL, ExitRight_PoleController.endPoint.position.x - ExitRight_PoleController.startPoint.position.x);
+                ExitLeft_PoleController.CreateMeshAndRope(MeshType.HORIZONTAL_WALL, ExitLeft_PoleController.endPoint.position.x - ExitLeft_PoleController.startPoint.position.x);
             }
             else
             {
@@ -129,7 +129,7 @@ namespace Funlary
                 Exit_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
                 Exit_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
 
-                Exit_PoleController.CreateMeshAndRope(MeshType.WALL, Exit_PoleController.endPoint.position.x - Exit_PoleController.startPoint.position.x);
+                Exit_PoleController.CreateMeshAndRope(MeshType.HORIZONTAL_WALL, Exit_PoleController.endPoint.position.x - Exit_PoleController.startPoint.position.x);
             }
         }
 
@@ -150,8 +150,8 @@ namespace Funlary
             Left_PoleController.endPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.z / 2);
             
 
-            Right_PoleController.CreateMeshAndRope(MeshType.BRIDGE, Right_PoleController.endPoint.position.z - Right_PoleController.startPoint.position.z);
-            Left_PoleController.CreateMeshAndRope(MeshType.BRIDGE, Left_PoleController.endPoint.position.z - Left_PoleController.startPoint.position.z);
+            Right_PoleController.CreateMeshAndRope(MeshType.VERTICAL_WALL, Right_PoleController.endPoint.position.z - Right_PoleController.startPoint.position.z);
+            Left_PoleController.CreateMeshAndRope(MeshType.VERTICAL_WALL, Left_PoleController.endPoint.position.z - Left_PoleController.startPoint.position.z);
         }
     }
 }

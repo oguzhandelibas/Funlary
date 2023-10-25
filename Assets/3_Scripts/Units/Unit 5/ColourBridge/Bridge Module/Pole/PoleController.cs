@@ -23,7 +23,7 @@ namespace Funlary
         public void SetEndPolePosition(Vector3 endPosition)
         {
             endPole.localPosition = endPosition;
-            CreateMeshAndRope(MeshType.BRIDGE, endPoint.position.z - startPoint.position.z);
+            CreateMeshAndRope(MeshType.BRIDGE_ROPE, endPoint.position.z - startPoint.position.z);
         }
 
         public void CreateMeshAndRope(MeshType meshType, float meshLength)
@@ -34,7 +34,16 @@ namespace Funlary
                 startPoint, endPoint, this.transform
             );
 
-            Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height, startPoint.position + Vector3.up * 1, endPoint.position + Vector3.up * 1);
+            Vector3 startPos = startPoint.position;
+            Vector3 endPos = endPoint.position;
+
+            if (meshType == MeshType.HORIZONTAL_WALL || meshType == MeshType.VERTICAL_WALL)
+            {
+                startPos += Vector3.up *1;
+                endPos += Vector3.up*1;
+            }
+
+            Vector3[] curvePositions = bezierCurve.DrawQuadraticCurve(resolution, height, startPos, endPos);
 
             lineRenderer.positionCount = resolution + 1;
             lineRenderer.SetPositions(curvePositions);

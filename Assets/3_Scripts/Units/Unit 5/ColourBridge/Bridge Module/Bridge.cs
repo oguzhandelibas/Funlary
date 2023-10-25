@@ -47,7 +47,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             StepHeight = BridgeHeight / BridgeLength;
 
             MeshGeneration.Instance.CreateMesh(
-                MeshType.BRIDGE, MeshRotationType.UP,
+                MeshType.BRIDGE_ROPE, MeshRotationType.UP,
                 BridgeWidth, BridgeLength, BridgeHeight, startPoint.position,
                 startPoint, endPoint, transform
                 );

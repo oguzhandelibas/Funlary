@@ -21,12 +21,12 @@ namespace Funlary.MeshGenerationModule
             MeshCollider meshCollider = meshObject.AddComponent<MeshCollider>();
 
 
-            if (meshType == MeshType.BRIDGE)
+            if (meshType == MeshType.BRIDGE_ROPE || meshType == MeshType.VERTICAL_WALL)
             {
                 meshLength = Mathf.Sqrt(Mathf.Pow(meshLength, 2) + Mathf.Pow(meshHeight, 2));
                 meshObject.transform.rotation = CalculateRotation(startPoint, endPoint);
             }
-            else if (meshType == MeshType.WALL)
+            else if (meshType == MeshType.HORIZONTAL_WALL)
             {
                 meshObject.transform.rotation = CalculateRotation(endPoint, startPoint);
             }
