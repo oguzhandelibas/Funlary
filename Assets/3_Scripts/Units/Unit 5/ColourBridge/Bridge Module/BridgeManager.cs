@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Funlary.Unit5.ColourBridge.BridgeModule
 {
-    public class BridgeManager : MonoBehaviour
+    public class BridgeManager : AbstractSingleton<BridgeManager>
     {
         [SerializeField] private Bridge[] bridges;
         [SerializeField] private List<ColorType> colorTypes;
@@ -18,6 +18,11 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
                 item.SetStackManagerColorTypes(colorTypes);
             }
             opponentManager.SetColorTypes(colorTypes);
+        }
+
+        public List<ColorType> GetColorTypes()
+        {
+            return colorTypes;
         }
     }
 }

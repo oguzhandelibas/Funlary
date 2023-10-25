@@ -57,7 +57,7 @@ namespace Funlary.Unit5.StackModule
             {
                 previousArenaBarrier?.SetActive(true);
                 opponentPhysicsController.opponent.DropAllStacks(true, true);
-                opponentPhysicsController.opponent.SetColor(OpponentManager.Instance.GetRandomColorType());
+                opponentPhysicsController.opponent.SetColor(OpponentManager.Instance.GetRandomColorType(opponentPhysicsController.opponent.ColorType));
             }
         }
 

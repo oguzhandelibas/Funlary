@@ -10,42 +10,8 @@ namespace Funlary.Unit5.OpponentModule
     public class OpponentManager : AbstractSingleton<OpponentManager>
     {
         [SerializeField] private Opponent[] opponents;
+        [SerializeField] private ColorData colorData;
         private List<ColorType> _colorTypes = new List<ColorType>();
-
-        public ColorType GetRandomColorType(List<int> colorTypeIndex = null)
-        {
-            if (colorTypeIndex == null)
-            {
-                int count = _colorTypes.Count;
-                colorTypeIndex = new List<int>(count);
-                for (var i = 0; i < count; i++) colorTypeIndex.Add(i);
-            }
-
-            int j = Random.Range(0, colorTypeIndex.Count);
-            ColorType colorType = _colorTypes[colorTypeIndex[j]];
-            colorTypeIndex.RemoveAt(j);
-            return colorType;
-        }
-
-        public ColorType GetRandomColorType(ColorType currentColorType, List<int> colorTypeIndex = null)
-        {
-            if (colorTypeIndex == null)
-            {
-                int count = _colorTypes.Count;
-                colorTypeIndex = new List<int>(count);
-                for (var i = 0; i < count; i++) colorTypeIndex.Add(i);
-            }
-
-            int j = Random.Range(0, colorTypeIndex.Count);
-            while ((int)currentColorType == j)
-            {
-                j = Random.Range(0, colorTypeIndex.Count);
-            }
-
-            ColorType colorType = _colorTypes[colorTypeIndex[j]];
-            colorTypeIndex.RemoveAt(j);
-            return colorType;
-        }
 
         public void SetColorTypes(List<ColorType> colorTypes)
         {
@@ -53,17 +19,30 @@ namespace Funlary.Unit5.OpponentModule
             InitializeOpponents();
         }
 
+        public ColorType GetRandomColorType(ColorType currentColorType)
+        {
+            List<ColorType> colorTypes = BridgeManager.Instance.GetColorTypes();
+            ColorType colorType = GetRandomColorType();
+
+            while (currentColorType == colorType)
+            {
+                colorType = GetRandomColorType();
+            }
+
+            return colorType;
+        }
+
+        private ColorType GetRandomColorType()
+        {
+            return colorData.GetRandomColorType(_colorTypes);
+        }
+
         private void InitializeOpponents()
         {
-            int count = _colorTypes.Count;
-            List<int> colorTypeIndex = new List<int>(count);
-            for (var i = 0; i < count; i++) colorTypeIndex.Add(i);
-
             foreach (var item in opponents)
             {
-                item.SetColor(GetRandomColorType(colorTypeIndex));
+                item.SetColor(GetRandomColorType());
             }
-            ColorType colorType = opponents[0].ColorType;
         }
     }
 }
