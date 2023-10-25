@@ -37,8 +37,6 @@ namespace Funlary.Unit5.StackModule
         [SerializeField][Range(0.0f, 10.0f)] private float hSafeStart = 1.0f;
         [SerializeField][Range(0.0f, 10.0f)] private float hSpaceBetweenStacks = 2.5f;
 
-
-        private List<ColorType> _colorTypes;
         #endregion
 
         #region UNITY
@@ -97,7 +95,7 @@ namespace Funlary.Unit5.StackModule
                     Stack stackTemp = Instantiate(stack, stackLastPos, Quaternion.identity, transform);
                     stackTemp.stackManager = this;
                     stackTemp.StackIndex = stackIndex++;
-                    ColorType colorType = colorData.GetRandomColorType(_colorTypes);
+                    ColorType colorType = colorData.GetRandomColorType(BridgeManager.Instance.GetColorTypes());
                     stackTemp.SetColor(colorType, colorData.ColorType[colorType]);
                     _stackList.Add(stackTemp);
                 }
@@ -120,11 +118,6 @@ namespace Funlary.Unit5.StackModule
             stackTemp.stackManager = this;
             stackTemp.StackIndex = index;
             stackTemp.SetColor(colorType, colorData.ColorType[colorType]);
-        }
-
-        public void SetStackManagerColorTypes(List<ColorType> colorTypes)
-        {
-            _colorTypes = colorTypes;
         }
 
         #endregion

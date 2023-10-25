@@ -2,22 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Funlary.MeshGenerationModule.Enum;
+using Funlary.Unit5.ColourBridge.BridgeModule;
+using Funlary.Unit5.StackModule;
 using UnityEngine;
 
 namespace Funlary
 {
     public class GroundBounds : MonoBehaviour
     {
-        [SerializeField] private Transform arenaTransform;
+        [Header("Enter Door Properties")]
         [SerializeField] private bool HasEnterDoor;
+        [SerializeField] private int enterDoorCount;
+
+        [Header("Exit Door Properties")]
         [SerializeField] private bool HasExitDoor;
-        [SerializeField] private PoleController poleController;
+        [SerializeField] private int exitDoorCount;
+
+        [Header("Fields")]
+        [SerializeField] private Transform arenaTransform;
+        [SerializeField] private Transform bridgeParent;
+
+        [SerializeField] private StackManager stackManager;
+        [SerializeField] private Bridge bridgePrefab;
+        [SerializeField] private PoleController poleControllerPrefab;
+
 
         public async Task DeleteArenaBound()
         {
             List<Transform> childrenToDestroy = new List<Transform>();
 
             foreach (Transform child in transform)
+            {
+                childrenToDestroy.Add(child);
+            }
+
+            foreach (Transform child in bridgeParent)
             {
                 childrenToDestroy.Add(child);
             }
@@ -42,8 +61,8 @@ namespace Funlary
         {
             if (HasEnterDoor)
             {
-                PoleController EnterRight_PoleController = Instantiate(poleController, transform);
-                PoleController EnterLeft_PoleController = Instantiate(poleController, transform);
+                PoleController EnterRight_PoleController = Instantiate(poleControllerPrefab, transform);
+                PoleController EnterLeft_PoleController = Instantiate(poleControllerPrefab, transform);
 
                 EnterRight_PoleController.name = "EnterRight_PoleController";
                 EnterLeft_PoleController.name = "EnterLeft_PoleController";
@@ -71,7 +90,7 @@ namespace Funlary
             }
             else
             {
-                PoleController Enter_PoleController = Instantiate(poleController, transform);
+                PoleController Enter_PoleController = Instantiate(poleControllerPrefab, transform);
 
                 Enter_PoleController.name = "Enter_PoleController";
 
@@ -94,8 +113,10 @@ namespace Funlary
         {
             if (HasExitDoor)
             {
-                PoleController ExitRight_PoleController = Instantiate(poleController, transform);
-                PoleController ExitLeft_PoleController = Instantiate(poleController, transform);
+                PoleController ExitRight_PoleController = Instantiate(poleControllerPrefab, transform);
+                PoleController ExitLeft_PoleController = Instantiate(poleControllerPrefab, transform);
+                Bridge bridge = Instantiate(bridgePrefab, bridgeParent);
+                bridge.SetStackManager(stackManager);
 
                 ExitRight_PoleController.name = "ExitRight_PoleController";
                 ExitLeft_PoleController.name = "ExitLeft_PoleController";
@@ -118,7 +139,7 @@ namespace Funlary
             }
             else
             {
-                PoleController Exit_PoleController = Instantiate(poleController, transform);
+                PoleController Exit_PoleController = Instantiate(poleControllerPrefab, transform);
 
                 Exit_PoleController.name = "Exit_PoleController";
                 Exit_PoleController.transform.localPosition = Vector3.zero;
@@ -135,8 +156,8 @@ namespace Funlary
 
         private void CreateLeftRightWalls()
         {
-            PoleController Right_PoleController = Instantiate(poleController, transform);
-            PoleController Left_PoleController = Instantiate(poleController, transform);
+            PoleController Right_PoleController = Instantiate(poleControllerPrefab, transform);
+            PoleController Left_PoleController = Instantiate(poleControllerPrefab, transform);
 
             Right_PoleController.name = "Right_PoleController";
             Left_PoleController.name = "Left_PoleController";

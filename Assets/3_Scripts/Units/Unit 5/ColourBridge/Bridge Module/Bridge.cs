@@ -11,8 +11,8 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
     {
         #region FIELDS
 
+        private StackManager _stackManager;
         [SerializeField] private StepManager stepManager;
-        [SerializeField] private StackManager stackManager;
         [SerializeField] private ColorData colorData;
 
         [Header("Indicator Transforms")]
@@ -54,8 +54,8 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
             InitializeBridge();
 
-            leftPole.SetEndPolePosition(new Vector3(0, BridgeHeight + 1, BridgeLength));
-            rightPole.SetEndPolePosition(new Vector3(0, BridgeHeight + 1, BridgeLength));
+            leftPole.SetEndPolePosition(new Vector3(0, BridgeHeight, BridgeLength));
+            rightPole.SetEndPolePosition(new Vector3(0, BridgeHeight, BridgeLength));
         }
         #endregion
 
@@ -92,9 +92,9 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             foreach (var item in willChangeLineRenderers) item.material = newMaterial;
         }
 
-        public void SetStackManagerColorTypes(List<ColorType> colorTypes)
+        public void SetStackManager(StackManager stackManager)
         {
-            stackManager.SetStackManagerColorTypes(colorTypes);
+            _stackManager = stackManager;
         }
 
         #endregion
