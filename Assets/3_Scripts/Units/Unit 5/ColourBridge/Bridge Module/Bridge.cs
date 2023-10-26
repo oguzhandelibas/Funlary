@@ -18,12 +18,12 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         [Header("Indicator Transforms")]
         [SerializeField] private Transform stairParent;
         [SerializeField] private Transform startPoint;
-        [SerializeField] private Transform endPoint;
+        public Transform endPoint;
 
         [Header("Prefabs")]
         [SerializeField] private GameObject stepPrefab;
-        [SerializeField] private PoleController leftPole;
-        [SerializeField] private PoleController rightPole;
+        public PoleController rightPole;
+        public PoleController leftPole;
 
         [Header("Materials Will Change Renderers")]
         [SerializeField] private MeshRenderer[] willChangeMeshRenderers;
@@ -54,8 +54,8 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
             InitializeBridge();
 
-            leftPole.SetEndPolePosition(new Vector3(0, BridgeHeight, BridgeLength));
             rightPole.SetEndPolePosition(new Vector3(0, BridgeHeight, BridgeLength));
+            leftPole.SetEndPolePosition(new Vector3(0, BridgeHeight, BridgeLength));
         }
         #endregion
 
