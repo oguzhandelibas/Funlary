@@ -115,8 +115,39 @@ namespace Funlary
             {
                 PoleController ExitRight_PoleController = Instantiate(poleControllerPrefab, transform);
                 PoleController ExitLeft_PoleController = Instantiate(poleControllerPrefab, transform);
-                Bridge bridge = Instantiate(bridgePrefab, bridgeParent);
-                bridge.SetStackManager(stackManager);
+
+                float increaseAmount = 10;
+                float horizontalPos;
+                int leftPiece = exitDoorCount / 2;
+                int rightPiece = leftPiece;
+
+
+                print("right: " + rightPiece);
+                print("left: " + leftPiece);
+
+                for (int i = -leftPiece; i <= rightPiece; i++)
+                {
+                    if(exitDoorCount % 2 == 0)
+                    {
+                        if(i == 0) continue;
+                        else
+                        {
+                            float multiplier = -1;
+                            if (i < 0) multiplier = 1;
+                            horizontalPos = (i * increaseAmount) + ((multiplier)*(increaseAmount / 2));
+                        }
+                    }
+                    else
+                    {
+                        horizontalPos = (i * increaseAmount);
+                    }
+                    
+
+                    Bridge bridge = Instantiate(bridgePrefab, bridgeParent);
+                    bridge.transform.position += Vector3.right * horizontalPos;
+                    bridge.SetStackManager(stackManager);
+                }
+
 
                 ExitRight_PoleController.name = "ExitRight_PoleController";
                 ExitLeft_PoleController.name = "ExitLeft_PoleController";
