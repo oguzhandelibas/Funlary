@@ -25,6 +25,7 @@ namespace Funlary
         [SerializeField] private StackManager stackManager;
         [SerializeField] private Bridge bridgePrefab;
         [SerializeField] private PoleController poleControllerPrefab;
+        [SerializeField] private List<Bridge> bridges;
 
 
         public async Task DeleteArenaBound()
@@ -49,13 +50,23 @@ namespace Funlary
         }
         public async Task SetArenaBound()
         {
+            if (!bridgeParent)
+            {
+                bridgeParent = new GameObject().transform;
+                bridgeParent.name = "Bridges";
+            }
+            bridgeParent.parent = null;
+            bridgeParent.localScale = new Vector3(1, 1, 1);
+            bridgeParent.parent = transform.parent;
+            bridgeParent.transform.localPosition = Vector3.zero;
+
             DeleteArenaBound();
             await Task.Delay(250);
             CreateEnterWalls();
             await Task.Delay(100);
-            CreateExitWalls();
-            await Task.Delay(100);
             CreateLeftRightWalls();
+            await Task.Delay(100);
+            CreateExitWalls();
         }
         private void CreateEnterWalls()
         {
@@ -70,13 +81,13 @@ namespace Funlary
                 EnterRight_PoleController.transform.localPosition = Vector3.zero;
                 EnterLeft_PoleController.transform.localPosition = Vector3.zero;
 
-                EnterRight_PoleController.startPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
-                EnterRight_PoleController.endPoint.localPosition = new Vector3(1.5f, 1, -arenaTransform.localScale.x / 2);
+                EnterRight_PoleController.startPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
+                EnterRight_PoleController.endPoint.localPosition = new Vector3(-1.5f, 1, -arenaTransform.localScale.x / 2);
                 EnterRight_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
                 EnterRight_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
 
-                EnterLeft_PoleController.startPoint.localPosition = new Vector3(-1.5f, 1, -arenaTransform.localScale.x / 2);
-                EnterLeft_PoleController.endPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1,-arenaTransform.localScale.x / 2);
+                EnterLeft_PoleController.startPoint.localPosition = new Vector3(1.5f, 1, -arenaTransform.localScale.x / 2);
+                EnterLeft_PoleController.endPoint.localPosition = new Vector3(+arenaTransform.localScale.x / 2, 1,-arenaTransform.localScale.x / 2);
                 EnterLeft_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
                 EnterLeft_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
 
@@ -96,8 +107,8 @@ namespace Funlary
 
                 Enter_PoleController.transform.localPosition = Vector3.zero;
 
-                Enter_PoleController.startPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
-                Enter_PoleController.endPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
+                Enter_PoleController.startPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
+                Enter_PoleController.endPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
 
                 Enter_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
                 Enter_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
@@ -109,64 +120,76 @@ namespace Funlary
 
             }
         }
+
+        private void CreateBridges()
+        {
+            bridges.Clear();
+            float increaseAmount = 10;
+            float horizontalPos;
+            int leftPiece = exitDoorCount / 2;
+            int rightPiece = leftPiece;
+
+            for (int i = -leftPiece; i <= rightPiece; i++)
+            {
+                if (exitDoorCount % 2 == 0)
+                {
+                    if (i == 0) continue;
+                    else
+                    {
+                        float multiplier = -1;
+                        if (i < 0) multiplier = 1;
+                        horizontalPos = (i * increaseAmount) + ((multiplier) * (increaseAmount / 2));
+                    }
+                }
+                else
+                {
+                    horizontalPos = (i * increaseAmount);
+                }
+
+
+                Bridge bridge = Instantiate(bridgePrefab, bridgeParent);
+                bridge.transform.position += Vector3.right * horizontalPos + Vector3.forward * (arenaTransform.localScale.z / 2);
+                bridge.SetStackManager(stackManager);
+                bridges.Add(bridge);
+            }
+        }
+
         private void CreateExitWalls()
         {
             if (HasExitDoor)
             {
-                PoleController ExitRight_PoleController = Instantiate(poleControllerPrefab, transform);
-                PoleController ExitLeft_PoleController = Instantiate(poleControllerPrefab, transform);
+                CreateBridges();
 
-                float increaseAmount = 10;
-                float horizontalPos;
-                int leftPiece = exitDoorCount / 2;
-                int rightPiece = leftPiece;
-
-
-                print("right: " + rightPiece);
-                print("left: " + leftPiece);
-
-                for (int i = -leftPiece; i <= rightPiece; i++)
+                for (int i = 0; i < exitDoorCount+1; i++)
                 {
-                    if(exitDoorCount % 2 == 0)
+                    PoleController poleController =  Instantiate(poleControllerPrefab, transform);
+                    poleController.name = "Exit_PoleController_" + i;
+                    poleController.transform.localPosition = Vector3.zero;;
+
+
+                    if (i == 0)
                     {
-                        if(i == 0) continue;
-                        else
-                        {
-                            float multiplier = -1;
-                            if (i < 0) multiplier = 1;
-                            horizontalPos = (i * increaseAmount) + ((multiplier)*(increaseAmount / 2));
-                        }
+                        poleController.startPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.x / 2);
                     }
                     else
                     {
-                        horizontalPos = (i * increaseAmount);
+                        poleController.startPoint.localPosition = new Vector3(bridges[i-1].transform.position.x + 1.5f, 1, arenaTransform.localScale.x / 2);
+                    }
+
+                    if (i == exitDoorCount)
+                    {
+                        poleController.endPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.x / 2);
+                    }
+                    else
+                    {
+                        poleController.endPoint.localPosition = new Vector3(bridges[i].transform.position.x - 1.5f, 1, arenaTransform.localScale.x / 2);
                     }
                     
+                    poleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
+                    poleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
 
-                    Bridge bridge = Instantiate(bridgePrefab, bridgeParent);
-                    bridge.transform.position += Vector3.right * horizontalPos;
-                    bridge.SetStackManager(stackManager);
+                    poleController.CreateMeshAndRope(MeshType.HORIZONTAL_WALL, poleController.endPoint.position.x - poleController.startPoint.position.x);
                 }
-
-
-                ExitRight_PoleController.name = "ExitRight_PoleController";
-                ExitLeft_PoleController.name = "ExitLeft_PoleController";
-
-                ExitRight_PoleController.transform.localPosition = Vector3.zero;
-                ExitLeft_PoleController.transform.localPosition = Vector3.zero;
-
-                ExitRight_PoleController.startPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.x / 2);
-                ExitRight_PoleController.endPoint.localPosition = new Vector3(1.5f, 1, arenaTransform.localScale.x / 2);
-                ExitRight_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
-                ExitRight_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
-
-                ExitLeft_PoleController.startPoint.localPosition = new Vector3(-1.5f, 1, arenaTransform.localScale.x / 2);
-                ExitLeft_PoleController.endPoint.localPosition = new Vector3(-arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.x / 2);
-                ExitLeft_PoleController.startPoint.GetComponent<MeshRenderer>().enabled = false;
-                ExitLeft_PoleController.endPoint.GetComponent<MeshRenderer>().enabled = false;
-
-                ExitRight_PoleController.CreateMeshAndRope(MeshType.HORIZONTAL_WALL, ExitRight_PoleController.endPoint.position.x - ExitRight_PoleController.startPoint.position.x);
-                ExitLeft_PoleController.CreateMeshAndRope(MeshType.HORIZONTAL_WALL, ExitLeft_PoleController.endPoint.position.x - ExitLeft_PoleController.startPoint.position.x);
             }
             else
             {

@@ -29,7 +29,7 @@ namespace Funlary
         public void CreateMeshAndRope(MeshType meshType, float meshLength)
         {
             MeshGeneration.Instance.CreateMesh(
-                meshType, MeshRotationType.RIGHT,
+                meshType, MeshRotationType.LEFT,
                 5, meshLength, 5, new Vector3(startPoint.position.x, startPoint.position.y - 1, startPoint.position.z),
                 startPoint, endPoint, this.transform
             );

@@ -28,7 +28,7 @@ namespace Funlary.MeshGenerationModule
             }
             else if (meshType == MeshType.HORIZONTAL_WALL)
             {
-                meshObject.transform.rotation = CalculateRotation(endPoint, startPoint);
+                meshObject.transform.rotation = CalculateRotation(startPoint, endPoint);
             }
 
             Mesh mesh = BuildPlaneMesh(meshRotationType, meshWidth, meshLength, meshParent);
