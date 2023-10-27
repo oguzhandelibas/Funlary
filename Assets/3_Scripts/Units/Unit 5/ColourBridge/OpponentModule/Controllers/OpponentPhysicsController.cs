@@ -19,7 +19,6 @@ namespace Funlary.Unit5.OpponentModule.Controller
             print("helo");
             if (other.TryGetComponent(out StackManager stackManager))
             {
-                
                 opponent.currentStackManager = stackManager;
                 if (!stackManager.activeOnStart) stackManager.StackActiveness(true);
                 stackManager.previousArenaBarrier?.SetActive(true);
