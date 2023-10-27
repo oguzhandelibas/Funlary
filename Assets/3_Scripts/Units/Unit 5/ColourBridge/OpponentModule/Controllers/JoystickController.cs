@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class JoystickController : MonoBehaviour
 {
-    Joystick joystick;
-    private void Awake()
-    {
-        joystick = FindObjectOfType<Joystick>();
-    }
+    [HideInInspector] public Joystick joystick;
 
     public Vector3 JoystickInput()
     {

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using Funlary.InventoryModule;
 using Funlary.Unit5.ColourBridge.BridgeModule;
@@ -13,13 +10,23 @@ namespace Funlary.Unit5.OpponentModule.Controller
     public class OpponentPhysicsController : MonoBehaviour
     {
         #region FIELDS
-        public Rigidbody rigidbody;
         public Opponent opponent;
         #endregion
 
         #region UNITY FUNCTIONS
         private void OnTriggerEnter(Collider other)
         {
+            print("helo");
+            if (other.TryGetComponent(out StackManager stackManager))
+            {
+                
+                opponent.currentStackManager = stackManager;
+                if (!stackManager.activeOnStart) stackManager.StackActiveness(true);
+                stackManager.previousArenaBarrier?.SetActive(true);
+                opponent.DropAllStacks(true, true);
+                opponent.SetColor(OpponentManager.Instance.GetRandomColorType(opponent.ColorType));
+            }
+
             if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable && iStack.StackColorType == opponent.ColorType)
             {
                 opponent.OpponentStackController.AddStack(iStack, opponent.stackParent);
@@ -55,7 +62,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
             if (other.transform.TryGetComponent(out OpponentPhysicsController opponentPhysicController))
             {
                 Opponent targetOpponent = opponentPhysicController.opponent;
-                rigidbody.velocity = Vector3.zero;
+                opponent.opponentMovement.rb.velocity = Vector3.zero;
                 if (targetOpponent.StackCount <= opponent.StackCount)
                 {
                     targetOpponent.OpponentStackController.DropAllStack(false, false);

@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Funlary.SoundModule.Signals;
 using Funlary.Unit5.ColourBridge.BridgeModule;
-using Funlary.Unit5.OpponentModule;
-using Funlary.Unit5.OpponentModule.Controller;
 using UnityEngine;
 
 namespace Funlary.Unit5.StackModule
@@ -13,15 +9,15 @@ namespace Funlary.Unit5.StackModule
     {
         #region FIELDS
 
-        [SerializeField] private GameObject previousArenaBarrier;
+        public GameObject previousArenaBarrier;
         [SerializeField] private ColorData colorData;
         [SerializeField] private Stack stack;
         [SerializeField] private Collider generationStarterCollider;
         #endregion
 
         #region VARIABLES
-        [SerializeField] private bool activeOnStart;
-        [SerializeField] private Vector3 stackAreaSize = new Vector3(30, 0, 20);
+        public bool activeOnStart;
+        public Vector3 stackAreaSize = new Vector3(30, 0, 20);
         private List<Stack> _stackList = new List<Stack>();
         private Vector3[] _stackPositions;
 
@@ -45,18 +41,6 @@ namespace Funlary.Unit5.StackModule
         {
             GenerateAllStacks();
             StackActiveness(activeOnStart);
-            generationStarterCollider.enabled = !activeOnStart;
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (!activeOnStart) StackActiveness(true);
-            if (other.TryGetComponent(out OpponentPhysicsController opponentPhysicsController))
-            {
-                previousArenaBarrier?.SetActive(true);
-                opponentPhysicsController.opponent.DropAllStacks(true, true);
-                opponentPhysicsController.opponent.SetColor(OpponentManager.Instance.GetRandomColorType(opponentPhysicsController.opponent.ColorType));
-            }
         }
 
         #endregion
@@ -65,7 +49,6 @@ namespace Funlary.Unit5.StackModule
 
         private void GenerateAllStacks()
         {
-            generationStarterCollider.enabled = false;
             float width = stackAreaSize.x;
             float height = stackAreaSize.z;
 
@@ -102,7 +85,7 @@ namespace Funlary.Unit5.StackModule
             }
         }
 
-        private void StackActiveness(bool value)
+        public void StackActiveness(bool value)
         {
             foreach (var item in _stackList)
             {

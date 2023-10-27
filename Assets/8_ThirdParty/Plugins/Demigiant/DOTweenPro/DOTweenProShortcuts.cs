@@ -28,7 +28,7 @@ namespace DG.Tweening
         /// <param name="duration">The duration of the tween</param>
         /// <param name="axis">The axis around which the spiral will rotate</param>
         /// <param name="mode">The type of spiral movement</param>
-        /// <param name="speed">Speed of the rotations</param>
+        /// <param name="speed">MovementSpeed of the rotations</param>
         /// <param name="frequency">Frequency of the rotation. Lower values lead to wider spirals</param>
         /// <param name="depth">Indicates how much the tween should move along the spiral's axis</param>
         /// <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>
@@ -60,7 +60,7 @@ namespace DG.Tweening
         /// <param name="duration">The duration of the tween</param>
         /// <param name="axis">The axis around which the spiral will rotate</param>
         /// <param name="mode">The type of spiral movement</param>
-        /// <param name="speed">Speed of the rotations</param>
+        /// <param name="speed">MovementSpeed of the rotations</param>
         /// <param name="frequency">Frequency of the rotation. Lower values lead to wider spirals</param>
         /// <param name="depth">Indicates how much the tween should move along the spiral's axis</param>
         /// <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>

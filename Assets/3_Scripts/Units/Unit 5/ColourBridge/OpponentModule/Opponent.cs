@@ -10,6 +10,7 @@ using Funlary.Unit5.OpponentModule.Controller;
 using Funlary.Unit5.StackModule;
 using NaughtyAttributes;
 using Unity.VisualScripting;
+using UnityEngine.AI;
 
 namespace Funlary.Unit5.OpponentModule
 {
@@ -19,9 +20,12 @@ namespace Funlary.Unit5.OpponentModule
 
         public Transform character;
         public Transform stackParent;
+        public StackManager currentStackManager;
         public AnimationController animationController;
         public OpponentStackController OpponentStackController;
         public OpponentMovement opponentMovement;
+        public OpponentPhysicsController opponentPhysicsController;
+        [SerializeField] private Joystick joystick;
         [SerializeField] private ColorData colorData;
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
 
@@ -78,14 +82,20 @@ namespace Funlary.Unit5.OpponentModule
         {
             if (opponentType == OpponentType.AI)
             {
-                _IControl = new AIController();
+                NavMeshAgent navMeshAgent = character.parent.AddComponent<NavMeshAgent>();
+                navMeshAgent.speed = opponentMovement.MovementSpeed;
+
+                _IControl = new AIController(this, navMeshAgent);
             }
             else if (opponentType == OpponentType.PLAYER)
             {
                 PlayerController playerController = new PlayerController();
                 _IControl = playerController;
 
-                playerController.joystickController = FindObjectOfType<JoystickController>();
+                character.AddComponent<JoystickController>();
+                
+                playerController.joystickController = GetComponentInChildren<JoystickController>();
+                playerController.joystickController.joystick = joystick;
             }
 
             opponentMovement._IControl = _IControl;

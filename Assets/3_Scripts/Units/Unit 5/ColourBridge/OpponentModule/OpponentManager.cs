@@ -13,12 +13,6 @@ namespace Funlary.Unit5.OpponentModule
         [SerializeField] private ColorData colorData;
         private List<ColorType> _colorTypes = new List<ColorType>();
 
-        public void SetColorTypes(List<ColorType> colorTypes)
-        {
-            _colorTypes = colorTypes;
-            InitializeOpponents();
-        }
-
         public ColorType GetRandomColorType(ColorType currentColorType)
         {
             List<ColorType> colorTypes = BridgeManager.Instance.GetColorTypes();
@@ -32,16 +26,20 @@ namespace Funlary.Unit5.OpponentModule
             return colorType;
         }
 
-        private ColorType GetRandomColorType()
+        public void SetColorTypes(List<ColorType> colorTypes)
         {
-            return colorData.GetRandomColorType(_colorTypes);
+            _colorTypes = colorTypes;
+            InitializeOpponents();
         }
+
+        private ColorType GetRandomColorType() => colorData.GetRandomColorType(_colorTypes);
+        
 
         private void InitializeOpponents()
         {
-            foreach (var item in opponents)
+            for (int i = 0; i < opponents.Length; i++)
             {
-                item.SetColor(GetRandomColorType());
+                opponents[i].SetColor(_colorTypes[i]);
             }
         }
     }
