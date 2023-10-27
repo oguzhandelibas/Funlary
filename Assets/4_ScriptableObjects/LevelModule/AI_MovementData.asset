@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef7dbf588678ed419a4941dded85155, type: 3}
   m_Name: AI_MovementData
   m_EditorClassIdentifier: 
-  MovementSpeed: 40
+  MovementSpeed: 50
   DoubleSpeed: 0

@@ -84,6 +84,7 @@ namespace Funlary.Unit5.OpponentModule
             {
                 NavMeshAgent navMeshAgent = character.parent.AddComponent<NavMeshAgent>();
                 navMeshAgent.acceleration = 4;
+                navMeshAgent.angularSpeed = 500;
                 navMeshAgent.speed = opponentMovement.MovementSpeed;
 
                 _IControl = new AIController(this, animationController, navMeshAgent);

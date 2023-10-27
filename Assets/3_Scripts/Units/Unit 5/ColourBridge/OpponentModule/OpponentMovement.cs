@@ -29,7 +29,6 @@ namespace Funlary.Unit5.OpponentModule
         private void Start()
         {
             animationController.PlayAnim(AnimTypes.IDLE);
-            movementData = new OpponentMovementData();
         }
 
         private void FixedUpdate()
