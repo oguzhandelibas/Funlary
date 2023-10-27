@@ -16,7 +16,6 @@ namespace Funlary.Unit5.OpponentModule.Controller
         #region UNITY FUNCTIONS
         private void OnTriggerEnter(Collider other)
         {
-            print("helo");
             if (other.TryGetComponent(out StackManager stackManager))
             {
                 opponent.currentStackManager = stackManager;

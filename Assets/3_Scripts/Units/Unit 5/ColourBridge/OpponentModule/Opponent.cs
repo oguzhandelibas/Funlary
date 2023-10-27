@@ -83,9 +83,10 @@ namespace Funlary.Unit5.OpponentModule
             if (opponentType == OpponentType.AI)
             {
                 NavMeshAgent navMeshAgent = character.parent.AddComponent<NavMeshAgent>();
+                navMeshAgent.acceleration = 4;
                 navMeshAgent.speed = opponentMovement.MovementSpeed;
 
-                _IControl = new AIController(this, navMeshAgent);
+                _IControl = new AIController(this, animationController, navMeshAgent);
             }
             else if (opponentType == OpponentType.PLAYER)
             {
