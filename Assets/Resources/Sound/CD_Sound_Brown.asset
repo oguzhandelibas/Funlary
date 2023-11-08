@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CD_Sound_BROWN
   m_EditorClassIdentifier: 
   SoundDatas:
-  - {fileID: 8300000, guid: 3914eb63925a46642aab0cf790fb5a0d, type: 3}
-  - {fileID: 8300000, guid: 2a6b946b9b7edcb44a2bf8c7c941641a, type: 3}
+  - {fileID: 8300000, guid: 89ae0692e409e12429b7ebd5f61a8925, type: 3}
+  - {fileID: 8300000, guid: 8a625e27047814043a71aba179a33b07, type: 3}

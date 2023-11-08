@@ -13,7 +13,6 @@ namespace Funlary.Unit5.StackModule
     {
         #region FIELDS
 
-        [SerializeField] private AudioSource stacAudioSource;
         [SerializeField] private TrailRenderer[] trailRenderers;
         public StackManager stackManager;
         public int StackIndex;
@@ -58,7 +57,6 @@ namespace Funlary.Unit5.StackModule
                 SetEase(Ease.Linear)
                 .OnComplete((() => SetTrailRendererActiveness(false, 100)));
             transform.localRotation = Quaternion.Euler(0, 0, 0);
-            stacAudioSource.Play();
         }
 
         public void SetAsStep(Vector3 position)

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b0e136f3c5760428d5850f0f45b681, type: 3}
+  m_Name: OpponentAudioData
+  m_EditorClassIdentifier: 
+  AudioClips:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+    - Key: 1
+      Value: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}

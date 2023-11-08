@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CD_Sound_PINK
   m_EditorClassIdentifier: 
   SoundDatas:
-  - {fileID: 8300000, guid: c6c5c603268707e46ab15fb56b4aef38, type: 3}
-  - {fileID: 8300000, guid: 1a1056d8cdcdad64c8d9bf46a0018f70, type: 3}
+  - {fileID: 8300000, guid: e0dc9178bd5715045ac3f1e1492edb81, type: 3}
+  - {fileID: 8300000, guid: 1984c8bbe96534d4583673e5adf08965, type: 3}

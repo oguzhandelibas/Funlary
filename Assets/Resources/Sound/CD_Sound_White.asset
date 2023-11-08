@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CD_Sound_WHITE
   m_EditorClassIdentifier: 
   SoundDatas:
-  - {fileID: 8300000, guid: 3b2478742234eee4e945f2dd6262ab5e, type: 3}
-  - {fileID: 8300000, guid: d654a730bdddee14b8faec44ac77b3c6, type: 3}
+  - {fileID: 8300000, guid: 4c5b21307f1f51344aba8ee42ea318cf, type: 3}
+  - {fileID: 8300000, guid: c2f3388adf82b5e46a8d96543d6b422f, type: 3}

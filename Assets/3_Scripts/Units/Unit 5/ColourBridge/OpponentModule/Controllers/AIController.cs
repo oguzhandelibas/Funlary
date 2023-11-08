@@ -27,7 +27,9 @@ namespace Funlary.Unit5.OpponentModule.Controller
         {
             if (!hasDestination)
             {
-                crawlSpace = _opponent.currentStackManager.stackAreaSize;
+                if (!_opponent.currentStackManager) return Vector3.zero;
+
+                crawlSpace = _opponent.GetStackAreaSize;
                 Vector3 destinationTemp = new Vector3(Random.Range(-crawlSpace.x / 2, crawlSpace.x / 2), 0,
                     Random.Range(-crawlSpace.z / 2, crawlSpace.z / 2));
                 while (Vector3.Distance(destination,destinationTemp) < 1f)

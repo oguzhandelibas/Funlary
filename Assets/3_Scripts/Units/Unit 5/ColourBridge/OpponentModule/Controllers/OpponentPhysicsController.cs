@@ -20,7 +20,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
             {
                 opponent.currentStackManager = stackManager;
                 if (!stackManager.activeOnStart) stackManager.StackActiveness(true);
-                stackManager.previousArenaBarrier?.SetActive(true);
+                stackManager.SetPreviousArenaBarriarActiveness(true);
                 opponent.DropAllStacks(true, true);
                 opponent.SetColor(OpponentManager.Instance.GetRandomColorType(opponent.ColorType));
             }

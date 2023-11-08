@@ -1,21 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Funlary.Unit5.OpponentModule
 {
     public class OpponentAudioController : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        [SerializeField] private AudioSource opponentAudioSource;
+        [SerializeField] private OpponentAudioData opponentAudioData;
 
-        // Update is called once per frame
-        void Update()
+        public void PlaySound(OpponentAudioType opponentAudioType)
         {
-        
+            opponentAudioSource.clip = opponentAudioData.AudioClips[opponentAudioType];
+            opponentAudioSource.Play();
         }
     }
 }

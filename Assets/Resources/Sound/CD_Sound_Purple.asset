@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CD_Sound_PURPLE
   m_EditorClassIdentifier: 
   SoundDatas:
-  - {fileID: 8300000, guid: 1a6598f6682289144853be8c8f9f79f9, type: 3}
-  - {fileID: 8300000, guid: 1dd127635587c5348915a49d69155c00, type: 3}
+  - {fileID: 8300000, guid: 2d6cd64ceb2531d42bcb9f4459555812, type: 3}
+  - {fileID: 8300000, guid: e1a540e60d26ec642b1c3ec7a54e4412, type: 3}

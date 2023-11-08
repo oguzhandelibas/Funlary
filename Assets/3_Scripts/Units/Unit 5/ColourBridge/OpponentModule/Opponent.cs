@@ -25,10 +25,13 @@ namespace Funlary.Unit5.OpponentModule
         public OpponentStackController OpponentStackController;
         public OpponentMovement opponentMovement;
         public OpponentPhysicsController opponentPhysicsController;
+
         [SerializeField] private Joystick joystick;
         [SerializeField] private ColorData colorData;
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
 
+        [SerializeField] private OpponentAudioController audioControllerPrefab;
+        private OpponentAudioController _opponentAudioController;
         #endregion
 
         #region VARIABLES
@@ -45,6 +48,7 @@ namespace Funlary.Unit5.OpponentModule
 
         #region PROPERTIES
 
+        public Vector3 GetStackAreaSize { get => currentStackManager.stackAreaSize; }
         public void SetColor(ColorType colorType)
         {
             if (opponentType == OpponentType.PLAYER)
@@ -94,6 +98,8 @@ namespace Funlary.Unit5.OpponentModule
                 PlayerController playerController = new PlayerController();
                 _IControl = playerController;
 
+                _opponentAudioController = Instantiate(audioControllerPrefab, transform);
+
                 character.AddComponent<JoystickController>();
                 
                 playerController.joystickController = GetComponentInChildren<JoystickController>();
@@ -106,6 +112,12 @@ namespace Funlary.Unit5.OpponentModule
         public void DropAllStacks(bool canCollectStack, bool destroyAfter)
         {
             OpponentStackController.DropAllStack(canCollectStack, destroyAfter);
+        }
+
+        public void PlaySound(OpponentAudioType opponentAudioType)
+        {
+            if(!_opponentAudioController) return;
+            _opponentAudioController.PlaySound(opponentAudioType);
         }
 
         #endregion

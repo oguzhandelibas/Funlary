@@ -224,11 +224,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 1628403541906173449}
   stackParent: {fileID: 1628403542256615138}
+  currentStackManager: {fileID: 0}
   animationController: {fileID: 1628403542312285088}
   opponentMovement: {fileID: 1628403542312285095}
   opponentPhysicsController: {fileID: 1628403541108102275}
+  joystick: {fileID: 0}
   colorData: {fileID: 11400000, guid: 0ee8fde899b627544b2d23d381c0f188, type: 2}
   skinnedMeshRenderer: {fileID: 1349211097593171383}
+  audioControllerPrefab: {fileID: 6788217356824869873, guid: 17310a183d342864ebd20d785170b77d,
+    type: 3}
   ID: 1
   opponentType: 1
   ColorType: 0
