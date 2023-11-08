@@ -11,6 +11,7 @@ using Funlary.Unit5.StackModule;
 using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Funlary.Unit5.OpponentModule
 {
@@ -40,7 +41,10 @@ namespace Funlary.Unit5.OpponentModule
         public OpponentType opponentType = OpponentType.AI;
 
         public ColorType ColorType;
-        private IControl _IControl;
+        public IControl OpponentController;
+
+        public Bridge targetBridge;
+        public List<Bridge> bridges;
 
         private int _stackCount = 0;
         
@@ -82,6 +86,12 @@ namespace Funlary.Unit5.OpponentModule
 
         #region OPPONENT FUNCTIONS
 
+        public void SetBridges(List<Bridge> bridges)
+        {
+            this.bridges = bridges;
+            targetBridge = bridges[Random.Range(0, bridges.Count-1)];
+        }
+
         private void CreateOpponent()
         {
             if (opponentType == OpponentType.AI)
@@ -91,12 +101,12 @@ namespace Funlary.Unit5.OpponentModule
                 navMeshAgent.angularSpeed = 500;
                 navMeshAgent.speed = opponentMovement.MovementSpeed;
 
-                _IControl = new AIController(this, animationController, navMeshAgent);
+                OpponentController = new AIController(this, animationController, navMeshAgent);
             }
             else if (opponentType == OpponentType.PLAYER)
             {
                 PlayerController playerController = new PlayerController();
-                _IControl = playerController;
+                OpponentController = playerController;
 
                 _opponentAudioController = Instantiate(audioControllerPrefab, transform);
 
@@ -106,7 +116,7 @@ namespace Funlary.Unit5.OpponentModule
                 playerController.joystickController.joystick = joystick;
             }
 
-            opponentMovement._IControl = _IControl;
+            opponentMovement._IControl = OpponentController;
         }
 
         public void DropAllStacks(bool canCollectStack, bool destroyAfter)

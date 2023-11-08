@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Funlary.MeshGenerationModule.Enum;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.StackModule;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Funlary
@@ -27,14 +28,14 @@ namespace Funlary
         [SerializeField] private PoleController poleControllerPrefab;
 
         [SerializeField] private GroundBounds nextGroundBounds;
-        [SerializeField] private List<Bridge> bridges;
+        [SerializeField] public List<Bridge> bridges;
 
 
+        public List<Bridge> GetBridges() => bridges;
         public void SetEnterDoorBridges(List<Bridge> enterDoorbridgeList)
         {
             enterDoorBridges = enterDoorbridgeList;
         }
-
         public async Task DeleteArenaBound()
         {
             List<Transform> childrenToDestroy = new List<Transform>();
@@ -68,11 +69,11 @@ namespace Funlary
             bridgeParent.transform.localPosition = new Vector3(0,0,0);
 
             DeleteArenaBound();
-            await Task.Delay(250);
+            await Task.Delay(50);
             CreateEnterWalls();
-            await Task.Delay(100);
+            await Task.Delay(50);
             CreateLeftRightWalls();
-            await Task.Delay(100);
+            await Task.Delay(50);
             CreateExitWalls();
         }
         private void CreateEnterWalls()
@@ -131,7 +132,6 @@ namespace Funlary
 
             }
         }
-
         private void CreateBridges()
         {
             bridges.Clear();
@@ -166,7 +166,6 @@ namespace Funlary
 
             nextGroundBounds?.SetEnterDoorBridges(bridges);
         }
-
         private void CreateExitWalls()
         {
             if (HasExitDoor)
@@ -220,7 +219,6 @@ namespace Funlary
                 Exit_PoleController.CreateMeshAndRope(MeshType.HORIZONTAL_WALL, Exit_PoleController.endPoint.position.x - Exit_PoleController.startPoint.position.x);
             }
         }
-
         private void CreateLeftRightWalls()
         {
             PoleController Right_PoleController = Instantiate(poleControllerPrefab, transform);

@@ -56,10 +56,9 @@ namespace Funlary.Unit5.OpponentModule
             Vector3 movement = new Vector3(direction.x, gravity, direction.z);
             movement = movement.normalized * MovementSpeed * Time.deltaTime;
             movement = movementData.DoubleSpeed ? movement *= 2 : movement;
-            
+
             if (direction.magnitude > 0)
             {
-                
                 rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
                 float blend = opponent.HasStack ? 1 : 0;
                 animationController.PlayAnim(AnimTypes.RUN, blend);

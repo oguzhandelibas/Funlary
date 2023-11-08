@@ -10,6 +10,9 @@ namespace Funlary.Unit5.OpponentModule.Controller
     {
         public JoystickController joystickController;
 
+        public void StackAdded() { }
+        public void StackRemoved() { }
+
         public Vector3 MoveDirection()
         {
             Vector3 direction = joystickController.JoystickInput();

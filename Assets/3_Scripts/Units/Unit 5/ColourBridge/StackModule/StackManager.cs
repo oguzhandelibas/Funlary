@@ -9,6 +9,7 @@ namespace Funlary.Unit5.StackModule
     {
         #region FIELDS
 
+        public GroundBounds groundBounds;
         [SerializeField] private GameObject previousArenaBarrier;
         [SerializeField] private ColorData colorData;
         [SerializeField] private Stack stack;
@@ -49,6 +50,7 @@ namespace Funlary.Unit5.StackModule
         {
             if(previousArenaBarrier) previousArenaBarrier.SetActive(activeness);
         }
+
 
         #region STACK GENERATION
 

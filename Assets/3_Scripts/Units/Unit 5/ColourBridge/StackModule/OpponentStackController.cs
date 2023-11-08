@@ -18,12 +18,14 @@ namespace Funlary.Unit5.StackModule
         public void AddStack(IStack stack, Transform parent)
         {
             if(!opponent.CanCollectStack) return;
-            opponent.StackCount++;
+
+            _stackQueue.Push(stack);
             stack.CanCollectable = false;
             stack.Collect(parent, opponent.StackCount);
-            _stackQueue.Push(stack);
 
+            opponent.StackCount++;
             opponent.PlaySound(OpponentAudioType.COLLECT_STACK);
+            opponent.OpponentController.StackAdded();
         }
 
         public void RemoveStack (Vector3 targetPosition)
@@ -35,6 +37,7 @@ namespace Funlary.Unit5.StackModule
             stack.SetAsStep(targetPosition);
 
             opponent.PlaySound(OpponentAudioType.BRING_STEP);
+            opponent.OpponentController.StackRemoved();
         }
 
         public void DropAllStack(bool canCollectStack, bool destroyAfer = false)

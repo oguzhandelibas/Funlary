@@ -23,6 +23,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
                 stackManager.SetPreviousArenaBarriarActiveness(true);
                 opponent.DropAllStacks(true, true);
                 opponent.SetColor(OpponentManager.Instance.GetRandomColorType(opponent.ColorType));
+                opponent.SetBridges(stackManager.groundBounds.GetBridges());
             }
 
             if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable && iStack.StackColorType == opponent.ColorType)
@@ -67,7 +68,6 @@ namespace Funlary.Unit5.OpponentModule.Controller
                     targetOpponent.character.DOLookAt(opponent.character.position, 0.25f);
                     targetOpponent.opponentMovement.animationController.PlayAnim(AnimTypes.FALL);
                 }
-
             }
         }
 
