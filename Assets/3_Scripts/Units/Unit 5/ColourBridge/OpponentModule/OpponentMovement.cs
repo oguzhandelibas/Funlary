@@ -92,7 +92,7 @@ namespace Funlary.Unit5.OpponentModule
             {
                 rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
 
-                opponent.character.DOLookAt(targetPos, 0.2f);
+                opponent.character.DOLookAt(new Vector3(targetPos.x,0,targetPos.z), 0.2f);
 
                 float blend = opponent.HasStack ? 1 : 0;
                 animationController.PlayAnim(AnimTypes.RUN, blend);

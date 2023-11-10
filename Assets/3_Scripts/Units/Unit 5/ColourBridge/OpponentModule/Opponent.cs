@@ -93,16 +93,15 @@ namespace Funlary.Unit5.OpponentModule
         public void SetBridges(List<Bridge> bridges)
         {
             this.bridges = bridges;
-            Debug.Log(this.bridges.Count);
             targetBridge = this.bridges[Random.Range(0, this.bridges.Count-1)];
-            Debug.Log(name + " || Target Bridge Assignment: " + targetBridge);
         }
 
         private void CreateOpponent()
         {
             if (opponentType == OpponentType.AI)
             {
-                OpponentController = new AIController(this, animationController);
+                AIController aiController = new AIController(this, animationController);
+                OpponentController = aiController;
             }
             else if (opponentType == OpponentType.PLAYER)
             {

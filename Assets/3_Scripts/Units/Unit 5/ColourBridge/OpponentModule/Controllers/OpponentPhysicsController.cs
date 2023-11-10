@@ -64,9 +64,9 @@ namespace Funlary.Unit5.OpponentModule.Controller
                 opponent.opponentMovement.rb.velocity = Vector3.zero;
                 if (targetOpponent.StackCount <= opponent.StackCount)
                 {
-                    targetOpponent.OpponentStackController.DropAllStack(false, false);
-                    targetOpponent.character.DOLookAt(opponent.character.position, 0.25f);
-                    targetOpponent.opponentMovement.animationController.PlayAnim(AnimTypes.FALL);
+                    targetOpponent.OpponentStackController.DropAllStack(true, false);
+                    //targetOpponent.character.DOLookAt(opponent.character.position, 0.25f);
+                    //targetOpponent.opponentMovement.animationController.PlayAnim(AnimTypes.FALL);
                 }
             }
         }

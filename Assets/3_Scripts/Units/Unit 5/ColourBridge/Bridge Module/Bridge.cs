@@ -17,7 +17,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         [Header("Indicator Transforms")]
         [SerializeField] private Transform stairParent;
-        [SerializeField] private Transform startPoint;
+        public Transform startPoint;
         public Transform endPoint;
 
         [Header("Prefabs")]
