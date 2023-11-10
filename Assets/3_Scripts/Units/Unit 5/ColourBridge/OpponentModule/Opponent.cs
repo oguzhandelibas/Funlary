@@ -76,32 +76,33 @@ namespace Funlary.Unit5.OpponentModule
 
         private void Start()
         {
-            OpponentStackController = new OpponentStackController(this);
-            CreateOpponent();
-            CanCollectStack = true;
-            CanMove = true;
+            
         }
 
         #endregion
 
         #region OPPONENT FUNCTIONS
 
+        public void InitializeOpponent(StackManager stackManager)
+        {
+            currentStackManager = stackManager;
+            OpponentStackController = new OpponentStackController(this);
+            CreateOpponent();
+        }
+
         public void SetBridges(List<Bridge> bridges)
         {
             this.bridges = bridges;
-            targetBridge = bridges[Random.Range(0, bridges.Count-1)];
+            Debug.Log(this.bridges.Count);
+            targetBridge = this.bridges[Random.Range(0, this.bridges.Count-1)];
+            Debug.Log(name + " || Target Bridge Assignment: " + targetBridge);
         }
 
         private void CreateOpponent()
         {
             if (opponentType == OpponentType.AI)
             {
-                NavMeshAgent navMeshAgent = character.parent.AddComponent<NavMeshAgent>();
-                navMeshAgent.acceleration = 4;
-                navMeshAgent.angularSpeed = 500;
-                navMeshAgent.speed = opponentMovement.MovementSpeed;
-
-                OpponentController = new AIController(this, animationController, navMeshAgent);
+                OpponentController = new AIController(this, animationController);
             }
             else if (opponentType == OpponentType.PLAYER)
             {
@@ -117,6 +118,8 @@ namespace Funlary.Unit5.OpponentModule
             }
 
             opponentMovement._IControl = OpponentController;
+            CanCollectStack = true;
+            CanMove = true;
         }
 
         public void DropAllStacks(bool canCollectStack, bool destroyAfter)

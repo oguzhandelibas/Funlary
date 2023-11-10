@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using Funlary.Unit5.OpponentModule.Animation;
 using Funlary.Unit5.OpponentModule.Controller;
@@ -44,7 +45,7 @@ namespace Funlary.Unit5.OpponentModule
                 return;
             }
 
-            if(opponent.opponentType == Opponent.OpponentType.PLAYER) PlayerMovement();
+            if (opponent.opponentType == Opponent.OpponentType.PLAYER) PlayerMovement();
             else AIMovement();
         }
 
@@ -78,7 +79,35 @@ namespace Funlary.Unit5.OpponentModule
 
         private void AIMovement()
         {
-            _IControl.MoveDirection();
+            float gravity = rb.velocity.y;
+
+            Vector3 targetPos = _IControl.MoveDirection();
+            Vector3 direction = targetPos - character.position;
+            Vector3 movement = new Vector3(direction.x, gravity, direction.z);
+            movement = movement.normalized * MovementSpeed * Time.deltaTime;
+
+            movement = movementData.DoubleSpeed ? movement *= 2 : movement;
+
+            if (direction.magnitude > 0)
+            {
+                rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+
+                opponent.character.DOLookAt(targetPos, 0.2f);
+
+                float blend = opponent.HasStack ? 1 : 0;
+                animationController.PlayAnim(AnimTypes.RUN, blend);
+            }
+            else
+            {
+                AnimTypes animTypes;
+                if (opponent.HasStack)
+                    animTypes = AnimTypes.HOLDING_IDLE;
+                else
+                    animTypes = AnimTypes.IDLE;
+
+                animationController.PlayAnim(animTypes);
+                rb.velocity = new Vector3(0, gravity, 0);
+            }
         }
     }
 }

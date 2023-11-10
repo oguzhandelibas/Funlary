@@ -9,6 +9,7 @@ namespace Funlary.Unit5.OpponentModule
 {
     public class OpponentManager : AbstractSingleton<OpponentManager>
     {
+        [SerializeField] private ArenaManager arenaManager;
         [SerializeField] private Opponent[] opponents;
         [SerializeField] private ColorData colorData;
         private List<ColorType> _colorTypes = new List<ColorType>();
@@ -40,6 +41,7 @@ namespace Funlary.Unit5.OpponentModule
             for (int i = 0; i < opponents.Length; i++)
             {
                 opponents[i].SetColor(_colorTypes[i]);
+                opponents[i].InitializeOpponent(arenaManager.arenas[0].stackManager);
             }
         }
     }

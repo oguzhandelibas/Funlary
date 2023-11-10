@@ -10,16 +10,7 @@ namespace Funlary
 {
     public class ArenaManager : MonoBehaviour
     {
-        [SerializeField] private GroundBounds[] groundBoundsArray;
+        public Arena[] arenas;
 
-        private async Task Start()
-        {
-            return;
-            foreach (GroundBounds groundBounds in groundBoundsArray)
-            {
-                groundBounds.SetArenaBound();
-                await Task.Delay(150);
-            }
-        }
     }
 }

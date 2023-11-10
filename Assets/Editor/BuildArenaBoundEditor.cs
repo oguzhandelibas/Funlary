@@ -23,6 +23,8 @@ namespace Funlary
             {
                 groundBounds.DeleteArenaBound();
             }
+
+            EditorUtility.SetDirty(groundBounds);
         }
     }
 }

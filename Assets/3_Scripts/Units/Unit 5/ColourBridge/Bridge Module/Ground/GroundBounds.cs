@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Funlary.MeshGenerationModule.Enum;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.StackModule;
+using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,13 +12,12 @@ namespace Funlary
 {
     public class GroundBounds : MonoBehaviour
     {
-        [Header("Enter Door Properties")]
-        [SerializeField] private bool HasEnterDoor;
-        public List<Bridge> enterDoorBridges;
+        [Expandable]
+        [SerializeField] private GroundData groundData;
 
-        [Header("Exit Door Properties")]
-        [SerializeField] private bool HasExitDoor;
-        [SerializeField] private int exitDoorCount;
+        [Header("Bridges")]
+        public List<Bridge> enterDoorBridges;
+        public List<Bridge> exitDoorBridges;
 
         [Header("Fields")]
         [SerializeField] private Transform arenaTransform;
@@ -28,10 +28,9 @@ namespace Funlary
         [SerializeField] private PoleController poleControllerPrefab;
 
         [SerializeField] private GroundBounds nextGroundBounds;
-        [SerializeField] public List<Bridge> bridges;
+        
 
-
-        public List<Bridge> GetBridges() => bridges;
+        public List<Bridge> GetBridges() => exitDoorBridges;
         public void SetEnterDoorBridges(List<Bridge> enterDoorbridgeList)
         {
             enterDoorBridges = enterDoorbridgeList;
@@ -56,6 +55,7 @@ namespace Funlary
                 await Task.Delay(100);
             }
         }
+
         public async Task SetArenaBound()
         {
             if (!bridgeParent)
@@ -78,7 +78,7 @@ namespace Funlary
         }
         private void CreateEnterWalls()
         {
-            if (HasEnterDoor)
+            if (groundData.HasEnterDoor)
             {
                 for (int i = 0; i <= enterDoorBridges.Count; i++)
                 {
@@ -134,15 +134,15 @@ namespace Funlary
         }
         private void CreateBridges()
         {
-            bridges.Clear();
+            exitDoorBridges.Clear();
             float increaseAmount = 10;
             float horizontalPos;
-            int leftPiece = exitDoorCount / 2;
+            int leftPiece = groundData.exitDoorCount / 2;
             int rightPiece = leftPiece;
 
             for (int i = -leftPiece; i <= rightPiece; i++)
             {
-                if (exitDoorCount % 2 == 0)
+                if (groundData.exitDoorCount % 2 == 0)
                 {
                     if (i == 0) continue;
                     else
@@ -161,18 +161,18 @@ namespace Funlary
                 Bridge bridge = Instantiate(bridgePrefab, bridgeParent);
                 bridge.transform.position += Vector3.right * horizontalPos + Vector3.forward * (arenaTransform.localScale.z / 2);
                 bridge.SetStackManager(stackManager);
-                bridges.Add(bridge);
+                exitDoorBridges.Add(bridge);
             }
 
-            nextGroundBounds?.SetEnterDoorBridges(bridges);
+            nextGroundBounds?.SetEnterDoorBridges(exitDoorBridges);
         }
         private void CreateExitWalls()
         {
-            if (HasExitDoor)
+            if (groundData.HasExitDoor)
             {
                 CreateBridges();
 
-                for (int i = 0; i <= exitDoorCount; i++)
+                for (int i = 0; i <= groundData.exitDoorCount; i++)
                 {
                     PoleController poleController =  Instantiate(poleControllerPrefab, transform);
                     poleController.name = "Exit_PoleController_" + i;
@@ -185,16 +185,16 @@ namespace Funlary
                     }
                     else
                     {
-                        poleController.startPoint.localPosition = new Vector3(bridges[i-1].transform.position.x + 1.5f, 1, arenaTransform.localScale.x / 2);
+                        poleController.startPoint.localPosition = new Vector3(exitDoorBridges[i-1].transform.position.x + 1.5f, 1, arenaTransform.localScale.x / 2);
                     }
 
-                    if (i == exitDoorCount)
+                    if (i == groundData.exitDoorCount)
                     {
                         poleController.endPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.x / 2);
                     }
                     else
                     {
-                        poleController.endPoint.localPosition = new Vector3(bridges[i].transform.position.x - 1.5f, 1, arenaTransform.localScale.x / 2);
+                        poleController.endPoint.localPosition = new Vector3(exitDoorBridges[i].transform.position.x - 1.5f, 1, arenaTransform.localScale.x / 2);
                     }
                     
                     poleController.startPoint.GetComponent<MeshRenderer>().enabled = false;

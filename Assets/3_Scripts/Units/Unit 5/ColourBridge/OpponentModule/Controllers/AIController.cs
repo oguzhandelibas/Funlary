@@ -10,7 +10,6 @@ namespace Funlary.Unit5.OpponentModule.Controller
 
         private Opponent _opponent;
         private AnimationController _animationController;
-        private NavMeshAgent _navMeshAgent;
 
         #endregion
 
@@ -27,25 +26,19 @@ namespace Funlary.Unit5.OpponentModule.Controller
 
         #region AI CONTROL
 
-        public AIController(Opponent opponent, AnimationController animationController, NavMeshAgent navMeshAgent)
+        public AIController(Opponent opponent, AnimationController animationController)
         {
             _opponent = opponent;
             _animationController = animationController;
-            _navMeshAgent = navMeshAgent;
         }
 
         public Vector3 MoveDirection()
         {
-            if (!_hasDestination)
+            if (!_hasDestination) _destination = CheckDestinition();
+
+            if (Vector3.Distance(_opponent.character.parent.position, _destination) < 1f)
             {
                 _destination = CheckDestinition();
-
-                _navMeshAgent.SetDestination(_destination);
-                _hasDestination = true;
-            }
-            else if (_navMeshAgent.remainingDistance < 0.1f)
-            {
-                _hasDestination = false;
             }
 
             if (_opponent.HasStack)
@@ -53,17 +46,18 @@ namespace Funlary.Unit5.OpponentModule.Controller
             else
                 _animationController.PlayAnim(AnimTypes.RUN, 0);
 
-            return Vector3.back;
+            return _destination;
         }
+
         public Vector3 Stop()
         {
             return Vector3.zero;
         }
 
 
-
         private Vector3 CheckDestinition()
         {
+            _hasDestination = true;
             if (!_bridgeTime)
             {
                 if (!_opponent.currentStackManager) return Vector3.zero;
@@ -71,12 +65,12 @@ namespace Funlary.Unit5.OpponentModule.Controller
                 _crawlSpace = _opponent.GetStackAreaSize;
                 Vector3 destinationTemp = new Vector3(Random.Range(-_crawlSpace.x / 2, _crawlSpace.x / 2), 0,
                     Random.Range(-_crawlSpace.z / 2, _crawlSpace.z / 2));
-                while (Vector3.Distance(_destination, destinationTemp) < 1f)
+
+                while (Vector3.Distance(_destination, destinationTemp) < 3f)
                 {
                     destinationTemp = new Vector3(Random.Range(-_crawlSpace.x / 2, _crawlSpace.x / 2), 0,
                         Random.Range(-_crawlSpace.z / 2, _crawlSpace.z / 2));
                 }
-
                 return destinationTemp;
             }
             else
