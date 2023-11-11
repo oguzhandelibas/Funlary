@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Funlary.Unit5.ColourBridge.BridgeModule;
+using Funlary.Unit5.OpponentModule;
 using UnityEngine;
 
 namespace Funlary.Unit5.StackModule
@@ -10,11 +11,9 @@ namespace Funlary.Unit5.StackModule
         ColorType StackColorType { get; set; }
         bool CanCollectable { get; set; }
         bool SetAsStairStep { get; set; }
-        void Collect(Transform parent, float height);
+        void Collect(Opponent opponent, Transform parent, float height);
         void SetAsStep(Vector3 position);
         void DropStack(bool destroyAfter = false);
-        void SetColor(ColorType colorType, Material targetMaterial, float duration = 0.3f);
-        void SetColor(ColorType colorType, Color targetColor, float duration = 0.3f);
-        void SetAsCollectable();
+        void SetColor(ColorType targetColorType, ColorData colorData, float duration = 0.3f);
     }
 }

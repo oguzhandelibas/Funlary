@@ -22,7 +22,7 @@ namespace Funlary
 
         public void SetEndPolePosition(Vector3 endPosition)
         {
-            endPole.localPosition = endPosition;
+            endPole.localPosition = endPosition + Vector3.up;
             CreateMeshAndRope(MeshType.BRIDGE_ROPE, endPoint.position.z - startPoint.position.z);
         }
 

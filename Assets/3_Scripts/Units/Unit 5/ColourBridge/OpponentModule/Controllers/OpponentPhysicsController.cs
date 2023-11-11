@@ -18,17 +18,21 @@ namespace Funlary.Unit5.OpponentModule.Controller
         {
             if (other.TryGetComponent(out StackManager stackManager))
             {
+                if (stackManager.HasThisOpponent(opponent)) return;
+                stackManager.AddOpponent(opponent);
+                stackManager.StackActiveness(!stackManager.activeOnStart);
+
                 opponent.currentStackManager = stackManager;
-                if (!stackManager.activeOnStart) stackManager.StackActiveness(true);
-                stackManager.SetPreviousArenaBarriarActiveness(true);
                 opponent.DropAllStacks(true, true);
                 opponent.SetColor(OpponentManager.Instance.GetRandomColorType(opponent.ColorType));
                 opponent.SetBridges(stackManager.groundBounds.GetBridges());
             }
 
-            if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable && iStack.StackColorType == opponent.ColorType)
+            if (other.TryGetComponent(out IStack iStack) && iStack.CanCollectable &&
+                (iStack.StackColorType == ColorType.None || iStack.StackColorType == opponent.ColorType))
             {
                 opponent.OpponentStackController.AddStack(iStack, opponent.stackParent);
+                iStack.SetColor(opponent.ColorType, opponent.colorData);
             }
 
             if (opponent.HasStack && other.TryGetComponent(out IStep iStep))
@@ -64,7 +68,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
                 opponent.opponentMovement.rb.velocity = Vector3.zero;
                 if (targetOpponent.StackCount <= opponent.StackCount)
                 {
-                    targetOpponent.OpponentStackController.DropAllStack(true, false);
+                    targetOpponent.DropAllStacks(true, false);
                     //targetOpponent.character.DOLookAt(opponent.character.position, 0.25f);
                     //targetOpponent.opponentMovement.animationController.PlayAnim(AnimTypes.FALL);
                 }

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 using DG.Tweening;
 using Funlary.Unit5.ColourBridge.BridgeModule;
+using Funlary.Unit5.OpponentModule;
+using Unity.VisualScripting;
 using Random = UnityEngine.Random;
 
 namespace Funlary.Unit5.StackModule
@@ -45,10 +47,9 @@ namespace Funlary.Unit5.StackModule
         #endregion
 
         #region STEP FUNCTIONS
-        public void Collect(Transform parent, float height)
+        public void Collect(Opponent opponent, Transform parent, float height)
         {
             if (SetAsStairStep) return;
-            stackManager.GenerateStackAsync(StackIndex, StackColorType);
             Vector3 scale = transform.localScale;
             Destroy(transform.GetComponent<BoxCollider>());
             transform.SetParent(parent);
@@ -57,6 +58,9 @@ namespace Funlary.Unit5.StackModule
                 SetEase(Ease.Linear)
                 .OnComplete((() => SetTrailRendererActiveness(false, 100)));
             transform.localRotation = Quaternion.Euler(0, 0, 0);
+            SetColor(opponent.ColorType, opponent.colorData);
+
+            stackManager.GenerateStackAsync(StackIndex, StackColorType);
         }
 
         public void SetAsStep(Vector3 position)
@@ -75,6 +79,10 @@ namespace Funlary.Unit5.StackModule
         public void DropStack(bool destroyAfter = false)
         {
             transform.SetParent(stackParent);
+            
+            BoxCollider boxCollider = transform.AddComponent<BoxCollider>();
+            boxCollider.isTrigger = true;
+            boxCollider.size = new Vector3(3.0f, 0.25f, 2.0f);
 
             Vector3 startPos = transform.localPosition;
             Vector3 controlPos = startPos + new Vector3(Random.Range(-6.0f, 6.0f), Random.Range(4.0f, 7.0f), Random.Range(-6.0f, 6.0f));
@@ -83,7 +91,6 @@ namespace Funlary.Unit5.StackModule
 
             Material stackMatTemp = StackMaterial;
             stackMatTemp.color = Color.gray;
-            SetColor(ColorType.None, Color.gray);
 
             if (destroyAfter)
             {
@@ -91,29 +98,18 @@ namespace Funlary.Unit5.StackModule
             }
             else
             {
-                transform.DOPath(path, 1.0f, PathType.CatmullRom).OnComplete((SetAsCollectable));
+                transform.DOPath(path, 1.0f, PathType.CatmullRom).OnComplete(() => { CanCollectable = true; });
             }
         }
 
-        public void SetColor(ColorType colorType, Material targetMaterial, float duration = 0.3f)
+        public void SetColor(ColorType targetColorType, ColorData colorData, float duration = 0.3f)
         {
-            StackColorType = colorType;
-            StackMaterial.DOColor(targetMaterial.color, duration)
+            StackColorType = targetColorType;
+            StackMaterial.DOColor(colorData.ColorType[targetColorType].color, duration)
                 .From(startColor)
-                .OnComplete((() => StackMaterial = targetMaterial));
+                .OnComplete((() => StackMaterial = colorData.ColorType[targetColorType]));
         }
 
-        public void SetColor(ColorType colorType, Color targetColor, float duration = 0.3f)
-        {
-            StackColorType = colorType;
-            StackMaterial.DOColor(targetColor, duration).From(startColor);
-        }
-
-
-        public void SetAsCollectable()
-        {
-            CanCollectable = true;
-        }
 
         private async void SetTrailRendererActiveness(bool value, int delay = 0)
         {

@@ -44,9 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54806392eaaac5a488596e538003a4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundData: {fileID: 0}
+  enterDoorBridges: []
+  exitDoorBridges: []
   arenaTransform: {fileID: 0}
-  HasEnterDoor: 0
-  HasExitDoor: 0
-  poleController: {fileID: 4269007375419830323, guid: d221cd293bfde224a8d478ed0ce77207,
-    type: 3}
-  corners: []
+  bridgeParent: {fileID: 0}
+  stackManager: {fileID: 0}
+  bridgePrefab: {fileID: 0}
+  poleControllerPrefab: {fileID: 0}
+  nextGroundBounds: {fileID: 0}

@@ -26,11 +26,10 @@ namespace Funlary.Unit5.OpponentModule
         public OpponentStackController OpponentStackController;
         public OpponentMovement opponentMovement;
         public OpponentPhysicsController opponentPhysicsController;
+        public ColorData colorData;
 
         [SerializeField] private Joystick joystick;
-        [SerializeField] private ColorData colorData;
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
-
         [SerializeField] private OpponentAudioController audioControllerPrefab;
         private OpponentAudioController _opponentAudioController;
         #endregion
@@ -55,6 +54,7 @@ namespace Funlary.Unit5.OpponentModule
         public Vector3 GetStackAreaSize { get => currentStackManager.stackAreaSize; }
         public void SetColor(ColorType colorType)
         {
+            Debug.Log(colorType.ToString());
             if (opponentType == OpponentType.PLAYER)
             {
                 GameUIManager.Instance.gameUI.

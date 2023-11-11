@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.OpponentModule;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Funlary.Unit5.StackModule
     public class OpponentStackController
     {
         public Opponent opponent;
+
         private Stack<IStack> _stackQueue;
         public OpponentStackController(Opponent _opponent)
         {
@@ -21,7 +23,7 @@ namespace Funlary.Unit5.StackModule
 
             _stackQueue.Push(stack);
             stack.CanCollectable = false;
-            stack.Collect(parent, opponent.StackCount);
+            stack.Collect(opponent, parent, opponent.StackCount);
 
             opponent.StackCount++;
             opponent.PlaySound(OpponentAudioType.COLLECT_STACK);
@@ -46,7 +48,9 @@ namespace Funlary.Unit5.StackModule
             opponent.CanCollectStack = canCollectStack;
             while (_stackQueue.Count > 0)
             {
-                _stackQueue.Pop().DropStack(destroyAfer);
+                IStack iStack = _stackQueue.Pop();
+                iStack.DropStack(destroyAfer);
+                iStack.SetColor(ColorType.None, opponent.colorData);
             }
             opponent.StackCount = 0;
         }

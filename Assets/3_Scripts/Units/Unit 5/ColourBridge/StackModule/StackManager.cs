@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Funlary.Unit5.ColourBridge.BridgeModule;
+using Funlary.Unit5.OpponentModule;
 using UnityEngine;
 
 namespace Funlary.Unit5.StackModule
@@ -10,7 +11,6 @@ namespace Funlary.Unit5.StackModule
         #region FIELDS
 
         public GroundBounds groundBounds;
-        [SerializeField] private GameObject previousArenaBarrier;
         [SerializeField] private ColorData colorData;
         [SerializeField] private Stack stack;
         [SerializeField] private Collider generationStarterCollider;
@@ -20,6 +20,7 @@ namespace Funlary.Unit5.StackModule
         public bool activeOnStart;
         public Vector3 stackAreaSize = new Vector3(30, 0, 20);
         private List<Stack> _stackList = new List<Stack>();
+        public List<Opponent> _opponentList = new List<Opponent>();
         private Vector3[] _stackPositions;
 
         [Header("Stack Variables")]
@@ -46,11 +47,12 @@ namespace Funlary.Unit5.StackModule
 
         #endregion
 
-        public void SetPreviousArenaBarriarActiveness(bool activeness)
-        {
-            if(previousArenaBarrier) previousArenaBarrier.SetActive(activeness);
-        }
 
+        public void AddOpponent(Opponent opponent) => _opponentList.Add(opponent);
+        public bool HasThisOpponent(Opponent opponent)
+        {
+            return _opponentList.Contains(opponent);
+        }
 
         #region STACK GENERATION
 
@@ -86,7 +88,7 @@ namespace Funlary.Unit5.StackModule
                     stackTemp.stackManager = this;
                     stackTemp.StackIndex = stackIndex++;
                     ColorType colorType = colorData.GetRandomColorType(BridgeManager.Instance.GetColorTypes());
-                    stackTemp.SetColor(colorType, colorData.ColorType[colorType]);
+                    stackTemp.SetColor(colorType, colorData);
                     _stackList.Add(stackTemp);
                 }
             }
@@ -107,7 +109,7 @@ namespace Funlary.Unit5.StackModule
             Stack stackTemp = Instantiate(stack, _stackPositions[index], Quaternion.identity, transform);
             stackTemp.stackManager = this;
             stackTemp.StackIndex = index;
-            stackTemp.SetColor(colorType, colorData.ColorType[colorType]);
+            stackTemp.SetColor(colorType, colorData);
         }
 
         #endregion
