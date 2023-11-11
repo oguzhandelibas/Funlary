@@ -1,17 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Funlary.SoundModule.Signals;
 using Funlary.UIModule.Game;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.OpponentModule.Animation;
 using UnityEngine;
 using Funlary.Unit5.OpponentModule.Controller;
 using Funlary.Unit5.StackModule;
-using NaughtyAttributes;
 using Unity.VisualScripting;
-using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 namespace Funlary.Unit5.OpponentModule
 {
@@ -133,6 +128,5 @@ namespace Funlary.Unit5.OpponentModule
         }
 
         #endregion
-
     }
 }

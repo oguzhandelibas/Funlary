@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using DG.Tweening;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.OpponentModule;
 using Unity.VisualScripting;
-using Random = UnityEngine.Random;
 
 namespace Funlary.Unit5.StackModule
 {
@@ -62,7 +59,6 @@ namespace Funlary.Unit5.StackModule
 
             stackManager.GenerateStackAsync(StackIndex, StackColorType);
         }
-
         public void SetAsStep(Vector3 position)
         {
             //SetColor(stackMaterial);
@@ -75,7 +71,6 @@ namespace Funlary.Unit5.StackModule
                 });
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
-
         public void DropStack(bool destroyAfter = false)
         {
             transform.SetParent(stackParent);
@@ -101,7 +96,6 @@ namespace Funlary.Unit5.StackModule
                 transform.DOPath(path, 1.0f, PathType.CatmullRom).OnComplete(() => { CanCollectable = true; });
             }
         }
-
         public void SetColor(ColorType targetColorType, ColorData colorData, float duration = 0.3f)
         {
             StackColorType = targetColorType;
@@ -109,8 +103,6 @@ namespace Funlary.Unit5.StackModule
                 .From(startColor)
                 .OnComplete((() => StackMaterial = colorData.ColorType[targetColorType]));
         }
-
-
         private async void SetTrailRendererActiveness(bool value, int delay = 0)
         {
             await Task.Delay(delay);

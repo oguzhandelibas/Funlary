@@ -1,7 +1,5 @@
-using DG.Tweening;
 using Funlary.InventoryModule;
 using Funlary.Unit5.ColourBridge.BridgeModule;
-using Funlary.Unit5.OpponentModule.Animation;
 using Funlary.Unit5.StackModule;
 using UnityEngine;
 
@@ -77,6 +75,4 @@ namespace Funlary.Unit5.OpponentModule.Controller
 
         #endregion
     }
-
-
 }

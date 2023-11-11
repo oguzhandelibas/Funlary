@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Funlary.UIModule.Core;
-using Funlary.UIModule.Game;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using UnityEngine;
 
