@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using Funlary.Unit5.OpponentModule.Animation;

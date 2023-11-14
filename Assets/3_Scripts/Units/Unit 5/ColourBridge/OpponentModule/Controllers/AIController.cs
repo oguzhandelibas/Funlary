@@ -1,6 +1,5 @@
 using Funlary.Unit5.OpponentModule.Animation;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Funlary.Unit5.OpponentModule.Controller
 {
@@ -136,12 +135,12 @@ namespace Funlary.Unit5.OpponentModule.Controller
         {
             if (_bridgeConstructionDone) _bridgeConstructionDone = false;
 
-                // YETERLÝ SAYIDA STACK'E SAHÝP MÝ?
+                // YETERLï¿½ SAYIDA STACK'E SAHï¿½P Mï¿½?
             if (!_targetStackCountCalculated) CalculateTargetStackCount();
             Debug.Log(_targetStackCount);
             if (_opponent.StackCount >= _targetStackCount)
             {
-                // KÖPRÜ VAKTÝ
+                // Kï¿½PRï¿½ VAKTï¿½
                 _bridgeTime = true;
                 Debug.Log("Bridge Time");
             }
@@ -170,7 +169,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
                 else
                 {
                     Debug.Log("Turn Time!");
-                    // TOPLAMAYA DÖNÜÞ
+                    // TOPLAMAYA Dï¿½Nï¿½ï¿½
                     _turnBackArena = true;
                     _targetStackCountCalculated = false;
                     _firstBridgeMovement = true;
@@ -189,9 +188,9 @@ namespace Funlary.Unit5.OpponentModule.Controller
         {
 
         }
-        // SEÇÝLÝ KÖRPÜYE SAHÝP MÝ?    // SEÇÝLÝ KÖPRÜ SÝLME    // KÖPRÜ SEÇÝMÝ. 
+        // SEï¿½ï¿½Lï¿½ Kï¿½RPï¿½YE SAHï¿½P Mï¿½?    // SEï¿½ï¿½Lï¿½ Kï¿½PRï¿½ Sï¿½LME    // Kï¿½PRï¿½ SEï¿½ï¿½Mï¿½. 
 
-        // KÖPRÜYE YÖNEL,   // KÖPRÜYE STEP EKLE  // KÖPRÜ TAMAMLANDI MI   // TAMAMLANDIYSA SIRADAKÝ ALANA GEÇ   // TAMAMLANMADIYSA GERÝ DÖN VE TOPLAMAYA DEVAM ET
+        // Kï¿½PRï¿½YE Yï¿½NEL,   // Kï¿½PRï¿½YE STEP EKLE  // Kï¿½PRï¿½ TAMAMLANDI MI   // TAMAMLANDIYSA SIRADAKï¿½ ALANA GEï¿½   // TAMAMLANMADIYSA GERï¿½ Dï¿½N VE TOPLAMAYA DEVAM ET
 
         #endregion
     }

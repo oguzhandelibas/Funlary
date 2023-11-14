@@ -5,6 +5,7 @@ using DG.Tweening;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.OpponentModule;
 using Unity.VisualScripting;
+using Random = UnityEngine.Random;
 
 namespace Funlary.Unit5.StackModule
 {

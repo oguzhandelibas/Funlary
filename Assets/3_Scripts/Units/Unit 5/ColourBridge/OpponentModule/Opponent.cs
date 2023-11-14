@@ -7,6 +7,7 @@ using UnityEngine;
 using Funlary.Unit5.OpponentModule.Controller;
 using Funlary.Unit5.StackModule;
 using Unity.VisualScripting;
+using Random = UnityEngine.Random;
 
 namespace Funlary.Unit5.OpponentModule
 {
