@@ -12,6 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9951169984a0b634896eadfba2ecebc3, type: 3}
   m_Name: GroundData 1
   m_EditorClassIdentifier: 
-  HasEnterDoor: 0
-  HasExitDoor: 1
-  exitDoorCount: 1

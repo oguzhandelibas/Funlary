@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: GroundData 2
   m_EditorClassIdentifier: 
   HasEnterDoor: 1
+  enterDoorCount: 1
   HasExitDoor: 1
   exitDoorCount: 1

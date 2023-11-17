@@ -1,35 +1,31 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Funlary.MeshGenerationModule.Enum;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using Funlary.Unit5.StackModule;
-using NaughtyAttributes;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Funlary
 {
     public class GroundBounds : MonoBehaviour
     {
-        [Expandable]
-        [SerializeField] private GroundData groundData;
-
         [Header("Bridges")]
         public List<Bridge> enterDoorBridges;
         public List<Bridge> exitDoorBridges;
 
-        [Header("Fields")]
+        [Header("Fields")] 
+        [SerializeField] private Arena arena;
         [SerializeField] private Transform arenaTransform;
         [SerializeField] private Transform bridgeParent;
 
         [SerializeField] private StackManager stackManager;
-        [SerializeField] private Bridge bridgePrefab;
-        [SerializeField] private PoleController poleControllerPrefab;
-
         [SerializeField] private GroundBounds nextGroundBounds;
         
-
+        [Header("Prefabs")]
+        [SerializeField] private Bridge bridgePrefab;
+        [SerializeField] private PoleController poleControllerPrefab;
+        
+        
         public List<Bridge> GetBridges() => exitDoorBridges;
         public void SetEnterDoorBridges(List<Bridge> enterDoorbridgeList)
         {
@@ -63,24 +59,23 @@ namespace Funlary
                 bridgeParent = new GameObject().transform;
                 bridgeParent.name = "Bridges";
             }
-            bridgeParent.parent = null;
             bridgeParent.localScale = new Vector3(1, 1, 1);
             bridgeParent.parent = transform.parent;
             bridgeParent.transform.localPosition = new Vector3(0,0,0);
 
             DeleteArenaBound();
             await Task.Delay(50);
-            CreateEnterWalls();
+            CreateExitWalls();
             await Task.Delay(50);
             CreateLeftRightWalls();
             await Task.Delay(50);
-            CreateExitWalls();
+            CreateEnterWalls();
         }
         private void CreateEnterWalls()
         {
-            if (groundData.HasEnterDoor)
+            if (arena.HasEnterDoor)
             {
-                for (int i = 0; i <= enterDoorBridges.Count; i++)
+                for (int i = 0; i <= arena.enterDoorCount; i++)
                 {
                     PoleController poleController = Instantiate(poleControllerPrefab, transform);
                     poleController.name = "Enter_PoleController_" + i;
@@ -95,7 +90,7 @@ namespace Funlary
                         poleController.startPoint.localPosition = new Vector3(enterDoorBridges[i-1].transform.position.x + 1.5f, 1, -arenaTransform.localScale.x / 2);
                     }
 
-                    if (i == enterDoorBridges.Count)
+                    if (i == arena.enterDoorCount)
                     {
                         poleController.endPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, -arenaTransform.localScale.x / 2);
                     }
@@ -137,12 +132,12 @@ namespace Funlary
             exitDoorBridges.Clear();
             float increaseAmount = 10;
             float horizontalPos;
-            int leftPiece = groundData.exitDoorCount / 2;
+            int leftPiece = arena.exitDoorCount / 2;
             int rightPiece = leftPiece;
 
             for (int i = -leftPiece; i <= rightPiece; i++)
             {
-                if (groundData.exitDoorCount % 2 == 0)
+                if (arena.exitDoorCount % 2 == 0)
                 {
                     if (i == 0) continue;
                     else
@@ -168,11 +163,11 @@ namespace Funlary
         }
         private void CreateExitWalls()
         {
-            if (groundData.HasExitDoor)
+            if (arena.HasExitDoor)
             {
                 CreateBridges();
 
-                for (int i = 0; i <= groundData.exitDoorCount; i++)
+                for (int i = 0; i <= arena.exitDoorCount; i++)
                 {
                     PoleController poleController =  Instantiate(poleControllerPrefab, transform);
                     poleController.name = "Exit_PoleController_" + i;
@@ -188,7 +183,7 @@ namespace Funlary
                         poleController.startPoint.localPosition = new Vector3(exitDoorBridges[i-1].transform.position.x + 1.5f, 1, arenaTransform.localScale.x / 2);
                     }
 
-                    if (i == groundData.exitDoorCount)
+                    if (i == arena.exitDoorCount)
                     {
                         poleController.endPoint.localPosition = new Vector3(arenaTransform.localScale.x / 2, 1, arenaTransform.localScale.x / 2);
                     }

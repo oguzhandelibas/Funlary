@@ -50,7 +50,6 @@ namespace Funlary.Unit5.OpponentModule
         public Vector3 GetStackAreaSize { get => currentStackManager.stackAreaSize; }
         public void SetColor(ColorType colorType)
         {
-            Debug.Log(colorType.ToString());
             if (opponentType == OpponentType.PLAYER)
             {
                 GameUIManager.Instance.gameUI.
