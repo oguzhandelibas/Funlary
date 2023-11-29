@@ -22,7 +22,6 @@ namespace Funlary
         
         private void Start()
         {
-            print("selam sisko " + LevelIndex);
             Instantiate(levelDatas[LevelIndex].GamePrefab);
         }
     }
