@@ -27,6 +27,7 @@ namespace Funlary.Unit5.OpponentModule
         [SerializeField] private Joystick joystick;
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
         [SerializeField] private OpponentAudioController audioControllerPrefab;
+        [SerializeField] private GameObject opponentUiPanel;
         private OpponentAudioController _opponentAudioController;
         #endregion
 
@@ -62,16 +63,28 @@ namespace Funlary.Unit5.OpponentModule
         public bool CheckColor(ColorType targetColor) => targetColor == this.ColorType;
         public bool HasStack { get => _stackCount > 0; }
         public bool CanCollectStack { get; set; }
-        public bool CanMove { get; set; }
+        private bool _canMove;
+        public bool CanMove
+        {
+            get => _canMove;
+            set
+            {
+                _canMove = value;
+            } 
+        }
         public int StackCount { get => _stackCount; set => _stackCount = value; }
 
+        public void SetUIPanelActiveness(bool activeness)
+        {
+            opponentUiPanel.SetActive(activeness);
+        }
+        
         #endregion
 
         #region UNITY FUNCTIONS
 
         private void Start()
         {
-            
         }
 
         #endregion
@@ -93,6 +106,9 @@ namespace Funlary.Unit5.OpponentModule
 
         private void CreateOpponent()
         {
+            CanMove = true;
+            CanCollectStack = true;
+            
             if (opponentType == OpponentType.AI)
             {
                 AIController aiController = new AIController(this, animationController);
@@ -110,10 +126,8 @@ namespace Funlary.Unit5.OpponentModule
                 playerController.joystickController = GetComponentInChildren<JoystickController>();
                 playerController.joystickController.joystick = joystick;
             }
-
+            
             opponentMovement._IControl = OpponentController;
-            CanCollectStack = true;
-            CanMove = true;
         }
 
         public void DropAllStacks(bool canCollectStack, bool destroyAfter)

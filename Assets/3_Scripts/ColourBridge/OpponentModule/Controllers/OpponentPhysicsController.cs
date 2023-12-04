@@ -22,7 +22,7 @@ namespace Funlary.Unit5.OpponentModule.Controller
 
                 opponent.currentStackManager = stackManager;
                 opponent.DropAllStacks(true, true);
-                opponent.SetColor(OpponentManager.Instance.GetRandomColorType(opponent.ColorType));
+                opponent.SetColor(FindObjectOfType<OpponentManager>().GetRandomColorType(opponent.ColorType));
                 opponent.SetBridges(stackManager.groundBounds.GetBridges());
             }
 

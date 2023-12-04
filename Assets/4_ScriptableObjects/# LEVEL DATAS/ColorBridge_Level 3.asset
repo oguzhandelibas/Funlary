@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d059b324640305a48b44024d67c7f590, type: 3}
   m_Name: ColorBridge_Level 3
   m_EditorClassIdentifier: 
-  GamePrefab: {fileID: 0}
+  GamePrefab: {fileID: 9184529835081479514, guid: a8dfad3f75ed7a14eb1846efdd37c7e1,
+    type: 3}

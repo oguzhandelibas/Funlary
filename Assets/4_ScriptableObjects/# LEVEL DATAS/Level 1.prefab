@@ -510,6 +510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundBounds: {fileID: 1543470707220204694}
+  bridgeManager: {fileID: 0}
   colorData: {fileID: 11400000, guid: 0ee8fde899b627544b2d23d381c0f188, type: 2}
   stack: {fileID: 3559711047787750969, guid: f8959b42d27ed684ea3053a39290ec0c, type: 3}
   generationStarterCollider: {fileID: 1543470708179669423}
@@ -704,6 +705,7 @@ MonoBehaviour:
   skinnedMeshRenderer: {fileID: 3105793385736957419}
   audioControllerPrefab: {fileID: 6788217356824869873, guid: 17310a183d342864ebd20d785170b77d,
     type: 3}
+  opponentUiPanel: {fileID: 0}
   ID: 1
   opponentType: 0
   ColorType: 0
@@ -10002,7 +10004,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4413974938824525307}
-  m_LocalRotation: {x: 0.30182245, y: 0.000000028412469, z: -0.000000008995011, w: 0.9533642}
+  m_LocalRotation: {x: 0.30182242, y: 3.38703e-15, z: -1.8411026e-16, w: 0.9533642}
   m_LocalPosition: {x: -1.6, y: 24, z: -39.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10211,7 +10213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51a6b192bf4bb740ad78b926a652c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bridges: []
   colorTypes: 05000000
   opponentManager: {fileID: 4413974939907391497}
 --- !u!1 &4413974939228139749
@@ -10401,6 +10402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856caf6aee9013e40be79c0e1cc54875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bridgeManager: {fileID: 4413974939072351428}
   arenaManager: {fileID: 4413974939424376706}
   opponents:
   - {fileID: 1543470706801181850}

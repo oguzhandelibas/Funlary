@@ -33,7 +33,6 @@ namespace Funlary.Unit5.OpponentModule
         private void FixedUpdate()
         {
             if (!opponent.CanMove) return;
-
             RaycastHit hit;
             if (!Physics.Raycast(character.position + Vector3.up, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
             {
@@ -42,7 +41,6 @@ namespace Funlary.Unit5.OpponentModule
                 opponent.DropAllStacks(false, true);
                 return;
             }
-
             if (opponent.opponentType == Opponent.OpponentType.PLAYER) PlayerMovement();
             else AIMovement();
         }

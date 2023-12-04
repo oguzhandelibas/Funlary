@@ -1,11 +1,14 @@
 using System.Collections.Generic;
+using Funlary.UIModule.Core;
+using Funlary.UIModule.Game;
 using Funlary.Unit5.ColourBridge.BridgeModule;
 using UnityEngine;
 
 namespace Funlary.Unit5.OpponentModule
 {
-    public class OpponentManager : AbstractSingleton<OpponentManager>
+    public class OpponentManager : MonoBehaviour
     {
+        [SerializeField] private BridgeManager bridgeManager;
         [SerializeField] private ArenaManager arenaManager;
         [SerializeField] private Opponent[] opponents;
         [SerializeField] private ColorData colorData;
@@ -13,7 +16,7 @@ namespace Funlary.Unit5.OpponentModule
 
         public ColorType GetRandomColorType(ColorType currentColorType)
         {
-            List<ColorType> colorTypes = BridgeManager.Instance.GetColorTypes();
+            List<ColorType> colorTypes = bridgeManager.GetColorTypes();
             ColorType colorType = GetRandomColorType();
 
             while (currentColorType == colorType)

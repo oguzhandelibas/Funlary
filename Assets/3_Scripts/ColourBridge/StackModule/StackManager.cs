@@ -11,9 +11,12 @@ namespace Funlary.Unit5.StackModule
         #region FIELDS
 
         public GroundBounds groundBounds;
+        
         [SerializeField] private ColorData colorData;
         [SerializeField] private Stack stack;
         [SerializeField] private Collider generationStarterCollider;
+        
+        private BridgeManager bridgeManager;
         #endregion
 
         #region VARIABLES
@@ -41,6 +44,7 @@ namespace Funlary.Unit5.StackModule
 
         void Start()
         {
+            bridgeManager = FindObjectOfType<BridgeManager>();
             GenerateAllStacks();
             StackActiveness(activeOnStart);
         }
@@ -87,7 +91,7 @@ namespace Funlary.Unit5.StackModule
                     Stack stackTemp = Instantiate(stack, stackLastPos, Quaternion.identity, transform);
                     stackTemp.stackManager = this;
                     stackTemp.StackIndex = stackIndex++;
-                    ColorType colorType = colorData.GetRandomColorType(BridgeManager.Instance.GetColorTypes());
+                    ColorType colorType = colorData.GetRandomColorType(bridgeManager.GetColorTypes());
                     stackTemp.SetColor(colorType, colorData);
                     _stackList.Add(stackTemp);
                 }

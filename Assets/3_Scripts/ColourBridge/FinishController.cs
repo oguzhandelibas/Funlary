@@ -23,6 +23,7 @@ namespace Funlary
 
         private IEnumerator RunFinishPoint(Opponent opponent)
         {
+            opponent.SetUIPanelActiveness(false);
             Transform opponentTransform = opponent.opponentPhysicsController.transform;
             Vector3 targetPosition = new Vector3(transform.position.x, opponentTransform.position.y, transform.position.z);
             while (Vector3.Distance(opponentTransform.position, targetPosition) > 0.25)
