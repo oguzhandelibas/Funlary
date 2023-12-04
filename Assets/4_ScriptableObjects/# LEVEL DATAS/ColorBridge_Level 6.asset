@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d059b324640305a48b44024d67c7f590, type: 3}
-  m_Name: ColorBridge_Level 5
+  m_Name: ColorBridge_Level 6
   m_EditorClassIdentifier: 
-  GamePrefab: {fileID: 9184529835081479514, guid: b944d7a68c181b64385a7e16d16c54fa,
+  GamePrefab: {fileID: 9184529835081479514, guid: 460d565392db53445a00578e553a31ad,
     type: 3}

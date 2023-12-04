@@ -15910,7 +15910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51a6b192bf4bb740ad78b926a652c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorTypes: 0100000002000000
+  colorTypes: 0600000009000000
   opponentManager: {fileID: 6294930041236871143}
 --- !u!1 &6294930041094055691
 GameObject:
@@ -16271,7 +16271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9184529835081479513}
   m_Layer: 0
-  m_Name: Level 2
+  m_Name: Level 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
