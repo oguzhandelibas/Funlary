@@ -1374,6 +1374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d7d5c7943a0aa4c83f8cdaa46a705e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inLineconfettiPrefabs: []
+  lastConfettiPrefabs: []
 --- !u!1 &4140000779405078273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,6 +1913,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundBounds: {fileID: 6401771318045278538}
   stackManager: {fileID: 0}
+  HasEnterDoor: 0
+  enterDoorCount: 0
+  HasExitDoor: 0
+  exitDoorCount: 0
 --- !u!1 &4140000779697001333
 GameObject:
   m_ObjectHideFlags: 0

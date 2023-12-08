@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Threading.Tasks;
 using Funlary.UIModule.Core;
 using Funlary.UIModule.Game;
 using Funlary.Unit5.OpponentModule;
@@ -10,7 +12,13 @@ namespace Funlary
 {
     public class FinishController : MonoBehaviour
     {
-        // TO DO: KARAKTER FINISH NOKTASINA KO�ACAK, D�N�P DANS EDECEK
+        [SerializeField] private GameObject[] inLineconfettiPrefabs;
+        [SerializeField] private GameObject[] lastConfettiPrefabs;
+        private void Start()
+        {
+            ConfettiActiveness(false);
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out OpponentPhysicsController opponentPhysics))
@@ -18,6 +26,7 @@ namespace Funlary
                 Opponent opponent = opponentPhysics.opponent;
                 opponent.CanMove = false;
                 StartCoroutine(RunFinishPoint(opponent));
+                ConfettiActiveness(true);
             }
         }
 
@@ -41,6 +50,19 @@ namespace Funlary
             opponent.character.LookAt(lookAtPosition);
             LetsDance(opponent);
         }
+
+        private async Task ConfettiActiveness(bool value) {
+            for (int i = 0; i < inLineconfettiPrefabs.Length; i+=2)
+            {
+                
+                inLineconfettiPrefabs[i].SetActive(value);
+                if(i!=inLineconfettiPrefabs.Length-1) inLineconfettiPrefabs[i+1].SetActive(value);
+                await Task.Delay(100);
+            }
+
+            foreach (GameObject item in lastConfettiPrefabs) item.SetActive(value);
+        }
+        
         private void LetsDance(Opponent opponent)
         {
             opponent.DropAllStacks(false, true);

@@ -25,6 +25,12 @@ namespace Funlary.UIModule.Core
             settingsSizeDelta = settingsHolder.sizeDelta;
         }
 
+        public override void Show()
+        {
+            SetLevelCountText(GameManager.Instance.LevelIndex);
+            base.Show();
+        }
+
         public void ToggleSettingsButtonClick()
         {
             var sizeDelta = settingsSizeDelta;
@@ -38,9 +44,9 @@ namespace Funlary.UIModule.Core
             settingsHolder.DOSizeDelta(sizeDelta, .25f);
         }
 
-        public void SetLevelCountText(string levelText)
+        public void SetLevelCountText(int levelText)
         {
-            levelCountText.text = levelText;
+            levelCountText.text = "Level " + (levelText + 1);
         }
 
         public void SetLevelColorText(ColorType colorType, Color color)

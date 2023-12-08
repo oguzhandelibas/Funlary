@@ -21,7 +21,8 @@ namespace Funlary
             set
             {
                 _levelIndex = value;
-                PlayerPrefs.SetInt("LevelCount", value);
+                PlayerPrefs.SetInt("LevelCount", _levelIndex);
+                Debug.Log("asdfasfasf:" + LevelIndex);
                 SetLevel();
                 GameUIManager.Instance.Show<GameUI>();
             }
@@ -36,7 +37,7 @@ namespace Funlary
         {
             if(_currentGameObject) Destroy(_currentGameObject);
             Task.Delay(500);
-            _currentGameObject = Instantiate(levelDatas[_levelIndex].GamePrefab);
+            _currentGameObject = Instantiate(levelDatas[LevelIndex].GamePrefab);
             return Task.CompletedTask;
         }
     }
