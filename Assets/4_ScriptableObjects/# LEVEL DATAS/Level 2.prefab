@@ -5102,7 +5102,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6294930040156000789}
-  m_LocalRotation: {x: 0.30182245, y: 0.000000028412469, z: -0.000000008995011, w: 0.9533642}
+  m_LocalRotation: {x: 0.30182242, y: -1.6106732e-15, z: 1.841103e-16, w: 0.9533642}
   m_LocalPosition: {x: -1.6, y: 24, z: -48.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5313,7 +5313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arenas:
   - {fileID: 9184529834778428548}
-  - {fileID: 0}
+  - {fileID: 2520423734780264405}
   - {fileID: 9184529834528676816}
 --- !u!1 &6294930041064233768
 GameObject:

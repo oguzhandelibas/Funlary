@@ -29,8 +29,6 @@ namespace Funlary.UIModule.Game
         {
             m_Views = m_Root.GetComponentsInChildren<View>(true).ToList();
             Init();
-
-            //m_ViewLayer.ResizeToSafeArea(m_Canvas);
         }
 
         void Init()

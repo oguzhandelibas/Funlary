@@ -22,7 +22,6 @@ namespace Funlary
             {
                 _levelIndex = value;
                 PlayerPrefs.SetInt("LevelCount", _levelIndex);
-                Debug.Log("asdfasfasf:" + LevelIndex);
                 SetLevel();
                 GameUIManager.Instance.Show<GameUI>();
             }

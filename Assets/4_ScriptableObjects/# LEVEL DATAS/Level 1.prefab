@@ -179,6 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af89bb9f205122149a9a1a4268fd45e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArenaManager: {fileID: 4413974939424376706}
+  index: 0
   groundBounds: {fileID: 1543470707220204694}
   stackManager: {fileID: 1543470708179669420}
   HasEnterDoor: 0
@@ -231,6 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af89bb9f205122149a9a1a4268fd45e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArenaManager: {fileID: 0}
+  index: 0
   groundBounds: {fileID: 8415001952162230896}
   stackManager: {fileID: 0}
   HasEnterDoor: 1
@@ -1457,6 +1461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepManager: {fileID: 7199350363110383863}
   colorData: {fileID: 11400000, guid: 0ee8fde899b627544b2d23d381c0f188, type: 2}
+  nextGround: {fileID: 1543470706757258303}
   stairParent: {fileID: 1271518185149910445}
   startPoint: {fileID: 4740695954084046818}
   endPoint: {fileID: 4953812682410669473}

@@ -15,7 +15,8 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         [SerializeField] private StepManager stepManager;
         [SerializeField] private ColorData colorData;
 
-        [Header("Indicator Transforms")]
+        [Header("Indicator Transforms")] 
+        [SerializeField] private Transform nextGround;
         [SerializeField] private Transform stairParent;
         public Transform startPoint;
         public Transform endPoint;
@@ -67,6 +68,12 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         private void InitializeBridge()
         {
+            Arena currentArena = GetComponentInParent<Arena>();
+            Arena nextArena = currentArena.ArenaManager.GetNextArena(currentArena.index);
+
+            endPoint.position = new Vector3(nextArena.transform.position.x / 2, nextArena.transform.position.y,
+                nextArena.transform.position.z - nextArena.transform.position.z / 2);
+            
             stepManager.bridge = this;
             Vector3 stepPosition = new Vector3(0, 0, 0.5f);
             Vector3 stepScale = new Vector3(3, StepHeight, 1);

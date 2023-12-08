@@ -7,6 +7,8 @@ namespace Funlary
 {
     public class Arena : MonoBehaviour
     {
+        public ArenaManager ArenaManager;
+        public int index;
         public GroundBounds groundBounds;
         public StackManager stackManager;
         

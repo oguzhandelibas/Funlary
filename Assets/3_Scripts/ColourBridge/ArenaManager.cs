@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AYellowpaper.SerializedCollections;
-using Funlary.Unit5.OpponentModule;
-using Funlary.Unit5.StackModule;
+using System;
 using UnityEngine;
 
 namespace Funlary
@@ -12,5 +7,19 @@ namespace Funlary
     {
         public Arena[] arenas;
 
+        private void Start()
+        {
+            for (int i = 0; i < arenas.Length; i++)
+            {
+                arenas[i].SetArenaBound();
+                arenas[i].index = i;
+                arenas[i].ArenaManager = this;
+            }
+        }
+
+        public Arena GetNextArena(int currentArenaIndex)
+        {
+            return arenas[currentArenaIndex + 1];
+        }
     }
 }
