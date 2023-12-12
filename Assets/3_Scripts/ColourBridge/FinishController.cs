@@ -18,7 +18,6 @@ namespace Funlary
         {
             ConfettiActiveness(false);
         }
-
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out OpponentPhysicsController opponentPhysics))
@@ -29,7 +28,6 @@ namespace Funlary
                 ConfettiActiveness(true);
             }
         }
-
         private IEnumerator RunFinishPoint(Opponent opponent)
         {
             opponent.SetUIPanelActiveness(false);
@@ -45,12 +43,12 @@ namespace Funlary
         }
         private void TurnToCamera(Opponent opponent)
         {
+            opponent.cameraController.SetFollowOffset(new Vector3(0,15,-15));
             Transform target = Camera.main.transform;
             Vector3 lookAtPosition = new Vector3(target.position.x, opponent.character.position.y, target.position.z);
             opponent.character.LookAt(lookAtPosition);
             LetsDance(opponent);
         }
-
         private async Task ConfettiActiveness(bool value) {
             for (int i = 0; i < inLineconfettiPrefabs.Length; i+=2)
             {
@@ -62,7 +60,6 @@ namespace Funlary
 
             foreach (GameObject item in lastConfettiPrefabs) item.SetActive(value);
         }
-        
         private void LetsDance(Opponent opponent)
         {
             opponent.DropAllStacks(false, true);

@@ -1141,6 +1141,7 @@ MonoBehaviour:
   opponentMovement: {fileID: 3403000160263295995}
   opponentPhysicsController: {fileID: 3403000160935556319}
   colorData: {fileID: 11400000, guid: 0ee8fde899b627544b2d23d381c0f188, type: 2}
+  cameraController: {fileID: 0}
   joystick: {fileID: 0}
   skinnedMeshRenderer: {fileID: 3105793385736957419}
   audioControllerPrefab: {fileID: 6788217356824869873, guid: 17310a183d342864ebd20d785170b77d,
@@ -1593,6 +1594,7 @@ GameObject:
   - component: {fileID: 4413974938824525255}
   - component: {fileID: 4413974938824525253}
   - component: {fileID: 4413974938824525254}
+  - component: {fileID: 4986577121615492656}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1772,6 +1774,19 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 4413974939228139748}
+--- !u!114 &4986577121615492656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413974938824525307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5479dd73fecb90447b22500dde64e29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cinemachineVirtualCamera: {fileID: 4413974938824525254}
 --- !u!1 &4413974939072351430
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,6 +3225,11 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 7208492756597387054}
+    - target: {fileID: 1628403542312285094, guid: 363f0ec5c8f5481459f4613ecc100d54,
+        type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 4986577121615492656}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 363f0ec5c8f5481459f4613ecc100d54, type: 3}
 --- !u!4 &1543470706801181848 stripped

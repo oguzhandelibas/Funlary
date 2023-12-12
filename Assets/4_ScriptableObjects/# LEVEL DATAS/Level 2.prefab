@@ -280,6 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepManager: {fileID: 5274254202696484115}
   colorData: {fileID: 11400000, guid: 0ee8fde899b627544b2d23d381c0f188, type: 2}
+  nextGround: {fileID: 0}
   stairParent: {fileID: 5253201813335627168}
   startPoint: {fileID: 3839047440438435972}
   endPoint: {fileID: 3445110377280034911}
@@ -2792,6 +2793,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af89bb9f205122149a9a1a4268fd45e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArenaManager: {fileID: 0}
+  index: 0
   groundBounds: {fileID: 4853136396304795801}
   stackManager: {fileID: 2520423732881058057}
   HasEnterDoor: 1
@@ -4368,6 +4371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepManager: {fileID: 6845758003472417930}
   colorData: {fileID: 11400000, guid: 0ee8fde899b627544b2d23d381c0f188, type: 2}
+  nextGround: {fileID: 0}
   stairParent: {fileID: 122148787612743856}
   startPoint: {fileID: 5845083798147183350}
   endPoint: {fileID: 3556723582420709919}
@@ -5088,6 +5092,7 @@ GameObject:
   - component: {fileID: 6294930040156000809}
   - component: {fileID: 6294930040156000811}
   - component: {fileID: 6294930040156000808}
+  - component: {fileID: 1848739238520492413}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5102,7 +5107,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6294930040156000789}
-  m_LocalRotation: {x: 0.30182242, y: -1.6106732e-15, z: 1.841103e-16, w: 0.9533642}
+  m_LocalRotation: {x: 0.30182245, y: 0.000000028412469, z: -0.000000008995011, w: 0.9533642}
   m_LocalPosition: {x: -1.6, y: 24, z: -48.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5267,6 +5272,19 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 6294930041094055690}
+--- !u!114 &1848739238520492413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294930040156000789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5479dd73fecb90447b22500dde64e29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cinemachineVirtualCamera: {fileID: 6294930040156000808}
 --- !u!1 &6294930040713777258
 GameObject:
   m_ObjectHideFlags: 0
@@ -7864,6 +7882,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af89bb9f205122149a9a1a4268fd45e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArenaManager: {fileID: 0}
+  index: 0
   groundBounds: {fileID: 2221845714452538782}
   stackManager: {fileID: 0}
   HasEnterDoor: 1
@@ -8017,6 +8037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af89bb9f205122149a9a1a4268fd45e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArenaManager: {fileID: 0}
+  index: 0
   groundBounds: {fileID: 9184529835138423672}
   stackManager: {fileID: 9184529836125111874}
   HasEnterDoor: 0
@@ -9156,6 +9178,11 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 1014495942914963648}
+    - target: {fileID: 1628403542312285094, guid: 363f0ec5c8f5481459f4613ecc100d54,
+        type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1848739238520492413}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 363f0ec5c8f5481459f4613ecc100d54, type: 3}
 --- !u!114 &1014495942914963648 stripped
