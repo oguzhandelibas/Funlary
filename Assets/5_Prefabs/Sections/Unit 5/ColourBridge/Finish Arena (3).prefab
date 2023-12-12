@@ -1911,6 +1911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af89bb9f205122149a9a1a4268fd45e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArenaManager: {fileID: 0}
+  index: 0
   groundBounds: {fileID: 6401771318045278538}
   stackManager: {fileID: 0}
   HasEnterDoor: 0

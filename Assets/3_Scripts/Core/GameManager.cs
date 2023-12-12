@@ -16,6 +16,11 @@ namespace Funlary
         {
             get
             {
+                if (_levelIndex >= levelDatas.Length)
+                {
+                    _levelIndex = 0;
+                    PlayerPrefs.SetInt("LevelCount", _levelIndex);
+                }
                 return PlayerPrefs.GetInt("LevelCount", 0);
             }
             set
@@ -29,6 +34,7 @@ namespace Funlary
         
         private void Start()
         {
+            _levelIndex = LevelIndex;
             SetLevel();
         }
 

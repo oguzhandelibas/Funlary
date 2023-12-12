@@ -43,8 +43,15 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
         #region UNITY FUNCTIONS
         private void Start()
         {
+            Arena currentArena = GetComponentInParent<Arena>();
+            Arena nextArena = currentArena.ArenaManager.GetNextArena(currentArena.index);
+            
+            endPoint.position = new Vector3(endPoint.position.x, nextArena.transform.position.y + 0.5f,
+                nextArena.transform.position.z - nextArena.transform.GetChild(0).localScale.z / 2);
+            
             BridgeLength = endPoint.localPosition.z - startPoint.localPosition.z;
             BridgeHeight = endPoint.localPosition.y - startPoint.localPosition.y;
+            
             StepHeight = BridgeHeight / BridgeLength;
 
             MeshGeneration.Instance.CreateMesh(
@@ -58,6 +65,7 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
             rightPole.SetEndPolePosition(new Vector3(0, BridgeHeight, BridgeLength));
             leftPole.SetEndPolePosition(new Vector3(0, BridgeHeight, BridgeLength));
         }
+        
         #endregion
 
         #region BRIDGE
@@ -68,12 +76,6 @@ namespace Funlary.Unit5.ColourBridge.BridgeModule
 
         private void InitializeBridge()
         {
-            Arena currentArena = GetComponentInParent<Arena>();
-            Arena nextArena = currentArena.ArenaManager.GetNextArena(currentArena.index);
-
-            endPoint.position = new Vector3(nextArena.transform.position.x / 2, nextArena.transform.position.y,
-                nextArena.transform.position.z - nextArena.transform.position.z / 2);
-            
             stepManager.bridge = this;
             Vector3 stepPosition = new Vector3(0, 0, 0.5f);
             Vector3 stepScale = new Vector3(3, StepHeight, 1);
