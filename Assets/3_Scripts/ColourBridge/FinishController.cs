@@ -43,7 +43,7 @@ namespace Funlary
         }
         private void TurnToCamera(Opponent opponent)
         {
-            opponent.cameraController.SetFollowOffset(new Vector3(0,15,-15));
+            CameraController.Instance.SetFollowOffset(new Vector3(0,15,-15));
             Transform target = Camera.main.transform;
             Vector3 lookAtPosition = new Vector3(target.position.x, opponent.character.position.y, target.position.z);
             opponent.character.LookAt(lookAtPosition);

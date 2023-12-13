@@ -38,6 +38,7 @@ namespace Funlary.Unit5.OpponentModule
 
         private void InitializeOpponents()
         {
+            CameraController.Instance.SetFollowObject(opponents[0].transform.GetChild(0));
             for (int i = 0; i < opponents.Length; i++)
             {
                 opponents[i].SetColor(_colorTypes[i]);

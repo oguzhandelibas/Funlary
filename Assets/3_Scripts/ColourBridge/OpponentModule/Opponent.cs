@@ -23,7 +23,6 @@ namespace Funlary.Unit5.OpponentModule
         public OpponentMovement opponentMovement;
         public OpponentPhysicsController opponentPhysicsController;
         public ColorData colorData;
-        public CameraController cameraController;
         
         [SerializeField] private Joystick joystick;
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
@@ -86,7 +85,7 @@ namespace Funlary.Unit5.OpponentModule
 
         private void Start()
         {
-            cameraController.SetFollowOffset(new Vector3(0,24,-27));
+            CameraController.Instance.SetFollowOffset(new Vector3(0,24,-27));
         }
 
         #endregion

@@ -10,6 +10,7 @@ namespace Funlary.UIModule
 
         public override void Show()
         {
+            CameraController.Instance.VirtualCameraActiveness(false);
             posePlatform.SetActive(true);
             base.Show();
         }

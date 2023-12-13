@@ -9,6 +9,7 @@ using PlayFab.ClientModels;
 
 public class PlayfabManager : AbstractSingleton<PlayfabManager>
 {
+    [SerializeField] private GameObject connectingText;
     [SerializeField] LeadboardManager leadboardManager;
     [SerializeField] TMP_InputField inputField;
     [SerializeField] User ourPlayer;
@@ -23,6 +24,7 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
 
     private void Start()
     {
+        connectingText.SetActive(true);
         //GameManager.Instance.LeadboradButtonActiveness(false);
         //introController = GetComponent<IntroController>();
         leadboardButton.SetActive(false);
@@ -81,6 +83,7 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         playfabId = obj.AccountInfo.PlayFabId;
         Debug.Log("PlayFab ID: " + playfabId); 
         GetLeaderboard();
+        connectingText.SetActive(false);
     }
 
     public void SubmitName()
