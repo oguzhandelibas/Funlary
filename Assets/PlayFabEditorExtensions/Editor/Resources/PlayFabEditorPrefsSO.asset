@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DevAccountEmail: itsogsan@gmail.com
   DevAccountToken: yayudqo9osbgxqjuokftnsg3bpuq47o5kzc1ax4ydegaz6f4h6yo8bpu1m9ax6bf63uixmcmuzsm6nixzo3x7q9w67iogotj4a9j4wuuhjf3qbkte9uxme314694kjsj4mcj564rfosxd934pemf5fhyp4jf9fwb5ia81tff3p7ihfo1bjr1bh4gaa38pta1poqpymtf
-  SelectedStudio: 
+  SelectedStudio: Langjolly
   SdkPath: Assets/PlayFabSDK
   EdExPath: 
   LocalCloudScriptPath: 

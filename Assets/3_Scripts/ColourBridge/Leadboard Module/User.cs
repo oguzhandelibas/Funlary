@@ -15,12 +15,6 @@ namespace Funlary
         [SerializeField] private TextMeshProUGUI _score;
         public TextMeshProUGUI _index;
 
-        private void Awake()
-        {
-            SetInfo(username, score, 0, false);
-
-        }
-
         public void SetInfo(string name, int score, int index, bool x)
         {
             _username.text = name;

@@ -11,15 +11,24 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
 {
     [SerializeField] LeadboardManager leadboardManager;
     [SerializeField] TMP_InputField inputField;
-    //IntroController introController;
     [SerializeField] User ourPlayer;
     private string playfabId;
+    
+    [Header("INTERNET OBJECTS")] 
+    [SerializeField] private GameObject leadboardButton;
+    [SerializeField] private GameObject profileButton;
+    
+    
     
 
     private void Start()
     {
         //GameManager.Instance.LeadboradButtonActiveness(false);
         //introController = GetComponent<IntroController>();
+        leadboardButton.SetActive(false);
+        profileButton.SetActive(false);
+        
+        PlayerPrefs.SetInt("BestTime", 2);
         Login();
     }
 
@@ -34,7 +43,7 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
                 GetPlayerProfile = true
             }
         };
-        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnError);
+        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnErrorLogin);
 
     }
 
@@ -42,9 +51,9 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
     {
         Debug.Log("Succesful login/account create!");
         
-        SendLeaderboard(PlayerPrefs.GetInt("BestScore"));
-        GetLeaderboard();
-
+        SendLeaderboard(PlayerPrefs.GetInt("BestTime", 0));
+        
+        
         string name = null;
 
         if (result.InfoResultPayload.PlayerProfile != null)
@@ -73,6 +82,7 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         //GameManager.Instance.LeadboradButtonActiveness(true);
         playfabId = obj.AccountInfo.PlayFabId;
         Debug.Log("PlayFab ID: " + playfabId); 
+        GetLeaderboard();
     }
 
     public void SubmitName()
@@ -81,7 +91,7 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         {
             DisplayName = inputField.text,
         };
-        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnErrorSubmitName);
     }
 
     void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
@@ -91,13 +101,39 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         //PlayerController.Instance.gameActive = true;
     }
 
-    void OnError(PlayFabError error)
+    
+    //----------------ERROR---------------------
+    void OnErrorLogin(PlayFabError error)
     {
-        Debug.Log("Error while logging in/creating account!");
+        Debug.Log("Error while logging in! " + error.GenerateErrorReport());
         Debug.Log(error.GenerateErrorReport());
         //GameManager.Instance.SetInternetObjectsActiveness(false);
         //introController.StopAnimation();
     }
+    
+    void OnErrorSendLeadboard(PlayFabError error)
+    {
+        Debug.Log("Error while Send Leadboard! " + error.GenerateErrorReport());
+        //GameManager.Instance.SetInternetObjectsActiveness(false);
+        //introController.StopAnimation();
+    }
+    
+    void OnErrorGetLeadboard(PlayFabError error)
+    {
+        Debug.Log("Error while Get Leadboard! " + error.GenerateErrorReport());
+        Debug.Log(error.GenerateErrorReport());
+        //GameManager.Instance.SetInternetObjectsActiveness(false);
+        //introController.StopAnimation();
+    }
+    
+    void OnErrorSubmitName(PlayFabError error)
+    {
+        Debug.Log("Error while Submit Name! " + error.GenerateErrorReport());
+        Debug.Log(error.GenerateErrorReport());
+        //GameManager.Instance.SetInternetObjectsActiveness(false);
+        //introController.StopAnimation();
+    }
+//----------------ERROR---------------------
 
     public void SendLeaderboard(int score)
     {
@@ -110,7 +146,7 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
                 }
             }
         };
-        PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnError);
+        PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnErrorSendLeadboard);
     }
 
     void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
@@ -126,7 +162,7 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
             StartPosition = 0,
             MaxResultsCount = 10
         };
-        PlayFabClientAPI.GetLeaderboard(request, OnLeaderboardGet, OnError);
+        PlayFabClientAPI.GetLeaderboard(request, OnLeaderboardGet, OnErrorGetLeadboard);
     }
 
     void OnLeaderboardGet(GetLeaderboardResult result)
@@ -134,12 +170,14 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         for (var i = 0; i < result.Leaderboard.Count; i++)
         {
             leadboardManager.users[i].SetInfo(result.Leaderboard[i].DisplayName, result.Leaderboard[i].StatValue, result.Leaderboard[i].Position, true);
-
-            if (result.Leaderboard[i].PlayFabId == playfabId)
+            if (playfabId == result.Leaderboard[i].PlayFabId)
             {
-                ourPlayer.SetInfo(result.Leaderboard[i].DisplayName, result.Leaderboard[i].StatValue, result.Leaderboard[i].Position, true);
+                ourPlayer.SetInfo(result.Leaderboard[i].DisplayName + " (YOU)", result.Leaderboard[i].StatValue, result.Leaderboard[i].Position, true);
+                inputField.text = result.Leaderboard[i].DisplayName;
             }
-                
         }
+        
+        leadboardButton.SetActive(true);
+        profileButton.SetActive(true);
     }
 }

@@ -1,3 +1,4 @@
+using Funlary.UIModule.Game;
 using UnityEngine;
 using Funlary.UIModule.Menu;
 namespace Funlary.UIModule.Core
@@ -15,7 +16,7 @@ namespace Funlary.UIModule.Core
 
         public void _ClosePanel()
         {
-            MenuUIManager.Instance.GoBack();
+            GameUIManager.Instance.GoBack();
         }
 
         #endregion
