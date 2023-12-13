@@ -28,7 +28,6 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         leadboardButton.SetActive(false);
         profileButton.SetActive(false);
         
-        PlayerPrefs.SetInt("BestTime", 2);
         Login();
     }
 
@@ -52,7 +51,6 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         Debug.Log("Succesful login/account create!");
         
         SendLeaderboard(PlayerPrefs.GetInt("BestTime", 0));
-        
         
         string name = null;
 

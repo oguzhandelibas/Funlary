@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Funlary.LevelModule.Data;
 using Funlary.UIModule.Core;
@@ -8,6 +9,8 @@ namespace Funlary
 {
     public class GameManager : AbstractSingleton<GameManager>
     {
+        [SerializeField] private PlayfabManager playfabManager;
+        [SerializeField] private TimeManager timeManager;
         [SerializeField] private LevelData[] levelDatas;
         private GameObject _currentGameObject;
         
@@ -18,6 +21,9 @@ namespace Funlary
             {
                 if (_levelIndex >= levelDatas.Length)
                 {
+                    PlayerPrefs.SetInt("BestTime", (int)timeManager.CurrentTime);
+                    playfabManager.SendLeaderboard(PlayerPrefs.GetInt("BestTime"));
+                    timeManager.ResetTime();
                     _levelIndex = 0;
                     PlayerPrefs.SetInt("LevelCount", _levelIndex);
                 }
@@ -37,7 +43,13 @@ namespace Funlary
             _levelIndex = LevelIndex;
         }
 
-        public Task SetLevel()
+        public void PlayGame()
+        {
+            SetLevel();
+            timeManager.ActivateTimer();
+        }
+
+        private Task SetLevel()
         {
             if(_currentGameObject) Destroy(_currentGameObject);
             Task.Delay(500);

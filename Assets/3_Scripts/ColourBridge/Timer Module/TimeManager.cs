@@ -12,12 +12,11 @@ namespace Funlary
         [SerializeField] private float _currentTime;
         private bool _timeIsActive;
 
-        private void Start()
+        public float CurrentTime
         {
-            ActivateTimer();
+            get => _currentTime;
         }
-
-        private void ActivateTimer()
+        public void ActivateTimer()
         {
             _timeIsActive = true;
         }
@@ -32,7 +31,7 @@ namespace Funlary
         }
 
 
-        private void ResetTime()
+        public void ResetTime()
         {
             _timeIsActive = false;
             _currentTime = 0;

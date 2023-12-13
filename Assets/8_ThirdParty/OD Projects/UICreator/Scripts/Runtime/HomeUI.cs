@@ -23,7 +23,7 @@ namespace Funlary.UIModule
         public void _PlayButton()
         {
             GameUIManager.Instance.Show<GameUI>();
-            GameManager.Instance.SetLevel();
+            GameManager.Instance.PlayGame();
         }
 
         public void _OpenLeadboard()
