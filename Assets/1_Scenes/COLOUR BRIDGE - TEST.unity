@@ -16995,32 +16995,32 @@ PrefabInstance:
     - target: {fileID: 1567778426036665178, guid: c00ecfa9e008e304ca87beda15e69f43,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.501187
+      value: 6.212088
       objectReference: {fileID: 0}
     - target: {fileID: 1567778426036665178, guid: c00ecfa9e008e304ca87beda15e69f43,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 4.5011883
+      value: 6.21209
       objectReference: {fileID: 0}
     - target: {fileID: 1567778426036665178, guid: c00ecfa9e008e304ca87beda15e69f43,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 4.501187
+      value: 6.212088
       objectReference: {fileID: 0}
     - target: {fileID: 1567778426036665178, guid: c00ecfa9e008e304ca87beda15e69f43,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.13
+      value: -2.957
       objectReference: {fileID: 0}
     - target: {fileID: 1567778426036665178, guid: c00ecfa9e008e304ca87beda15e69f43,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.3407001
+      value: -4.0038
       objectReference: {fileID: 0}
     - target: {fileID: 1567778426036665178, guid: c00ecfa9e008e304ca87beda15e69f43,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.13
+      value: -4.1553
       objectReference: {fileID: 0}
     - target: {fileID: 1567778426036665178, guid: c00ecfa9e008e304ca87beda15e69f43,
         type: 3}
@@ -46770,13 +46770,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2417802dbd3e9fa4ead3c2d6f4ec75a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playfabManager: {fileID: 2126388240}
+  timeManager: {fileID: 343717087}
   levelDatas:
   - {fileID: 11400000, guid: a196f84cbe53e6847a140f38b80cf58e, type: 2}
   - {fileID: 11400000, guid: aa3521d6092a81d4cb3f22785cbd9598, type: 2}
-  - {fileID: 11400000, guid: 0f84121c7196b8e4bb111c983f988e15, type: 2}
-  - {fileID: 11400000, guid: 44d82c51844b623468ed5ab8a1c433c3, type: 2}
-  - {fileID: 11400000, guid: f8e191993a658fd4886c519e1412c055, type: 2}
-  - {fileID: 11400000, guid: 55885d24bed45784b8ecd712e635ac82, type: 2}
 --- !u!1001 &1070002111
 PrefabInstance:
   m_ObjectHideFlags: 0
