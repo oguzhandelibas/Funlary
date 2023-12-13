@@ -19,6 +19,7 @@ namespace Funlary
         }
         public void ActivateTimer()
         {
+            Debug.Log("ActivateTimer");
             _timeIsActive = true;
         }
 
@@ -27,13 +28,13 @@ namespace Funlary
             if (_timeIsActive)
             {
                 _currentTime += Time.deltaTime;
-                timerText.text = _currentTime.ToString("000");
+                timerText.text = _currentTime.ToString("F0");
             }
         }
-
-
+        
         public void ResetTime()
         {
+            Debug.Log("Reset");
             _timeIsActive = false;
             _currentTime = 0;
         }

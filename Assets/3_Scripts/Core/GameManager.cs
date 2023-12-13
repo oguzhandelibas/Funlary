@@ -26,13 +26,15 @@ namespace Funlary
                     PlayerPrefs.SetInt("BestTime", (int)timeManager.CurrentTime);
                     playfabManager.SendLeaderboard(PlayerPrefs.GetInt("BestTime"));
                     timeManager.ResetTime();
+                    Debug.Log("bak allahın işin e");
                     _levelIndex = 0;
                     PlayerPrefs.SetInt("LevelCount", _levelIndex);
                 }
-                return PlayerPrefs.GetInt("LevelCount", 0);
+                return PlayerPrefs.GetInt("LevelCount");
             }
             set
             {
+                PlayerPrefs.SetInt("LastTime", (int)timeManager.CurrentTime);
                 _levelIndex = value;
                 PlayerPrefs.SetInt("LevelCount", _levelIndex);
                 SetLevel();
@@ -67,6 +69,7 @@ namespace Funlary
 
         public void _ResetGame()
         {
+            _levelIndex = 0;
             inventoryManager.ResetInventory();
             timeManager.CurrentTime = 0;
             PlayerPrefs.SetInt("LastTime", 0);
