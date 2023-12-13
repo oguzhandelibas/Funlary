@@ -25,5 +25,11 @@ namespace Funlary.InventoryModule
             inventoryData.Coin -= removeValue;
             GameUIManager.Instance.gameUI.SetCoinText(inventoryData.Coin.ToString());
         }
+
+        public void ResetInventory()
+        {
+            inventoryData.Coin = 0;
+            GameUIManager.Instance.gameUI.SetCoinText(inventoryData.Coin.ToString());
+        }
     }
 }

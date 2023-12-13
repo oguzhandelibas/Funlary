@@ -66,7 +66,8 @@ namespace Funlary.UIModule.Core
         private void SetAndPlayColorSound(ColorType colorType)
         {
             currentColorType = colorType;
-            _PlayColorSound();
+            CancelInvoke();
+            InvokeRepeating("_PlayColorSound", 0, 7);
         }
 
         #region BUTTONS

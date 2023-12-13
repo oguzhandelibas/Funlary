@@ -15,6 +15,7 @@ namespace Funlary
         public float CurrentTime
         {
             get => _currentTime;
+            set => _currentTime = value;
         }
         public void ActivateTimer()
         {

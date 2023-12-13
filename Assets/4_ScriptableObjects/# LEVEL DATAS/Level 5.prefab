@@ -3799,7 +3799,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6294930040156000790}
   - component: {fileID: 6294930040156000791}
-  - component: {fileID: 6294930040156000788}
   - component: {fileID: 6294930040156000809}
   - component: {fileID: 6294930040156000811}
   - component: {fileID: 6294930040156000808}
@@ -3818,7 +3817,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6294930040156000789}
-  m_LocalRotation: {x: 0.30182245, y: -0.000000028412467, z: 0.00000000899501, w: 0.9533642}
+  m_LocalRotation: {x: 0.30182242, y: 3.38703e-15, z: -1.8411026e-16, w: 0.9533642}
   m_LocalPosition: {x: -1.6, y: 24, z: -48.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3870,14 +3869,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &6294930040156000788
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6294930040156000789}
-  m_Enabled: 1
 --- !u!114 &6294930040156000809
 MonoBehaviour:
   m_ObjectHideFlags: 0
