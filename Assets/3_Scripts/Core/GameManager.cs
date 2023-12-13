@@ -35,10 +35,9 @@ namespace Funlary
         private void Start()
         {
             _levelIndex = LevelIndex;
-            SetLevel();
         }
 
-        private Task SetLevel()
+        public Task SetLevel()
         {
             if(_currentGameObject) Destroy(_currentGameObject);
             Task.Delay(500);
