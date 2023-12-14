@@ -9,6 +9,8 @@ using PlayFab.ClientModels;
 
 public class PlayfabManager : AbstractSingleton<PlayfabManager>
 {
+    [SerializeField] private NameData nameData;
+    
     [SerializeField] private GameObject connectingText;
     [SerializeField] LeadboardManager leadboardManager;
     [SerializeField] TMP_InputField inputField;
@@ -19,9 +21,6 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
     [SerializeField] private GameObject leadboardButton;
     [SerializeField] private GameObject profileButton;
     
-    
-    
-
     private void Start()
     {
         connectingText.SetActive(true);
@@ -45,7 +44,7 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
             }
         };
         PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnErrorLogin);
-
+        SubmitName();
     }
 
     void OnLoginSuccess(LoginResult result)
@@ -88,9 +87,12 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
 
     public void SubmitName()
     {
+        string name = inputField.text;
+        if (name.Length <= 0) name = nameData.Names[Random.Range(0, nameData.Names.Length)];
+        Debug.Log(name);
         var request = new UpdateUserTitleDisplayNameRequest
         {
-            DisplayName = inputField.text,
+            DisplayName = name,
         };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnErrorSubmitName);
     }

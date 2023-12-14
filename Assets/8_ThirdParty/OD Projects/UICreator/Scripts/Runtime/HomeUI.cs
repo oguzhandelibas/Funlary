@@ -29,6 +29,7 @@ namespace Funlary.UIModule
 
         public void _OpenLeadboard()
         {
+            PlayfabManager.Instance.GetLeaderboard();
             GameUIManager.Instance.Show<LeadboardUI>();
         }
 
