@@ -9,6 +9,7 @@ namespace Funlary.Unit5.OpponentModule
 
         public void PlaySound(OpponentAudioType opponentAudioType)
         {
+            if(!GameManager.Instance.soundIsActive) return;
             opponentAudioSource.clip = opponentAudioData.AudioClips[opponentAudioType];
             opponentAudioSource.Play();
         }

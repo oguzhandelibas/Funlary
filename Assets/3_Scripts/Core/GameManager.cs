@@ -21,29 +21,35 @@ namespace Funlary
         {
             get
             {
-                if (_levelIndex >= levelDatas.Length)
-                {
-                    PlayerPrefs.SetInt("BestTime", (int)timeManager.CurrentTime);
-                    playfabManager.SendLeaderboard(PlayerPrefs.GetInt("BestTime"));
-                    timeManager.ResetTime();
-                    Debug.Log("bak allahın işin e");
-                    _levelIndex = 0;
-                    PlayerPrefs.SetInt("LevelCount", _levelIndex);
-                }
                 return PlayerPrefs.GetInt("LevelCount");
             }
             set
             {
                 PlayerPrefs.SetInt("LastTime", (int)timeManager.CurrentTime);
                 _levelIndex = value;
+                if (_levelIndex >= levelDatas.Length)
+                {
+                    PlayerPrefs.SetInt("BestTime", (int)timeManager.CurrentTime);
+                    PlayfabManager.Instance.SendLeaderboard((int)timeManager.CurrentTime);
+                    _ResetGame();
+                    PlayerPrefs.SetInt("LevelCount", _levelIndex);
+                    _levelIndex = 0;
+                }
                 PlayerPrefs.SetInt("LevelCount", _levelIndex);
                 SetLevel();
                 GameUIManager.Instance.Show<GameUI>();
             }
         }
-        
+
+        public bool soundIsActive;
+
+        public void _SoundActiveness(bool value)
+        {
+            soundIsActive = value;
+        }
         private void Start()
         {
+            _SoundActiveness(true);
             _levelIndex = LevelIndex;
         }
 
@@ -71,8 +77,7 @@ namespace Funlary
         {
             _levelIndex = 0;
             inventoryManager.ResetInventory();
-            timeManager.CurrentTime = 0;
-            PlayerPrefs.SetInt("LastTime", 0);
+            timeManager.ResetTime();
             LevelIndex = 0;
             SetLevel();
         }

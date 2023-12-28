@@ -1,6 +1,7 @@
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Funlary;
 using UnityEngine;
 using TMPro;
@@ -44,7 +45,6 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
             }
         };
         PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnErrorLogin);
-        SubmitName();
     }
 
     void OnLoginSuccess(LoginResult result)
@@ -52,22 +52,9 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         Debug.Log("Succesful login/account create!");
         
         SendLeaderboard(PlayerPrefs.GetInt("BestTime", 0));
-        
-        string name = null;
 
-        if (result.InfoResultPayload.PlayerProfile != null)
-            name = result.InfoResultPayload.PlayerProfile.DisplayName;
-
-        if (name == null)
-        {
-            //PlayerController.Instance.gameActive = false;
-            //nameInputField.SetActive(true); ---------
-        }
         GetAccountInfoRequest request = new GetAccountInfoRequest();
         PlayFabClientAPI.GetAccountInfo(request, OnGetAccountInfoSuccess, OnGetAccountInfoError);
-        
-        //introController.StopAnimation();
-
     }
 
     private void OnGetAccountInfoError(PlayFabError obj)
@@ -77,35 +64,22 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
 
     private void OnGetAccountInfoSuccess(GetAccountInfoResult obj)
     {
-        //GameManager.Instance.SetInternetObjectsActiveness(true);
-        //GameManager.Instance.LeadboradButtonActiveness(true);
         playfabId = obj.AccountInfo.PlayFabId;
-        Debug.Log("PlayFab ID: " + playfabId); 
-        GetLeaderboard();
         connectingText.SetActive(false);
-    }
-
-    public void SubmitName()
-    {
-        string name = inputField.text;
-        if (name.Length <= 0) name = nameData.Names[Random.Range(0, nameData.Names.Length)];
-        Debug.Log(name);
-        var request = new UpdateUserTitleDisplayNameRequest
-        {
-            DisplayName = name,
-        };
-        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnErrorSubmitName);
+        GetLeaderboard();
+        //SubmitName();
     }
 
     void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
     {
         Debug.Log("Updated display name!");
-        //nameInputField.SetActive(false); ----------
-        //PlayerController.Instance.gameActive = true;
     }
 
-    
+
+    #region ERROR DEBUG
+
     //----------------ERROR---------------------
+    
     void OnErrorLogin(PlayFabError error)
     {
         Debug.Log("Error while logging in! " + error.GenerateErrorReport());
@@ -132,11 +106,12 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
     void OnErrorSubmitName(PlayFabError error)
     {
         Debug.Log("Error while Submit Name! " + error.GenerateErrorReport());
-        Debug.Log(error.GenerateErrorReport());
         //GameManager.Instance.SetInternetObjectsActiveness(false);
         //introController.StopAnimation();
     }
 //----------------ERROR---------------------
+
+    #endregion
 
     public void SendLeaderboard(int score)
     {
@@ -144,7 +119,7 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         {
             Statistics = new List<StatisticUpdate>{
                 new StatisticUpdate {
-                    StatisticName = "UserTime",
+                    StatisticName = "UserScores",
                     Value = score
                 }
             }
@@ -161,21 +136,46 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
     {
         var request = new GetLeaderboardRequest
         {
-            StatisticName = "UserTime",
+            StatisticName = "UserScores",
             StartPosition = 0,
             MaxResultsCount = 10
         };
         PlayFabClientAPI.GetLeaderboard(request, OnLeaderboardGet, OnErrorGetLeadboard);
     }
+    
+    public void SubmitName()
+    {
+        var request = new UpdateUserTitleDisplayNameRequest()
+        {
+            DisplayName = inputField.text,
+        };
+        
+        if (request.DisplayName.Length < 2)
+        {
+            request = new UpdateUserTitleDisplayNameRequest
+            {
+                DisplayName = nameData.Names[Random.Range(0, nameData.Names.Length)],
+            };
+        }
+        
+        inputField.text = request.DisplayName;
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnErrorSubmitName);
+    }
 
     void OnLeaderboardGet(GetLeaderboardResult result)
     {
-        for (var i = 0; i < result.Leaderboard.Count; i++)
+        int index = 0;
+        for (var i = result.Leaderboard.Count - 1; i >= 0; i--)
         {
-            leadboardManager.users[i].SetInfo(result.Leaderboard[i].DisplayName, result.Leaderboard[i].StatValue, result.Leaderboard[i].Position, true);
+            if (result.Leaderboard[i].StatValue > 0)
+            {
+                leadboardManager.users[index].SetInfo(result.Leaderboard[i].DisplayName, result.Leaderboard[i].StatValue, index, true);
+                index++;
+            }
+            
             if (playfabId == result.Leaderboard[i].PlayFabId)
             {
-                ourPlayer.SetInfo(result.Leaderboard[i].DisplayName + " (YOU)", result.Leaderboard[i].StatValue, result.Leaderboard[i].Position, true);
+                ourPlayer.SetInfo(result.Leaderboard[i].DisplayName, result.Leaderboard[i].StatValue, result.Leaderboard[i].Position, true);
                 inputField.text = result.Leaderboard[i].DisplayName;
             }
         }

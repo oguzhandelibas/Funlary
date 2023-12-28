@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -19,7 +16,6 @@ namespace Funlary
         }
         public void ActivateTimer()
         {
-            Debug.Log("ActivateTimer");
             _timeIsActive = true;
         }
 
@@ -27,16 +23,16 @@ namespace Funlary
         {
             if (_timeIsActive)
             {
-                _currentTime += Time.deltaTime;
+                _currentTime += Time.deltaTime*12;
                 timerText.text = _currentTime.ToString("F0");
             }
         }
         
         public void ResetTime()
         {
-            Debug.Log("Reset");
-            _timeIsActive = false;
             _currentTime = 0;
+            timerText.text = _currentTime.ToString("F0");
+            _timeIsActive = true;
         }
     }
 }
