@@ -1,6 +1,11 @@
 # Funlary
  Funlary is a gamification project developed by the Langjolly team, aimed at teaching and reinforcing English language skills for elementary level students.
 
+# AVAILABLE ON PLAY STORE:
+
+https://play.google.com/store/apps/details?id=com.ODProjects.Funlary
+
+
 # IN GAME VIEW
 ![funlary-1](https://github.com/oguzhandelibas/Funlary/assets/64430254/0e47951b-cb57-4483-8f79-d889a5e3f701)
 ![funlary-2](https://github.com/oguzhandelibas/Funlary/assets/64430254/7e8359bf-ceee-41ca-8506-2e8fb2a1a512)
