@@ -1,8 +1,39 @@
 # Funlary
- Funlary is a gamification project developed by the Langjolly team, aimed at teaching and reinforcing English language skills for elementary level students.
+Project Description
+Funlary is a gamification project developed by the Langjolly team aimed at teaching and reinforcing English language skills for elementary level students. This project aims to provide an engaging and interactive platform to enhance students' language skills.
+
+# Objectives
+Provide a fun environment for improving English language skills.
+Increase student motivation and make the language learning process more enjoyable.
+Offer a suitable learning experience for elementary level students.
+Enhance the learning process using gamification principles.
+Features
+Gamified Content: Funlary offers an interactive and fun learning experience by utilizing gamification techniques to capture students' attention.
+
+# Modules and Levels: 
+The content is organized into modules with different difficulty levels, allowing students to progress at their own pace.
+
+# Progress Tracking: 
+A progress tracking system is in place to monitor students' progress. This system helps students identify their strengths and weaknesses and improve their learning process.
+
+# Multimedia: 
+The project provides various learning experiences for students by incorporating visual and auditory learning tools.
+
+# Technology and Infrastructure
+Programming Language: The project is developed using an appropriate Unity3D, C#.
+Database: A database solution is used to track student progress.
+Server: The platform has a robust server infrastructure for high availability and performance.
+
+# Team Members and Roles
+Project Manager: Halide Şahkulubey, Aysuda Çitil
+Developer: Oğuzhan Delibaş
+Graphic Designer: Ömer Faruk Çiçek
+Tester: 40+ Primary School Student
+
+# Conclusion
+The Funlary project is a significant initiative aimed at making the English language learning process more enjoyable and effective. By successfully combining gamification and interactive learning techniques to capture the attention of elementary level students and strengthen their language skills, the project's success is directly correlated with the improvement in students' language skills and can have a significant long-term impact.
 
 # AVAILABLE ON PLAY STORE:
-
 https://play.google.com/store/apps/details?id=com.ODProjects.Funlary
 
 
