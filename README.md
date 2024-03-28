@@ -20,15 +20,15 @@ A progress tracking system is in place to monitor students' progress. This syste
 The project provides various learning experiences for students by incorporating visual and auditory learning tools.
 
 # Technology and Infrastructure
-Programming Language: The project is developed using an appropriate Unity3D, C#.
-Database: A database solution is used to track student progress.
-Server: The platform has a robust server infrastructure for high availability and performance.
+- Programming Language: The project is developed using an appropriate Unity3D, C#.
+- Database: A database solution is used to track student progress.
+- Server: The platform has a robust server infrastructure for high availability and performance.
 
 # Team Members and Roles
-Project Manager: Halide Şahkulubey, Aysuda Çitil
-Developer: Oğuzhan Delibaş
-Graphic Designer: Ömer Faruk Çiçek
-Tester: 40+ Primary School Student
+- Project Manager: Halide Şahkulubey, Aysuda Çitil
+- Developer: Oğuzhan Delibaş
+- Graphic Designer: Ömer Faruk Çiçek
+- Tester: 40+ Primary School Student
 
 # Conclusion
 The Funlary project is a significant initiative aimed at making the English language learning process more enjoyable and effective. By successfully combining gamification and interactive learning techniques to capture the attention of elementary level students and strengthen their language skills, the project's success is directly correlated with the improvement in students' language skills and can have a significant long-term impact.
