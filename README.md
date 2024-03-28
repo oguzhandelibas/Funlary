@@ -1,5 +1,5 @@
 # Funlary
-Project Description
+## Project Description
 Funlary is a gamification project developed by the Langjolly team aimed at teaching and reinforcing English language skills for elementary level students. This project aims to provide an engaging and interactive platform to enhance students' language skills.
 
 # Objectives
