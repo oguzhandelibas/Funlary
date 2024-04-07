@@ -29,7 +29,7 @@ The project provides various learning experiences for students by incorporating 
 - Researcher: Aysuda Çitil
 - Software Developer: Oğuzhan Delibaş
 - Graphic Designer: Ömer Faruk Çiçek
-- Participant: 22+ Primary School Student
+- Participant: 22 Primary School Student
 
 # Conclusion
 The Funlary project is a significant initiative aimed at making the English language learning process more enjoyable and effective. By successfully combining gamification and interactive learning techniques to capture the attention of elementary level students and strengthen their language skills, the project's success is directly correlated with the improvement in students' language skills and can have a significant long-term impact.
