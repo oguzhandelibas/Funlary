@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Funlary.InventoryModule;
 using Funlary.LevelModule.Data;
+using Funlary.UIModule;
 using Funlary.UIModule.Core;
 using Funlary.UIModule.Game;
 using UnityEngine;

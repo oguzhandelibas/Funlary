@@ -17,7 +17,7 @@ namespace Funlary.UIModule.Game
         RectTransform m_Root;
         [SerializeField]
         RectTransform m_ViewLayer;
-        List<View> m_Views;
+        public List<View> m_Views;
         View m_CurrentView;
         readonly Stack<View> m_History = new();
 
@@ -35,10 +35,17 @@ namespace Funlary.UIModule.Game
         {
             foreach (var view in m_Views)
                 view.Hide();
-            Show<MenuScreen>();
+            //Show<MenuScreen>();
             m_History.Clear();
 
             Show<HomeUI>();
+            /* USER PROFILE MANAGER OLUŞTUR İSİM KONTROLÜ ORADAN YAPILSIN VE MENÜ AYARLAMASI GERÇEKLEŞTİRİLSİN
+            _userPanelUI._SaveUsername(PlayerPrefs.GetString("Username", ""));
+            if (!_userPanelUI.HasUsername())
+            {
+                Debug.Log("salam");
+                GameUIManager.Instance.Show<UserPanelUI>();
+            }*/
         }
 
         /// <summary>

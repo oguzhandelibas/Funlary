@@ -1,13 +1,15 @@
 ﻿using Funlary.UIModule.Core;
 using Funlary.UIModule.Game;
+using TMPro;
 using UnityEngine;
 
 namespace Funlary.UIModule
 {
     public class HomeUI : View
     {
+        [SerializeField] TMP_InputField inputField;
         [SerializeField] private GameObject posePlatform;
-
+        
         public override void Show()
         {
             CameraController.Instance.VirtualCameraActiveness(false);
@@ -35,7 +37,8 @@ namespace Funlary.UIModule
 
         public void _SaveNameButton()
         {
-            PlayfabManager.Instance.SubmitName();
+            PlayfabManager.Instance.SubmitName(inputField.text);
         }
+        
     }
 }

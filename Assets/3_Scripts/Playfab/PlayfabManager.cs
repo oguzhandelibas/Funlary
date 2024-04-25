@@ -10,6 +10,7 @@ using PlayFab.ClientModels;
 
 public class PlayfabManager : AbstractSingleton<PlayfabManager>
 {
+    [SerializeField] private UserProfileManager userProfileManager;
     [SerializeField] private NameData nameData;
     
     [SerializeField] private GameObject connectingText;
@@ -25,8 +26,6 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
     private void Start()
     {
         connectingText.SetActive(true);
-        //GameManager.Instance.LeadboradButtonActiveness(false);
-        //introController = GetComponent<IntroController>();
         leadboardButton.SetActive(false);
         profileButton.SetActive(false);
         
@@ -50,8 +49,6 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
     void OnLoginSuccess(LoginResult result)
     {
         Debug.Log("Succesful login/account create!");
-        
-        SendLeaderboard(PlayerPrefs.GetInt("BestTime", 0));
 
         GetAccountInfoRequest request = new GetAccountInfoRequest();
         PlayFabClientAPI.GetAccountInfo(request, OnGetAccountInfoSuccess, OnGetAccountInfoError);
@@ -65,16 +62,19 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
     private void OnGetAccountInfoSuccess(GetAccountInfoResult obj)
     {
         playfabId = obj.AccountInfo.PlayFabId;
-        connectingText.SetActive(false);
-        GetLeaderboard();
-        //SubmitName();
+        string username = "";
+        PlayFabClientAPI.GetPlayerProfile( 
+            new GetPlayerProfileRequest() {
+                PlayFabId = playfabId,
+                ProfileConstraints = new PlayerProfileViewConstraints() {
+                    ShowDisplayName = true
+                }
+            },
+            result => userProfileManager.SetUserProfile(result.PlayerProfile.DisplayName),
+            error => Debug.LogError(error.GenerateErrorReport())
+            
+            );
     }
-
-    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
-    {
-        Debug.Log("Updated display name!");
-    }
-
 
     #region ERROR DEBUG
 
@@ -88,12 +88,6 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         //introController.StopAnimation();
     }
     
-    void OnErrorSendLeadboard(PlayFabError error)
-    {
-        Debug.Log("Error while Send Leadboard! " + error.GenerateErrorReport());
-        //GameManager.Instance.SetInternetObjectsActiveness(false);
-        //introController.StopAnimation();
-    }
     
     void OnErrorGetLeadboard(PlayFabError error)
     {
@@ -115,53 +109,52 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
 
     public void SendLeaderboard(int score)
     {
-        var request = new UpdatePlayerStatisticsRequest
-        {
-            Statistics = new List<StatisticUpdate>{
-                new StatisticUpdate {
-                    StatisticName = "UserScores",
-                    Value = score
+        
+        PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
+            {
+                Statistics = new List<StatisticUpdate>
+                {
+                    new()
+                    {
+                        StatisticName = "UserTimes",
+                        Value = score
+                    }
                 }
-            }
-        };
-        PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnErrorSendLeadboard);
+            },
+            response => Debug.Log($"Succesfull leaderboard sent. Score {score}"),
+            error => Debug.Log($"Error while Send Leadboard! {error.GenerateErrorReport()}")
+        );
     }
-
-    void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
+    
+    public void SubmitName(string username)
     {
-        Debug.Log("Succesfull leaderboard sent");
+        var request = new UpdateUserTitleDisplayNameRequest()
+        {
+            DisplayName = username,
+        };
+        
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnErrorSubmitName);
     }
-
+    
+    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
+    {
+        Debug.Log("Updated display name to : " + result.DisplayName);
+        connectingText.SetActive(false);
+        SendLeaderboard(PlayerPrefs.GetInt("BestTime", 0));
+        GetLeaderboard();
+    }
+    
     public void GetLeaderboard()
     {
         var request = new GetLeaderboardRequest
         {
-            StatisticName = "UserScores",
+            StatisticName = "UserTimes",
             StartPosition = 0,
             MaxResultsCount = 10
         };
         PlayFabClientAPI.GetLeaderboard(request, OnLeaderboardGet, OnErrorGetLeadboard);
     }
     
-    public void SubmitName()
-    {
-        var request = new UpdateUserTitleDisplayNameRequest()
-        {
-            DisplayName = inputField.text,
-        };
-        
-        if (request.DisplayName.Length < 2)
-        {
-            request = new UpdateUserTitleDisplayNameRequest
-            {
-                DisplayName = nameData.Names[Random.Range(0, nameData.Names.Length)],
-            };
-        }
-        
-        inputField.text = request.DisplayName;
-        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnErrorSubmitName);
-    }
-
     void OnLeaderboardGet(GetLeaderboardResult result)
     {
         int index = 0;
@@ -169,10 +162,12 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         {
             if (result.Leaderboard[i].StatValue > 0)
             {
+                //Debug.Log($"Index: {index}, Name: {result.Leaderboard[i].DisplayName}");
                 leadboardManager.users[index].SetInfo(result.Leaderboard[i].DisplayName, result.Leaderboard[i].StatValue, index, true);
                 index++;
             }
             
+            //Debug.Log($"ID_1: {playfabId}, ID_2: {result.Leaderboard[i].PlayFabId}");
             if (playfabId == result.Leaderboard[i].PlayFabId)
             {
                 ourPlayer.SetInfo(result.Leaderboard[i].DisplayName, result.Leaderboard[i].StatValue, result.Leaderboard[i].Position, true);

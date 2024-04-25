@@ -23,7 +23,7 @@ namespace Funlary
         {
             if (_timeIsActive)
             {
-                _currentTime += Time.deltaTime*12;
+                _currentTime += Time.deltaTime;
                 timerText.text = _currentTime.ToString("F0");
             }
         }

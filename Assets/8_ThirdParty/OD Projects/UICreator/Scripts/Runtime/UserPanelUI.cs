@@ -8,6 +8,12 @@ namespace Funlary.UIModule.Core
         [SerializeField] private TMP_InputField _tmpInputField;
         private string _userName;
 
-        public void _SaveUserName() => _userName = _tmpInputField.text;
+        public bool HasUsername() => _userName.Length > 2;
+
+        public void _SaveUsername(string username)
+        {
+            _tmpInputField.text = username;
+            _userName = username;
+        }
     }
 }
