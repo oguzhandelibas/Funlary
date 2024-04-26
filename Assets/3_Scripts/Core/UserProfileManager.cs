@@ -11,14 +11,13 @@ namespace Funlary
         [SerializeField] private NameData nameData;
         [SerializeField] private GameObject userPanelUI;
         [SerializeField] private TMP_InputField _tmpInputField;
-        [SerializeField] private string _username;
+        [SerializeField] private string _username = "";
         private int _userScore;
 
         public void SetUserProfile(string username)
         {
             _username = username;
-            
-            if (_username.Length < 3)
+            if (_username == null || _username.Length < 3)
             {
                 _username = nameData.Names[Random.Range(0, nameData.Names.Length)];
                 SetUserPanelActiveness(true);
@@ -31,11 +30,11 @@ namespace Funlary
             _tmpInputField.text = _username;
             PlayerPrefs.SetString("Username", username);
             PlayfabManager.Instance.SubmitName(username);
-            
         }
 
         public void SetUserPanelActiveness(bool activeness)
         {
+            Debug.Log($"Hayırdır Bana m Yol: {GameManager.Instance}");
             userPanelUI.SetActive(activeness);
             if (!activeness)
             {

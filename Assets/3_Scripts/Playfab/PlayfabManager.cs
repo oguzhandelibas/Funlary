@@ -34,6 +34,7 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
 
     void Login()
     {
+        Debug.Log("Login Progress Started");
         var request = new LoginWithCustomIDRequest
         {
             CustomId = SystemInfo.deviceUniqueIdentifier,
@@ -162,20 +163,33 @@ public class PlayfabManager : AbstractSingleton<PlayfabManager>
         {
             if (result.Leaderboard[i].StatValue > 0)
             {
-                //Debug.Log($"Index: {index}, Name: {result.Leaderboard[i].DisplayName}");
                 leadboardManager.users[index].SetInfo(result.Leaderboard[i].DisplayName, result.Leaderboard[i].StatValue, index, true);
                 index++;
-            }
-            
-            //Debug.Log($"ID_1: {playfabId}, ID_2: {result.Leaderboard[i].PlayFabId}");
-            if (playfabId == result.Leaderboard[i].PlayFabId)
-            {
-                ourPlayer.SetInfo(result.Leaderboard[i].DisplayName, result.Leaderboard[i].StatValue, result.Leaderboard[i].Position, true);
-                inputField.text = result.Leaderboard[i].DisplayName;
             }
         }
         
         leadboardButton.SetActive(true);
         profileButton.SetActive(true);
+        
+        var request = new GetLeaderboardRequest
+        {
+            StatisticName = "UserTimes",
+            StartPosition = 0,
+            MaxResultsCount = 100
+        };
+        PlayFabClientAPI.GetLeaderboard(request, GetUserInfo, OnErrorGetLeadboard);
+    }
+
+    private void GetUserInfo(GetLeaderboardResult result)
+    {
+        for (int i = 0; i < result.Leaderboard.Count; i++)
+        {
+            if (playfabId == result.Leaderboard[i].PlayFabId)
+            {
+                ourPlayer.SetInfo(result.Leaderboard[i].DisplayName, result.Leaderboard[i].StatValue, result.Leaderboard[i].Position, true);
+                inputField.text = result.Leaderboard[i].DisplayName;
+                break;
+            }
+        }
     }
 }
