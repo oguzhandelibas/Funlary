@@ -6,6 +6,7 @@ using Funlary.UIModule;
 using Funlary.UIModule.Core;
 using Funlary.UIModule.Game;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Funlary
 {
@@ -13,7 +14,7 @@ namespace Funlary
     {
         [SerializeField] private InventoryManager inventoryManager;
         [SerializeField] private PlayfabManager playfabManager;
-        [SerializeField] private TimeManager timeManager;
+        public TimeManager timeManager;
         [SerializeField] private LevelData[] levelDatas;
         private GameObject _currentGameObject;
         
@@ -81,6 +82,12 @@ namespace Funlary
             timeManager.ResetTime();
             LevelIndex = 0;
             SetLevel();
+        }
+
+        public void _RestGameTurnHome()
+        {
+            PlayerPrefs.SetInt("LastTime", (int)timeManager.CurrentTime);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

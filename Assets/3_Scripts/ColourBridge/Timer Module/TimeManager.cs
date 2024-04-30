@@ -14,10 +14,18 @@ namespace Funlary
             get => _currentTime;
             set => _currentTime = value;
         }
+        
+        public bool TimeIsActive
+        {
+            get => _timeIsActive;
+        }
+
         public void ActivateTimer()
         {
+            CurrentTime = PlayerPrefs.GetInt("LastTime");
             _timeIsActive = true;
         }
+        public void DeactivateTimer() => _timeIsActive = false;
 
         private void Update()
         {

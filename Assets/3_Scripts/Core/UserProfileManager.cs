@@ -34,7 +34,7 @@ namespace Funlary
 
         public void SetUserPanelActiveness(bool activeness)
         {
-            Debug.Log($"Hayırdır Bana m Yol: {GameManager.Instance}");
+            if(GameManager.Instance.timeManager.TimeIsActive) return;
             userPanelUI.SetActive(activeness);
             if (!activeness)
             {

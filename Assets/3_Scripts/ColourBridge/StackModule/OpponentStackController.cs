@@ -20,6 +20,10 @@ namespace Funlary.Unit5.StackModule
         public void AddStack(IStack stack, Transform parent)
         {
             if(!opponent.CanCollectStack) return;
+            
+            int opponentStackCount = opponent.StackCount;
+            if (opponentStackCount > 30) return;
+
 
             _stackQueue.Push(stack);
             stack.CanCollectable = false;

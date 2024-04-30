@@ -38,7 +38,7 @@ namespace Funlary.UIModule.Core
             if (settingsToggle)
                 sizeDelta = new Vector2(sizeDelta.x, sizeDelta.y);
             else
-                sizeDelta = new Vector2(sizeDelta.x, sizeDelta.y / 3f);
+                sizeDelta = new Vector2(sizeDelta.x, sizeDelta.y / 4.0f);
 
             settingsToggle = !settingsToggle;
             settingsHolder.DOSizeDelta(sizeDelta, .25f);
